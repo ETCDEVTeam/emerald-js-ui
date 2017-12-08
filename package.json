@@ -29,6 +29,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
     "eslint": "^4.12.1",
@@ -52,6 +53,11 @@
     "setupFiles": [
       "raf/polyfill",
       "<rootDir>/jest.setup.js"
-    ]
+    ],
+    "coverageDirectory": "./coverage/",
+    "collectCoverageFrom": [
+      "src/**/*.js"
+    ],
+    "collectCoverage": true
   }
 }
