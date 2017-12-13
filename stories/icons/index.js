@@ -18,15 +18,25 @@ import {
 } from '../../src/icons';
 
 storiesOf('icons', module)
-  .add('Logo', () => (<MuiThemeProvider><Logo /></MuiThemeProvider>))
-  .add('Add', () => (<MuiThemeProvider><Add /></MuiThemeProvider>))
-  .add('Close', () => (<MuiThemeProvider><Close /></MuiThemeProvider>))
-  .add('Delete', () => (<MuiThemeProvider><Delete /></MuiThemeProvider>))
-  .add('Edit', () => (<MuiThemeProvider><Edit /></MuiThemeProvider>))
-  .add('Eye', () => (<MuiThemeProvider><Eye /></MuiThemeProvider>))
-  .add('Gear', () => (<MuiThemeProvider><Gear /></MuiThemeProvider>))
-  .add('Ledger', () => (<MuiThemeProvider><Ledger /></MuiThemeProvider>))
-  .add('QrCode', () => (<MuiThemeProvider><QrCode /></MuiThemeProvider>))
-  .add('Repeat', () => (<MuiThemeProvider><Repeat /></MuiThemeProvider>))
-  .add('Search', () => (<MuiThemeProvider><Search /></MuiThemeProvider>))
-  .add('Copy', () => (<MuiThemeProvider><Copy /></MuiThemeProvider>));
+  .addDecorator(story => (
+    <MuiThemeProvider>
+      {story()}
+    </MuiThemeProvider>
+  ))
+  .add('Logo', () => (
+    <div>
+      <Logo />
+      <Logo width="100px" height="100px" />
+      <Logo width="200px" height="200px" />
+    </div>))
+  .add('Add', () => (<Add />))
+  .add('Close', () => (<Close />))
+  .add('Delete', () => (<Delete />))
+  .add('Edit', () => (<Edit />))
+  .add('Eye', () => (<Eye />))
+  .add('Gear', () => (<Gear />))
+  .add('Ledger', () => (<Ledger />))
+  .add('QrCode', () => (<QrCode />))
+  .add('Repeat', () => (<Repeat />))
+  .add('Search', () => (<Search />))
+  .add('Copy', () => (<Copy />));
