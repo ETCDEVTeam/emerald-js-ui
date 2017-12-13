@@ -14,9 +14,11 @@ import {
   QrCode,
   Repeat,
   Search,
+  Logo,
 } from '../../src/icons';
 
 storiesOf('icons', module)
+  .add('Logo', () => (<MuiThemeProvider><Logo /></MuiThemeProvider>))
   .add('Add', () => (<MuiThemeProvider><Add /></MuiThemeProvider>))
   .add('Close', () => (<MuiThemeProvider><Close /></MuiThemeProvider>))
   .add('Delete', () => (<MuiThemeProvider><Delete /></MuiThemeProvider>))
