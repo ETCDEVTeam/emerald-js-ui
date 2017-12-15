@@ -11,6 +11,11 @@ export const Address = (props) => {
   const {
     classes, id, shortened, onClick, style,
   } = props;
+
+  if (!id) {
+    return null;
+  }
+
   function copyAddressToClipBoard() {
     copy(id);
   }
