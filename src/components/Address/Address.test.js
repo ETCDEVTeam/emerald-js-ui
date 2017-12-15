@@ -8,6 +8,11 @@ const reduceClasses = (prev, curr) => Object.assign({}, prev, { [curr]: curr });
 const classes = Object.keys(styles).reduce(reduceClasses, {});
 
 describe('Address', () => {
+  it('works without provided id', () => {
+    const component = shallow(<Address classes={classes} />);
+    expect(component.find('div')).toHaveLength(0);
+  });
+
   it('shows address', () => {
     const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
 
