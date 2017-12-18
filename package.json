@@ -1,15 +1,17 @@
 {
   "name": "emerald-js-ui",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
     "test:coverage": "jest --coverage && codecov",
-    "prepublish": "npm run babel-prepublish",
+    "prepublish": "npm run babel-prepublish && npm run flow-prepublish",
     "babel-prepublish": "./node_modules/.bin/babel src/ -d lib --ignore test.js",
+    "flow-prepublish": "./node_modules/.bin/flow-copy-source src lib -i '**/*.test.js'",
     "storybook": "start-storybook -p 9001 -c .storybook",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "flow": "flow"
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,8 @@
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-react": "^7.5.1",
+    "flow-bin": "^0.61.0",
+    "flow-copy-source": "^1.2.1",
     "jest": "^21.2.1",
     "raf": "^3.4.0"
   },
