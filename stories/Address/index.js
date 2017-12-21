@@ -12,4 +12,8 @@ storiesOf('Address', module)
   ))
   .add('default', () => (<Address id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />))
   .add('without id', () => (<Address />))
-  .add('shortened', () => (<Address shortened id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />));
+  .add('shortened', () => (<Address shortened id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />))
+  .add('truncated with ellipses', () => (
+    <div style={{ width: '200px', overflowX: 'hidden' }}>
+      <Address id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />
+    </div>));

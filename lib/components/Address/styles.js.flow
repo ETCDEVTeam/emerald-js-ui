@@ -8,6 +8,8 @@ const styles = {
   },
   address: {
     cursor: 'pointer',
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
   },
   copyIcon: {
     width: '13px !important',
