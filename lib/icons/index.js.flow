@@ -10,3 +10,4 @@ export { default as Add } from './Add';
 export { default as Search } from './Search';
 export { default as Ledger } from './Ledger';
 export { default as Logo } from './Logo';
+export { default as ArrowLeft } from './ArrowLeft';
