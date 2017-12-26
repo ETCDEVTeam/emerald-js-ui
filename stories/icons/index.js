@@ -15,6 +15,7 @@ import {
   Repeat,
   Search,
   Logo,
+  ArrowLeft,
 } from '../../src/icons';
 
 storiesOf('icons', module)
@@ -29,6 +30,20 @@ storiesOf('icons', module)
       <Logo width="100px" height="100px" />
       <Logo width="200px" height="200px" />
     </div>))
+  .add('All', () => (<div>
+    <Add />
+    <Close />
+    <Delete />
+    <Edit />
+    <Eye />
+    <Gear />
+    <Ledger />
+    <QrCode />
+    <Repeat />
+    <Search />
+    <Copy />
+    <ArrowLeft />
+  </div>))
   .add('Add', () => (<Add />))
   .add('Close', () => (<Close />))
   .add('Delete', () => (<Delete />))
@@ -39,4 +54,5 @@ storiesOf('icons', module)
   .add('QrCode', () => (<QrCode />))
   .add('Repeat', () => (<Repeat />))
   .add('Search', () => (<Search />))
-  .add('Copy', () => (<Copy />));
+  .add('Copy', () => (<Copy />))
+  .add('ArrowLeft', () => (<ArrowLeft />));
