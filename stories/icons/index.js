@@ -6,6 +6,7 @@ import {
   Add,
   Copy,
   Close,
+  Check,
   Delete,
   Edit,
   Eye,
@@ -33,6 +34,7 @@ storiesOf('icons', module)
   .add('All', () => (<div>
     <Add />
     <Close />
+    <Check />
     <Delete />
     <Edit />
     <Eye />
@@ -46,6 +48,7 @@ storiesOf('icons', module)
   </div>))
   .add('Add', () => (<Add />))
   .add('Close', () => (<Close />))
+  .add('Check', () => (<Check />))
   .add('Delete', () => (<Delete />))
   .add('Edit', () => (<Edit />))
   .add('Eye', () => (<Eye />))

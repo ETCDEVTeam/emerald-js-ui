@@ -1,5 +1,6 @@
 const styles = {
   container: {
+    height: '28px',
     color: '#747474',
     fontWeight: '300',
     fontSize: '14px',
