@@ -14,10 +14,10 @@ export class Address extends React.Component {
       showCheck: props.showCheck || false,
     };
   }
-  onClick() {
+  onCopyClick() {
     copy(this.props.id);
-    if (this.props.onClick) {
-      this.props.onClick(this.props.id);
+    if (this.props.onCopyClick) {
+      this.props.onCopyClick(this.props.id);
     }
     this.setState({
       showCheck: true,
@@ -30,7 +30,7 @@ export class Address extends React.Component {
   }
   render() {
     const {
-      classes, id, shortened, style,
+      classes, id, shortened, style, onClick
     } = this.props;
 
     if (!id) {
@@ -41,7 +41,7 @@ export class Address extends React.Component {
     let icons = null;
     if (!shortened) {
       icons = (<CloneIcon
-        onClick={this.onClick.bind(this)}
+        onClick={this.onCopyClick.bind(this)}
         color={classes.container.color}
         className={classes.copyIcon}
       />);
@@ -59,7 +59,7 @@ export class Address extends React.Component {
 
     return (
       <div className={classes.container} style={style}>
-        <div onClick={this.onClick.bind(this)} className={classes.address}>
+        <div onClick={onClick} className={classes.address}>
           {value}
         </div>
         {icons && <div>{icons}</div>}
@@ -70,6 +70,7 @@ export class Address extends React.Component {
 
 Address.propTypes = {
   onClick: PropTypes.func,
+  onCopyClick: PropTypes.func,
   id: PropTypes.string.isRequired,
   shortened: PropTypes.bool,
   classes: PropTypes.object.isRequired,
