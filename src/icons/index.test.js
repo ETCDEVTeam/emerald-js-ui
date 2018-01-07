@@ -7,6 +7,7 @@ test('Icons', () => {
     Icons.Search,
     Icons.Repeat,
     Icons.Close,
+    Icons.Check,
     Icons.Add,
     Icons.ArrowLeft,
     Icons.Delete,

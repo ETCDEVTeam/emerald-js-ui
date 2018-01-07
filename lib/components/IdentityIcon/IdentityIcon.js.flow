@@ -6,7 +6,6 @@ import blockies from './blockies';
 import styles from './styles';
 
 
-
 export const IdentityIcon = ({
   classes, id, expanded, size, onClick,
 }) => {
