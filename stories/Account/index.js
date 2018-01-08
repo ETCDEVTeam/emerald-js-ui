@@ -6,7 +6,7 @@ import { muiTheme } from 'storybook-addon-material-ui';
 import theme from '../../src/theme.json';
 
 storiesOf('Account', module)
-  .addDecorator(muiTheme([theme]))
+  .addDecorator(muiTheme([theme, 'Light Theme', 'Dark Theme']))
   .add('default', () => (
     <Account
       addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
