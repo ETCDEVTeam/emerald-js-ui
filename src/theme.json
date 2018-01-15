@@ -17,11 +17,11 @@
     "palette": {
         "primary1Color": "#47B04B",
         "primary2Color": "#5ECE62",
-        "primary3Color": "#bdbdbd",
+        "primary3Color": "#747474",
         "accent1Color": "#ff4081",
         "accent2Color": "#f4f4f4",
         "accent3Color": "#EEEEEE",
-        "textColor": "black",
+        "textColor": "#000000",
         "secondaryTextColor": "rgba(0, 0, 0, 0.54)",
         "alternateTextColor": "#ffffff",
         "canvasColor": "#ffffff",
