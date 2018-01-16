@@ -15,6 +15,7 @@ test('Icons', () => {
     Icons.Eye,
     Icons.Gear,
     Icons.Ledger,
+    Icons.ArrowRight,
   ];
   icons.forEach(i => expect(shallow(React.createElement(i))).toBeDefined());
 });

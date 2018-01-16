@@ -12,3 +12,4 @@ export { default as Search } from './Search';
 export { default as Ledger } from './Ledger';
 export { default as Logo } from './Logo';
 export { default as ArrowLeft } from './ArrowLeft';
+export { default as ArrowRight } from './ArrowRight';

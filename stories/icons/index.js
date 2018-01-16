@@ -17,6 +17,7 @@ import {
   Search,
   Logo,
   ArrowLeft,
+  ArrowRight,
 } from '../../src/icons';
 
 storiesOf('icons', module)
@@ -45,6 +46,7 @@ storiesOf('icons', module)
     <Search />
     <Copy />
     <ArrowLeft />
+    <ArrowRight />
   </div>))
   .add('Add', () => (<Add />))
   .add('Close', () => (<Close />))
@@ -58,4 +60,5 @@ storiesOf('icons', module)
   .add('Repeat', () => (<Repeat />))
   .add('Search', () => (<Search />))
   .add('Copy', () => (<Copy />))
-  .add('ArrowLeft', () => (<ArrowLeft />));
+  .add('ArrowLeft', () => (<ArrowLeft />))
+  .add('ArrowRight', () => (<ArrowRight />));
