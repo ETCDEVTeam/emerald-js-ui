@@ -39,6 +39,7 @@ Account.defaultProps = {
 };
 
 Account.propTypes = {
+  editable: PropTypes.bool,
   onAddressClick: PropTypes.func,
   onEditClick: PropTypes.func,
 };
