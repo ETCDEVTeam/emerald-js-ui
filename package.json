@@ -10,6 +10,7 @@
     "babel-prepublish": "./node_modules/.bin/babel src/ -d lib --ignore test.js",
     "flow-prepublish": "./node_modules/.bin/flow-copy-source src lib -i '**/*.test.js'",
     "storybook": "start-storybook -p 9001 -c .storybook",
+    "storybook-static": "build-storybook -c .storybook -o docs",
     "lint": "eslint src",
     "flow": "flow"
   },

@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import IconButton from 'material-ui/IconButton';
 
 import {
   Add,
@@ -48,6 +49,22 @@ storiesOf('icons', module)
     <ArrowLeft />
     <ArrowRight />
   </div>))
+  .add('All-48x48', () => (<div>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Add /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Close /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Check /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Delete /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Edit /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Eye /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Gear /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Ledger /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><QrCode /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Repeat /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Search /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><Copy /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><ArrowLeft /></IconButton>
+    <IconButton iconStyle={{ width: '48px', height: '48px' }}><ArrowRight /></IconButton>
+                           </div>))
   .add('Add', () => (<Add />))
   .add('Close', () => (<Close />))
   .add('Check', () => (<Check />))
