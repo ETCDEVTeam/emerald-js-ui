@@ -41,4 +41,8 @@ IdentityIcon.propTypes = {
   classes: PropTypes.object,
 };
 
+IdentityIcon.defaultProps = {
+  size: 40,
+};
+
 export default injectSheet(styles)(IdentityIcon);

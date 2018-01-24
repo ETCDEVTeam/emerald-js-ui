@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FlatButton } from 'material-ui';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
 const Button = (props) => {
-  const { disabled, primary, style, muiTheme } = props;
+  const {
+    disabled, primary, style, muiTheme,
+  } = props;
   const styles = {
     primary: {
       height: '40px',
@@ -26,20 +29,30 @@ const Button = (props) => {
     return (
       <FlatButton
         {...props}
-        backgroundColor={ disabled ? muiTheme.palette.disabledColor : muiTheme.palette.primary1Color}
+        backgroundColor={disabled ? muiTheme.palette.disabledColor : muiTheme.palette.primary1Color}
         style={{ ...styles.primary, ...style }}
         hoverColor={hoverColor.primary}
-        />
+      />
     );
   }
   return (
     <FlatButton
-      {...props }
+      {...props}
       backgroundColor={muiTheme.palette.accent3Color}
       style={{ ...styles.ordinary, ...style }}
       hoverColor={hoverColor.ordinary}
     />
   );
+};
+
+Button.propTypes = {
+  disabled: PropTypes.bool,
+  primary: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  disabled: false,
+  primary: false,
 };
 
 export default muiThemeable()(Button);
