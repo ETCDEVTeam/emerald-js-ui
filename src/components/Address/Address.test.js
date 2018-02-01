@@ -29,8 +29,12 @@ describe('Address', () => {
 
   it('shows check', () => {
     const accountAddr = shallow(<Address showCheck classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
-
     expect(accountAddr.text()).toContain('<Check />');
+  });
+
+  it('has showCheck == false by default', () => {
+    const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
+    expect(accountAddr.props().showCheck).toBeFalsy();
   });
 
   it('shows sanitized hex', () => {

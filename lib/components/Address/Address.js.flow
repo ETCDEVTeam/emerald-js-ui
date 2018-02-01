@@ -11,7 +11,7 @@ export class Address extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      showCheck: props.showCheck || false,
+      showCheck: props.showCheck,
     };
   }
   onCopyClick() {
@@ -30,7 +30,7 @@ export class Address extends React.Component {
   }
   render() {
     const {
-      classes, id, shortened, style, onClick
+      classes, id, shortened, style, onClick,
     } = this.props;
 
     if (!id) {
@@ -78,6 +78,7 @@ Address.propTypes = {
 
 Address.defaultProps = {
   shortened: false,
+  showCheck: false,
 };
 
 export default injectSheet(styles)(Address);

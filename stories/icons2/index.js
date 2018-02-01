@@ -52,6 +52,15 @@ import {
   Windowed,
 } from '../../src/icons2';
 
+import {
+  EthereumClassic,
+  Bitcoin,
+  Ethereum,
+    Litecoin,
+    Monero,
+    Zcash,
+} from '../../src/icons2/currencies';
+
 storiesOf('icons2', module)
   .addDecorator(story => (
     <MuiThemeProvider>
@@ -61,7 +70,6 @@ storiesOf('icons2', module)
 
   .add('All', () => (<div>
     <div>
-
       <Block />
       <Settings />
       <Add />
@@ -164,4 +172,14 @@ storiesOf('icons2', module)
       <IconButton iconStyle={{ width: '48px', height: '48px' }}><Address /></IconButton>
       <IconButton iconStyle={{ width: '48px', height: '48px' }}><Windowed /></IconButton>
     </div>
-  </div>));
+  </div>))
+  .add('Currencies', () => (
+    <div>
+      <EthereumClassic />
+      <Bitcoin />
+      <Ethereum />
+      <Litecoin />
+      <Monero />
+      <Zcash />
+    </div>
+  ));
