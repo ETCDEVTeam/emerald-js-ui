@@ -10,6 +10,7 @@ const classes = Object.keys(styles).reduce(reduceClasses, {});
 
 test('Empty children list', () => {
   const component = shallow(<ButtonGroup classes={classes} />);
+  expect(component).toBeDefined();
 });
 
 test('Renders children list', () => {
