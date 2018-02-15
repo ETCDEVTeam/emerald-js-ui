@@ -6,3 +6,4 @@ import './icons';
 import './icons2';
 import './Buttons';
 import './ButtonGroup';
+import './IconInput';
