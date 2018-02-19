@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
 import injectSheet from 'react-jss';
 
-import { Copy as CloneIcon, Check } from '../../icons';
+import { Copy as CloneIcon, CheckCircle } from '../../icons2';
 
 import styles from './styles';
 
@@ -48,7 +48,7 @@ export class Address extends React.Component {
     }
     if (this.state.showCheck) {
       icons = (
-        <Check />
+        <CheckCircle color="green"/>
       );
     }
 

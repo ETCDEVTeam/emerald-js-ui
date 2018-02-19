@@ -50,15 +50,16 @@ import {
   Token3,
   Address,
   Windowed,
+  EtcLogo,
 } from '../../src/icons2';
 
 import {
   EthereumClassic,
   Bitcoin,
   Ethereum,
-    Litecoin,
-    Monero,
-    Zcash,
+  Litecoin,
+  Monero,
+  Zcash,
 } from '../../src/icons2/currencies';
 
 storiesOf('icons2', module)
@@ -118,6 +119,7 @@ storiesOf('icons2', module)
       <Token3 />
       <Address />
       <Windowed />
+      <EtcLogo />
     </div>
 
   </div>))
@@ -171,6 +173,7 @@ storiesOf('icons2', module)
       <IconButton iconStyle={{ width: '48px', height: '48px' }}><Token3 /></IconButton>
       <IconButton iconStyle={{ width: '48px', height: '48px' }}><Address /></IconButton>
       <IconButton iconStyle={{ width: '48px', height: '48px' }}><Windowed /></IconButton>
+      <IconButton iconStyle={{ width: '48px', height: '48px' }}><EtcLogo /></IconButton>
     </div>
   </div>))
   .add('Currencies', () => (
