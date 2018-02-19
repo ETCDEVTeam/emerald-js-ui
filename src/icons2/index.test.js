@@ -51,6 +51,7 @@ test('Icons', () => {
     Icons.Token2,
     Icons.Token3,
     Icons.Windowed,
+    Icons.EtcLogo,
   ];
   icons.forEach(i => expect(shallow(React.createElement(i))).toBeDefined());
 });
