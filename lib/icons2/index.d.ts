@@ -1,5 +1,8 @@
 import * as React from 'react';
 
-declare const Block: React.Component;
+export interface IconProps {
+};
+
+declare const Block: React.ComponentType<IconProps>;
 
 export { Block };
