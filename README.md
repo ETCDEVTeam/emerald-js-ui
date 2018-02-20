@@ -12,5 +12,15 @@ React components
 
 `npm run storybook`
 
+## How to use
+
+#### Install package
+
+`npm install https://github.com/ETCDEVTeam/emerald-js-ui.git#v0.0.10`
+
+or
+
+`yarn add https://github.com/ETCDEVTeam/emerald-js-ui.git#v0.0.10`
+
 ## Contact
 Chat with us via [Gitter](https://gitter.im/ethereumproject/emerald-wallet)
