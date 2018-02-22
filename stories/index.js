@@ -2,6 +2,7 @@ import './IdentityIcon';
 import './Address';
 import './Account';
 import './Checkbox';
+import './Card';
 import './icons';
 import './icons2';
 import './Buttons';
