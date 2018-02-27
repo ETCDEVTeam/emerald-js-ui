@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { FlatButton } from 'material-ui';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-const Button = (props) => {
+const Button = ({muiTheme, ...props}) => {
   const {
-    disabled, primary, style, muiTheme,
+    disabled, primary, style,
   } = props;
   const styles = {
     primary: {
