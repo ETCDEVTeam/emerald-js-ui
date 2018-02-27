@@ -11,7 +11,7 @@ const SyncWarning = (props) => {
   } = props;
 
   const height = highestBlock || 5464306;
-  if (height - currentBlock >= 20) {
+  if (currentBlock && (height - currentBlock >= 20)) {
     return (
       <div className={classes.container}>
         <div><Spinner color={styles.text.color} /></div>
