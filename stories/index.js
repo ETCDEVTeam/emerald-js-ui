@@ -9,3 +9,4 @@ import './Buttons';
 import './LinkButton';
 import './ButtonGroup';
 import './SyncWarning';
+import './Warning';
