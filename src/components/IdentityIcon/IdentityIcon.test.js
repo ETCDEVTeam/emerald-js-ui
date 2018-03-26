@@ -26,13 +26,9 @@ beforeEach(() => {
 });
 
 describe('IdentityIcon', () => {
-  it('show div with plus icon by default', () => {
-    const component = shallow(<IdentityIcon classes={classes} id="0x1234567890" />);
-    expect(component.find('div').children().find('div')).toHaveLength(1);
-  });
 
-  it('does not show div with plus icon when expended', () => {
-    const component = shallow(<IdentityIcon classes={classes} expanded id="0x1234567890" />);
+  it('does not show div with plus icon', () => {
+    const component = shallow(<IdentityIcon classes={classes} id="0x1234567890" />);
     expect(component.find('div').children().find('div')).toHaveLength(0);
   });
 });

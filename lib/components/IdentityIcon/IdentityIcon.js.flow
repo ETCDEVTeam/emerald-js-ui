@@ -7,7 +7,7 @@ import styles from './styles';
 
 
 export const IdentityIcon = ({
-  classes, id, expanded, size, onClick,
+  classes, id, size, onClick,
 }) => {
   const iconSize = Number.isInteger(size) ? size : 40;
   const icon = blockies.create({ seed: id, size: 8, scale: 4 }).toDataURL();
@@ -20,7 +20,6 @@ export const IdentityIcon = ({
     position: 'relative',
   };
 
-  const expandButton = expanded ? '' : (<div className={classes.expandedButton} />);
   const cx = classNames.bind(classes);
   const className = cx({
     clickAble: (onClick !== null) && (typeof onClick === 'function'),
@@ -28,14 +27,12 @@ export const IdentityIcon = ({
 
   return (
     <div style={mainStyle} onClick={onClick} className={className}>
-      { expandButton }
     </div>
   );
 };
 
 IdentityIcon.propTypes = {
   id: PropTypes.string.isRequired,
-  expanded: PropTypes.bool,
   size: PropTypes.number,
   onClick: PropTypes.func,
   classes: PropTypes.object,
