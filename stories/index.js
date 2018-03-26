@@ -10,3 +10,4 @@ import './LinkButton';
 import './ButtonGroup';
 import './SyncWarning';
 import './Warning';
+import './Input';
