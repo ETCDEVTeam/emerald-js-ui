@@ -26,6 +26,7 @@ export class Input extends React.Component {
 
   render() {
     const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, hintText } = this.props;
+    const { onChange } = this.props;
     return (
       <div className={classes.container}>
         <TextField
@@ -38,6 +39,7 @@ export class Input extends React.Component {
           value={value}
           underlineShow={underlineShow}
           fullWidth={true}
+          onChange={onChange}
         />
       </div>
     );

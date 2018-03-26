@@ -15,7 +15,7 @@ storiesOf('Input', module)
   .add('all', () => (
     <div style={{ paddingTop: '10px' }}>
       <div style={styles}>
-        <Input hintText="hint text" />
+        <Input hintText="hint text" onChange={action('onChange')} />
       </div>
     </div>
   ));
