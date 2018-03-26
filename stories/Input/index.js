@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import FlatButton from 'material-ui/FlatButton';
+import { TextField } from 'material-ui';
 import { action } from '@storybook/addon-actions';
 import { muiTheme } from 'storybook-addon-material-ui';
 import theme from '../../src/theme.json';

@@ -25,7 +25,7 @@ export class Input extends React.Component {
   };
 
   render() {
-    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, hintText } = this.props;
+    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, hintText, ...other } = this.props;
     const { onChange } = this.props;
     return (
       <div className={classes.container}>
@@ -36,10 +36,10 @@ export class Input extends React.Component {
           rowsMax={rowsMax}
           rows={rows}
           className={className}
-          value={value}
           underlineShow={underlineShow}
           fullWidth={true}
           onChange={onChange}
+          {...other}
         />
       </div>
     );
