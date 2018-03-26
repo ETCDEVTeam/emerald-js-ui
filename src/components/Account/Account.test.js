@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Edit as EditIcon } from '../../icons';
 import { Account } from './Account';
+import IdentityIcon from '../IdentityIcon';
 import Address from '../Address';
 import styles from './styles';
 
@@ -16,6 +17,14 @@ describe('Account', () => {
   it('not editable by default', () => {
     const accountAddr = shallow(<Account classes={classes} addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
     expect(accountAddr.find(EditIcon)).toHaveLength(0);
+  });
+  it('not identityIcon by default', () => {
+    const accountAddr = shallow(<Account classes={classes} addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
+    expect(accountAddr.find(IdentityIcon)).toHaveLength(0);
+  });
+  it('shows identity when true', () => {
+    const accountAddr = shallow(<Account classes={classes} identity addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />);
+    expect(accountAddr.find(IdentityIcon)).toHaveLength(1);
   });
 });
 
