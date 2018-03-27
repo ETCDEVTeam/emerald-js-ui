@@ -24,4 +24,28 @@ storiesOf('Account', module)
     <Account
       addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
       onAddressClick={action('address-click')}
-    />));
+    />))
+  .add('Identity Icon', () => (
+    <Account
+      addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+      identity
+    />))
+    .add('Identity Icon with name', () => (
+      <Account
+        addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+        name="account1"
+        identity
+      />))
+    .add('Identity Icon with editable name', () => (
+      <Account
+        addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+        editable
+        name="account1"
+        identity
+      />))
+      .add('Identity Icon with custom size indentity props', () => (
+        <Account
+          addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+          identity
+          identityProps={{size: 30}}
+        />));
