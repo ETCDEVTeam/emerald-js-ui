@@ -3,6 +3,7 @@ import './Address';
 import './Account';
 import './Checkbox';
 import './Card';
+import './Colors';
 import './icons';
 import './icons2';
 import './Buttons';
