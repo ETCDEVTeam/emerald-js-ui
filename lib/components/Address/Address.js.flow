@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
 import injectSheet from 'react-jss';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
 import { Copy as CloneIcon, CheckCircle } from '../../icons2';
 
@@ -30,7 +31,7 @@ export class Address extends React.Component {
   }
   render() {
     const {
-      classes, id, shortened, style, onClick,
+      classes, id, shortened, style, onClick, muiTheme
     } = this.props;
 
     if (!id) {
@@ -48,7 +49,7 @@ export class Address extends React.Component {
     }
     if (this.state.showCheck) {
       icons = (
-        <CheckCircle color="green"/>
+        <CheckCircle color={muiTheme.palette.primary1Color}/>
       );
     }
 
@@ -81,4 +82,5 @@ Address.defaultProps = {
   showCheck: false,
 };
 
-export default injectSheet(styles)(Address);
+export default muiThemeable()(injectSheet(styles)(Address));
+
