@@ -1,3 +1,4 @@
+import './Colors';
 import './IdentityIcon';
 import './Address';
 import './Account';
