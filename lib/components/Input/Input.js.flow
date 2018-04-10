@@ -25,12 +25,30 @@ export class Input extends React.Component {
   };
 
   render() {
-    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, hintText, ...other } = this.props;
+    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, ...other } = this.props;
     const { onChange } = this.props;
+    if (value) {
+      return (
+        <div className={classes.container}>
+          <TextField
+            disabled={disabled}
+            multiLine={multiLine}
+            rowsMax={rowsMax}
+            rows={rows}
+            className={className}
+            underlineShow={underlineShow}
+            fullWidth={true}
+            onChange={onChange}
+            value={value}
+            {...other}
+          />
+        </div>
+      );
+    };
+
     return (
       <div className={classes.container}>
         <TextField
-          hintText={hintText}
           disabled={disabled}
           multiLine={multiLine}
           rowsMax={rowsMax}

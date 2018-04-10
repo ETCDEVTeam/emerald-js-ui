@@ -18,5 +18,8 @@ storiesOf('Input', module)
       <div style={styles}>
         <Input hintText="hint text" onChange={action('onChange')} />
       </div>
+      <div style={styles}>
+        <Input value="value text" onChange={action('onChange')} />
+      </div>
     </div>
   ));
