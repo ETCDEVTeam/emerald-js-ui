@@ -55,7 +55,7 @@ Account.defaultProps = {
 
 Account.propTypes = {
   identity: PropTypes.bool,
-  identityProps: PropTypes.bool,
+  identityProps: PropTypes.object,
   editable: PropTypes.bool,
   onAddressClick: PropTypes.func,
   onEditClick: PropTypes.func,
