@@ -26,7 +26,6 @@ beforeEach(() => {
 });
 
 describe('IdentityIcon', () => {
-
   it('does not show div with plus icon', () => {
     const component = shallow(<IdentityIcon classes={classes} id="0x1234567890" />);
     expect(component.find('div').children().find('div')).toHaveLength(0);

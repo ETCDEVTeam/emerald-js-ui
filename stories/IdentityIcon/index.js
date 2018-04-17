@@ -5,6 +5,13 @@ import { action } from '@storybook/addon-actions';
 
 import IdentityIcon from '../../src/components/IdentityIcon';
 
+const addr = '0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98';
 storiesOf('IdentityIcon', module)
-  .add('default', () => (<IdentityIcon id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" />))
+  .add('default', () => (
+    <div>
+      <div>{addr.toLowerCase()}</div>
+      <IdentityIcon id={addr.toLowerCase()} />
+      <div>{addr}</div>
+      <IdentityIcon id={addr} />
+    </div>))
   .add('with onClick handler', () => (<IdentityIcon id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" onClick={action('icon-click')} />));
