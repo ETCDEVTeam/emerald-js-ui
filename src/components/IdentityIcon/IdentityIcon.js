@@ -10,7 +10,11 @@ export const IdentityIcon = ({
   classes, id, size, onClick,
 }) => {
   const iconSize = Number.isInteger(size) ? size : 40;
-  const icon = blockies.create({ seed: id, size: 8, scale: 4 }).toDataURL();
+  const icon = blockies.create({
+    seed: (id || '').toLowerCase(),
+    size: 8,
+    scale: 4,
+  }).toDataURL();
   const mainStyle = {
     height: `${iconSize}px`,
     width: `${iconSize}px`,
@@ -26,8 +30,7 @@ export const IdentityIcon = ({
   });
 
   return (
-    <div style={mainStyle} onClick={onClick} className={className}>
-    </div>
+    <div style={mainStyle} onClick={onClick} className={className} />
   );
 };
 
