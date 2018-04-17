@@ -77,6 +77,48 @@ const svgo = new SVGO({
         },
       },
     },
+    {
+      replaceStrokeWidthForReact: {
+        type: 'full', // full, perItem or perItemReverse
+        description: 'uses strokeWidth instead of stroke-width to appease react',
+        parmas: {}, // arbitrary data
+        fn(data) {
+          const elems = findStrokeElements(data);
+          elems.forEach((elem) => {
+            const { value } = elem.attr('stroke-width'); // eslint-disable-line no-param-reassign
+            elem.addAttr({
+              name: 'strokeWidth',
+              prefix: '',
+              local: 'strokeWidth',
+              value,
+            });
+            elem.removeAttr('stroke-width');
+          });
+          return data;
+        },
+      },
+    },
+    {
+      replaceStrokeMiterLimitForReact: {
+        type: 'full', // full, perItem or perItemReverse
+        description: 'uses strokeMiterLimit instead of stroke-miterlimit to appease react',
+        parmas: {}, // arbitrary data
+        fn(data) {
+          const elems = findStrokeElements(data);
+          elems.forEach((elem) => {
+            const { value } = elem.attr('stroke-miterlimit'); // eslint-disable-line no-param-reassign
+            elem.addAttr({
+              name: 'strokeMiterlimit',
+              prefix: '',
+              local: 'strokeMiterlimit',
+              value,
+            });
+            elem.removeAttr('stroke-miterlimit');
+          });
+          return data;
+        },
+      },
+    },
   ]),
 });
 
