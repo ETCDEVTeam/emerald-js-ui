@@ -3,7 +3,7 @@ import SvgIcon from 'material-ui/SvgIcon';
 
 const Textfile = props => (
   <SvgIcon {...props} viewBox="0 0 64 64">
-    <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="4" d="M12 8h40v48H12zM20 32h24M20 20h24M20 44h24"/>
+    <path fill="none" stroke="currentColor" d="M12 8h40v48H12zM20 32h24M20 20h24M20 44h24" strokeWidth="4" strokeMiterlimit="10"/>
   </SvgIcon>
 );
 
