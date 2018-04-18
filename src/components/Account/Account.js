@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 
-import { Edit as EditIcon } from '../../icons';
+import { Pen3 as EditIcon } from '../../icons3';
 import Address from '../Address';
 import IdentityIcon from '../IdentityIcon';
 

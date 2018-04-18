@@ -8,7 +8,7 @@ const reduceClasses = (prev, curr) => Object.assign({}, prev, { [curr]: curr });
 const classes = Object.keys(styles).reduce(reduceClasses, {});
 
 const mockMuiTheme = {
-  palette: {}
+  palette: {},
 };
 
 describe('Address', () => {
@@ -33,7 +33,7 @@ describe('Address', () => {
 
   it('shows check', () => {
     const accountAddr = shallow(<Address showCheck classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
-    expect(accountAddr.text()).toContain('CheckCircle');
+    expect(accountAddr.text()).toContain('Check1');
   });
 
   it('has showCheck == false by default', () => {
