@@ -4,7 +4,7 @@ import copy from 'copy-to-clipboard';
 import injectSheet from 'react-jss';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 
-import { Copy as CloneIcon, CheckCircle } from '../../icons2';
+import { Copytoclipboard as CloneIcon, Check1 as CheckCircle } from '../../icons3';
 
 import styles from './styles';
 
@@ -43,13 +43,12 @@ export class Address extends React.Component {
     if (!shortened) {
       icons = (<CloneIcon
         onClick={this.onCopyClick.bind(this)}
-        color={classes.container.color}
         className={classes.copyIcon}
       />);
     }
     if (this.state.showCheck) {
       icons = (
-        <CheckCircle color={muiTheme.palette.primary1Color}/>
+        <CheckCircle style={{color: muiTheme.palette.primary1Color}}/>
       );
     }
 
