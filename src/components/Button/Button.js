@@ -10,16 +10,17 @@ const Button = ({muiTheme, ...props}) => {
   const styles = {
     primary: {
       height: '40px',
-      fontSize: '14px',
-      fontWeight: '500',
       color: muiTheme.palette.alternateTextColor,
     },
     ordinary: {
       height: '40px',
-      fontSize: '14px',
-      fontWeight: '500',
-      color: muiTheme.palette.textColor,
+      color: muiTheme.palette.alternateTextColor,
     },
+  };
+  const labelStyle = {
+    fontSize: '15px',
+    fontWeight: '500',
+    lineHeight: '18px',
   };
   const hoverColor = {
     primary: muiTheme.palette.primary2Color,
@@ -31,6 +32,7 @@ const Button = ({muiTheme, ...props}) => {
         {...props}
         backgroundColor={disabled ? muiTheme.palette.disabledColor : muiTheme.palette.primary1Color}
         style={{ ...styles.primary, ...style }}
+        labelStyle={{ ...labelStyle, ...props.labelStyle }}
         hoverColor={hoverColor.primary}
       />
     );
@@ -40,6 +42,7 @@ const Button = ({muiTheme, ...props}) => {
       {...props}
       backgroundColor={muiTheme.palette.accent3Color}
       style={{ ...styles.ordinary, ...style }}
+      labelStyle={{ ...labelStyle, ...props.labelStyle }}
       hoverColor={hoverColor.ordinary}
     />
   );
@@ -48,6 +51,7 @@ const Button = ({muiTheme, ...props}) => {
 Button.propTypes = {
   disabled: PropTypes.bool,
   primary: PropTypes.bool,
+  labelStyle: PropTypes.object,
 };
 
 Button.defaultProps = {
