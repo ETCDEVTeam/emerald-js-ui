@@ -13,36 +13,36 @@ const mockMuiTheme = {
 
 describe('Address', () => {
   it('works without provided id', () => {
-    const component = shallow(<Address classes={classes} muiTheme={mockMuiTheme}/>);
+    const component = shallow(<Address classes={classes} muiTheme={mockMuiTheme} />);
     expect(component.find('div')).toHaveLength(0);
   });
 
   it('shows address', () => {
-    const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
+    const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme} />);
 
     expect(accountAddr.find('div').children().find('div').first()
       .text()).toEqual('0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98');
   });
 
   it('shows shortened address', () => {
-    const accountAddr = shallow(<Address classes={classes} shortened id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
+    const accountAddr = shallow(<Address classes={classes} shortened id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme} />);
 
     expect(accountAddr.find('div').children().find('div').first()
       .text()).toEqual('0xFBb1b...0fBB98');
   });
 
   it('shows check', () => {
-    const accountAddr = shallow(<Address showCheck classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
+    const accountAddr = shallow(<Address showCheck classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme} />);
     expect(accountAddr.text()).toContain('Check1');
   });
 
   it('has showCheck == false by default', () => {
-    const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
+    const accountAddr = shallow(<Address classes={classes} id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme} />);
     expect(accountAddr.props().showCheck).toBeFalsy();
   });
 
   it('shows sanitized hex', () => {
-    const accountAddr = shallow(<Address classes={classes} shortened id="FBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme}/>);
+    const accountAddr = shallow(<Address classes={classes} shortened id="FBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" muiTheme={mockMuiTheme} />);
 
     expect(accountAddr.find('div').children().find('div').first()
       .text()).toEqual('0xFBb1b...0fBB98');

@@ -31,7 +31,7 @@ export class Address extends React.Component {
   }
   render() {
     const {
-      classes, id, shortened, style, onClick, muiTheme
+      classes, id, shortened, style, onClick, muiTheme,
     } = this.props;
 
     if (!id) {
@@ -44,11 +44,12 @@ export class Address extends React.Component {
       icons = (<CloneIcon
         onClick={this.onCopyClick.bind(this)}
         className={classes.copyIcon}
+        style={{ color: muiTheme.palette.secondaryTextColor }}
       />);
     }
     if (this.state.showCheck) {
       icons = (
-        <CheckCircle style={{color: muiTheme.palette.primary1Color}}/>
+        <CheckCircle style={{ color: muiTheme.palette.primary1Color }} />
       );
     }
 
@@ -57,8 +58,12 @@ export class Address extends React.Component {
       `${sanitizedId.substring(0, 7)}...${sanitizedId.substring(sanitizedId.length - 6, sanitizedId.length)}` :
       sanitizedId;
 
+    const finalStyle = {
+      color: muiTheme.palette.secondaryTextColor,
+      ...style,
+    };
     return (
-      <div className={classes.container} style={style}>
+      <div className={classes.container} style={finalStyle}>
         <div onClick={onClick} className={classes.address}>
           {value}
         </div>
