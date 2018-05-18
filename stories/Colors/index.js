@@ -60,6 +60,13 @@ const ColorsComponent = muiThemeable()(({ muiTheme, ...props }) => {
                     windows, app bar
                 </CardText>
             </Card>
+            <Card style={{ backgroundColor: muiTheme.palette.shadowColor }}>
+              <CardTitle title="shadowColor" subtitle="ASH 30% Opacity" />
+              <CardTitle subtitle="rgba(177, 191, 183, 0.3)" style={{marginTop: '-30px'}} />
+              <CardText style={{marginTop: '-25px'}}>
+                Used for box-shadow
+              </CardText>
+            </Card>
         </div>
     )
 });

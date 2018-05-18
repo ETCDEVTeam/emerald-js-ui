@@ -29,7 +29,7 @@
         "disabledColor": "#EAEFEC",
         "pickerHeaderColor": "#B1BFB7",
         "clockCircleColor": "rgba(0, 0, 0, 0.07)",
-        "shadowColor": "#EAEFEC"
+        "shadowColor": "rgba(177, 191, 183, 0.3)"
     },
     "themeName": "Emerald Theme"
 }
