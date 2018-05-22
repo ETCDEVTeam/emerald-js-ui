@@ -2,7 +2,8 @@ const styles = {
   container: {
     height: '28px',
     fontWeight: '300',
-    fontSize: '14px',
+    fontSize: '16px',
+    lineHeight: '19px',
     display: 'flex',
     alignItems: 'center',
   },

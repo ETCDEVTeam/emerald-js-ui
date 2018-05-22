@@ -1,6 +1,9 @@
 const styles = {
   container: {
     backgroundColor: 'inherit',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   editIcon: {
     width: '13px',

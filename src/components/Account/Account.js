@@ -9,10 +9,14 @@ import IdentityIcon from '../IdentityIcon';
 import styles from './styles';
 
 const showIdentity = (show, id, identityProps) => {
+  const props = {
+    size: 48,
+    ...identityProps,
+  };
   if (show) {
     return (
-      <div style={{marginRight: '5px'}}>
-        <IdentityIcon id={id} {...identityProps}/>
+      <div style={{ marginRight: '20px' }}>
+        <IdentityIcon id={id} {...props} />
       </div>
     );
   }
@@ -23,10 +27,12 @@ export const Account = (props) => {
   const {
     classes, primary, secondary, addr, abbreviated, description, name, editable,
   } = props;
-  const { onAddressClick, onEditClick, identity, identityProps } = props;
+  const {
+    onAddressClick, onEditClick, identity, identityProps,
+  } = props;
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}} className={classes.container}>
+    <div className={classes.container}>
       {showIdentity(identity, addr, identityProps)}
       <div>
         <div className={classes.primaryContainer}>
@@ -36,7 +42,7 @@ export const Account = (props) => {
             {editable && <div style={{ marginLeft: '5px' }}><EditIcon style={styles.editIcon} /></div>}
           </div>}
         </div>
-        <div style={{display: 'flex', alignItems: 'center'}}>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
           {secondary || <Address
             onClick={onAddressClick}
             id={addr}
