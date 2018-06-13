@@ -13,3 +13,4 @@ import './ButtonGroup';
 import './SyncWarning';
 import './Warning';
 import './Input';
+import './MultiStepCreateTransaction';
