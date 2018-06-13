@@ -41,10 +41,13 @@ function getStyles(muiTheme) {
       width: '200px',
       marginRight: '10px'
     },
-    button: {
+    buttonLabel: {
       fontSize: '11px',
-      height: '35px',
-      width: '40px'
+    },
+    button: {
+      height: '30px',
+      minWidth: '35px',
+      lineHeight: '30px'
     },
     wrapper: {
       display: 'flex',
@@ -94,10 +97,6 @@ class CreateTransaction extends React.Component {
           <SelectAddressInput onChangeAccount={this.onChangeFrom.bind(this)} selectedAccount={this.state.from} accounts={this.props.ownAddresses} containerStyle={styles.input}/>
         </div>
         <div style={styles.wrapper}>
-          <label style={styles.label}>To</label>
-          <SelectAddressInput emptyAccountMenuItem={<MenuItem primaryText="Address book is empty. Click to add contact" onClick={action('onAddressBookCreate')}/>} iconButton={<Book />} onChangeAccount={this.onChangeTo.bind(this)} selectedAccount={this.state.to} accounts={this.props.addressBookAddresses} containerStyle={styles.input}/>
-        </div>
-        <div style={styles.wrapper}>
           <label style={styles.label}>Currency</label>
           <SelectField value={this.state.token} onChange={this.onChangeToken.bind(this)}>
             {this.props.tokenSymbols.map((toke) =>
@@ -112,9 +111,13 @@ class CreateTransaction extends React.Component {
           <div style={styles.balance}>{this.props.balance} {this.state.token}   /   {this.props.fiatBalance} {this.props.currency}</div>
         </div>
         <div style={styles.wrapper}>
+          <label style={styles.label}>To</label>
+          <SelectAddressInput emptyAccountMenuItem={<MenuItem primaryText="Address book is empty. Click to add contact" onClick={action('onAddressBookCreate')}/>} iconButton={<Book />} onChangeAccount={this.onChangeTo.bind(this)} selectedAccount={this.state.to} accounts={this.props.addressBookAddresses} containerStyle={styles.input}/>
+        </div>
+        <div style={styles.wrapper}>
           <label style={styles.label}>Amount</label>
           <Input containerStyle={styles.inputAmount} hintText="0" onChange={action('onChange')} />
-          <Button labelStyle={styles.button} primary label="MAX" />
+          <Button style={styles.button} labelStyle={styles.buttonLabel} primary label="MAX" />
         </div>
         <div style={styles.wrapper}>
           <label style={styles.label}>Transaction Fee</label>

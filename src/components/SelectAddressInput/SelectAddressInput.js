@@ -43,7 +43,7 @@ class SelectAddressInput extends React.Component {
     };
 
     render() {
-      const { selectedAccount, accounts, containerStyle, iconButton, emptyAccountMenuItem } = this.props;
+      const { selectedAccount, accounts, containerStyle, iconButton, emptyAccountMenuItem, ...other } = this.props;
       const _emptyAccountMenuItem = emptyAccountMenuItem || (<MenuItem key={1} value={1} primaryText="Empty" />);
       return (
         <div style={containerStyle}>
@@ -51,6 +51,7 @@ class SelectAddressInput extends React.Component {
             name={ selectedAccount }
             value={ selectedAccount }
             onChange={ this.onChange }
+            {...other}
             fullWidth={ true }
             dropDownMenuProps={{
               iconButton: iconButton || (<DropdownArrowDown />),
