@@ -7,6 +7,7 @@ import { muiTheme } from 'storybook-addon-material-ui';
 import { withKnobs, text, boolean, number, array, object } from '@storybook/addon-knobs/react';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import Button from '../../src/components/Button';
+import ButtonGroup from '../../src/components/ButtonGroup';
 
 import theme from '../../src/theme.json';
 import Input from '../../src/components/Input';
@@ -52,6 +53,7 @@ function getStyles(muiTheme) {
     wrapper: {
       display: 'flex',
       alignItems: 'center',
+      marginBottom: 0,
       paddingBottom: '20px'
     }
   }
@@ -122,6 +124,13 @@ class CreateTransaction extends React.Component {
         <div style={styles.wrapper}>
           <label style={styles.label}>Transaction Fee</label>
           <Input containerStyle={styles.input} hintText="0" onChange={action('onChange')} />
+        </div>
+        <div style={{paddingTop: '20px', ...styles.wrapper}}>
+          <div className="spacer" style={styles.label}/>
+          <ButtonGroup>
+            <Button label="Back" />
+            <Button primary label="Create Transaction" />
+          </ButtonGroup>
         </div>
       </div>
     )

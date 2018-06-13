@@ -16,7 +16,7 @@ const baseStyle = {
 export const Select = (props) => {
   const { style } = props;
   const defaultProps = {
-    underlineShow: false
+    underlineShow: false,
   }
   return (<SelectField {...defaultProps} {...props} style={{ ...style, ...baseStyle }} />);
 };
