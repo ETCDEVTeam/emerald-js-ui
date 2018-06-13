@@ -25,11 +25,11 @@ export class Input extends React.Component {
   };
 
   render() {
-    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, ...other } = this.props;
+    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, containerStyle, ...other } = this.props;
     const { onChange } = this.props;
     if (value) {
       return (
-        <div className={classes.container}>
+        <div style={containerStyle} className={classes.container}>
           <TextField
             disabled={disabled}
             multiLine={multiLine}
@@ -47,7 +47,7 @@ export class Input extends React.Component {
     };
 
     return (
-      <div className={classes.container}>
+      <div style={containerStyle} className={classes.container}>
         <TextField
           disabled={disabled}
           multiLine={multiLine}

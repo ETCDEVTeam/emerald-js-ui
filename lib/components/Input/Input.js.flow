@@ -25,11 +25,11 @@ export class Input extends React.Component {
   };
 
   render() {
-    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, ...other } = this.props;
+    const { value, underlineShow, className, multiLine, rowsMax, rows, disabled, classes, style, ...other } = this.props;
     const { onChange } = this.props;
     if (value) {
       return (
-        <div className={classes.container}>
+        <div style={this.props.style} className={classes.container}>
           <TextField
             disabled={disabled}
             multiLine={multiLine}
@@ -65,3 +65,4 @@ export class Input extends React.Component {
 }
 
 export default injectSheet(styles)(Input);
+
