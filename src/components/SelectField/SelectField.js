@@ -1,24 +1,34 @@
 import React from 'react';
 import SelectField from 'material-ui/SelectField';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
-const baseStyle = {
-  boxSizing: 'border-box',
-  height: '51px',
-  border: '1px solid #C5C5C5',
-  borderRadius: '1px',
-  color: '#191919',
-  fontSize: '16px',
-  lineHeight: '24px',
-  paddingLeft: '10px',
-  paddingRight: '10px',
-};
+function getStyles(muiTheme) {
+  return {
+    boxSizing: 'border-box',
+    height: '50px',
+    border: `1px solid ${muiTheme.palette.borderColor}`,
+    borderRadius: '1px',
+    color: muiTheme.palette.textColor,
+    fontSize: '16px',
+    lineHeight: '24px',
+    paddingLeft: '10px',
+    paddingRight: '10px',
+  }
+}
 
 export const Select = (props) => {
-  const { style } = props;
+  const { style, muiTheme } = props;
   const defaultProps = {
-    underlineShow: false,
+    underlineShow: false
   }
-  return (<SelectField {...defaultProps} {...props} style={{ ...style, ...baseStyle }} />);
+  const styles = getStyles(muiTheme);
+  return (
+    <SelectField
+    hintStyle={{opacity: 1, color: muiTheme.palette.borderColor, fontWeight: '200'}}
+    underlineShow={false}
+    style={{ ...style, ...styles }}
+    {...props} />
+  );
 };
 
-export default Select;
+export default muiThemeable()(Select);

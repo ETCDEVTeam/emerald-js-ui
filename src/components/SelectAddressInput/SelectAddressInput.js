@@ -46,7 +46,7 @@ class SelectAddressInput extends React.Component {
       const { selectedAccount, accounts, containerStyle, iconButton, emptyAccountMenuItem, ...other } = this.props;
       const _emptyAccountMenuItem = emptyAccountMenuItem || (<MenuItem key={1} value={1} primaryText="Empty" />);
       return (
-        <div style={{height: '51px', ...containerStyle}}>
+        <div style={{height: '50px', ...containerStyle}}>
           <SelectField
             name={ selectedAccount }
             value={ selectedAccount }

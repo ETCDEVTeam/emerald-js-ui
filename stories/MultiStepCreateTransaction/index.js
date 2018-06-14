@@ -22,7 +22,7 @@ function getStyles(muiTheme) {
     balance: {
       fontFamily: muiTheme.fontFamily,
       color: muiTheme.palette.secondaryTextColor,
-      wordSpacing: '8px',
+      wordSpacing: '3px',
       letterSpacing: '1px',
       fontWeight: '200',
       paddingLeft: '20px'
@@ -33,6 +33,8 @@ function getStyles(muiTheme) {
       textAlign: 'right',
       paddingRight: '20px',
       fontSize: '16px',
+      fontWeight: '400',
+      color: muiTheme.palette.textColor,
       fontFamily: muiTheme.fontFamily
     },
     input: {
@@ -114,16 +116,17 @@ class CreateTransaction extends React.Component {
         </div>
         <div style={styles.wrapper}>
           <label style={styles.label}>To</label>
-          <SelectAddressInput emptyAccountMenuItem={<MenuItem primaryText="Address book is empty. Click to add contact" onClick={action('onAddressBookCreate')}/>} iconButton={<Book />} onChangeAccount={this.onChangeTo.bind(this)} selectedAccount={this.state.to} accounts={this.props.addressBookAddresses} containerStyle={styles.input}/>
+          <SelectAddressInput hintText="Paste an address" emptyAccountMenuItem={<MenuItem primaryText="Address book is empty. Click to add contact" onClick={action('onAddressBookCreate')}/>} iconButton={<Book />} onChangeAccount={this.onChangeTo.bind(this)} selectedAccount={this.state.to} accounts={this.props.addressBookAddresses} containerStyle={styles.input}/>
         </div>
         <div style={styles.wrapper}>
           <label style={styles.label}>Amount</label>
-          <Input containerStyle={styles.inputAmount} hintText="0" onChange={action('onChange')} />
+          <Input containerStyle={styles.inputAmount} value="0.00000" onChange={action('onChange')} />
           <Button style={styles.button} labelStyle={styles.buttonLabel} primary label="MAX" />
         </div>
         <div style={styles.wrapper}>
           <label style={styles.label}>Transaction Fee</label>
-          <Input containerStyle={styles.input} hintText="0" onChange={action('onChange')} />
+          <Input containerStyle={{width: '300px'}} value="21000" onChange={action('onChange')} />
+          <div style={{...styles.balance, fontSize: '14px'}}>{this.props.balance} {this.state.token}   /   {this.props.fiatBalance} {this.props.currency}</div>
         </div>
         <div style={{paddingTop: '20px', ...styles.wrapper}}>
           <div className="spacer" style={styles.label}/>
