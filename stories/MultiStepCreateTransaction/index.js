@@ -31,7 +31,7 @@ function getStyles(muiTheme) {
       flexShrink: 1,
       width: '120px',
       textAlign: 'right',
-      paddingRight: '20px',
+      paddingRight: '30px',
       fontSize: '16px',
       fontWeight: '400',
       color: muiTheme.palette.textColor,
@@ -95,7 +95,7 @@ class CreateTransaction extends React.Component {
   render() {
     const styles = getStyles(this.props.muiTheme);
     return (
-      <div style={{ padding: '10px', width: '800px', border: '1px solid black' }}>
+      <div style={{ margin: '50px', padding: '30px', width: '800px', background: '#fff', border: `1px solid ${this.props.muiTheme.palette.borderColor}` }}>
         <div style={styles.wrapper}>
           <label style={styles.label}>From</label>
           <SelectAddressInput onChangeAccount={this.onChangeFrom.bind(this)} selectedAccount={this.state.from} accounts={this.props.ownAddresses} containerStyle={styles.input}/>

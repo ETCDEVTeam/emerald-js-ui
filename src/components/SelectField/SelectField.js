@@ -24,7 +24,7 @@ export const Select = (props) => {
   const styles = getStyles(muiTheme);
   return (
     <SelectField
-    hintStyle={{opacity: 1, color: muiTheme.palette.borderColor, fontWeight: '200'}}
+    hintStyle={{opacity: 1, color: muiTheme.palette.secondaryTextColor, fontWeight: '200'}}
     underlineShow={false}
     style={{ ...style, ...styles }}
     {...props} />
