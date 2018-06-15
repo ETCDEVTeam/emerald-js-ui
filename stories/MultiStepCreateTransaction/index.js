@@ -22,27 +22,6 @@ import CreateTransaction from '../../src/components/CreateTransaction';
 
 function getStyles(muiTheme) {
   return {
-    balance: {
-      fontFamily: muiTheme.fontFamily,
-      color: muiTheme.palette.secondaryTextColor,
-      wordSpacing: '3px',
-      letterSpacing: '1px',
-      fontWeight: '200',
-      paddingLeft: '20px'
-    },
-    label: {
-      flexShrink: 1,
-      width: '120px',
-      textAlign: 'right',
-      paddingRight: '30px',
-      fontSize: '16px',
-      fontWeight: '400',
-      color: muiTheme.palette.textColor,
-      fontFamily: muiTheme.fontFamily
-    },
-    input: {
-      flexGrow: 5,
-    },
     inputAmount: {
       width: '200px',
       marginRight: '10px'
@@ -63,79 +42,6 @@ function getStyles(muiTheme) {
     }
   }
 }
-
-class MenuItemForAddress extends React.Component {
-  static muiName = 'MenuItem'
-
-  constructor(...props) {
-    super(...props);
-    this.onClick = this.onClick.bind(this);
-  }
-
-  onClick() {
-    this.props.onChange(this.props.address);
-  }
-
-  render() {
-    return (
-      <MenuItem
-        onClick={this.onClick}
-        style={{paddingBottom: '5px', paddingTop: '5px', minHeight: 'auto', height: 'auto' }}
-        primaryText={
-          <Account identityProps={{size: 30}} addr={this.props.address} identity={true} hideCopy={true} />
-        }
-      />
-    );
-  }
-}
-
-class AddressIconMenu extends React.Component {
-  constructor() {
-    super();
-    this.onChange = this.onChange.bind(this);
-    this.onClick = this.onClick.bind(this);
-    this.onRequestChange = this.onRequestChange.bind(this);
-    this.state = {};
-  }
-
-  onChange(address) {
-    this.setMenuOpen(false);
-    this.props.onChange(address);
-  }
-
-  onRequestChange(status) {
-    this.setMenuOpen(status);
-  }
-
-  onClick(address) {
-    this.setState({ menuOpen: true });
-  }
-
-  setMenuOpen(status) {
-    this.setState({ menuOpen: status });
-  }
-
-  render() {
-    return (
-      <IconMenu
-      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-      iconButtonElement={<Book />}
-      open={this.state.menuOpen}
-      onClick={this.onClick}
-      useLayerForClickAway={false}
-      onRequestChange={this.onRequestChange}
-      >
-      {
-        this.props.addressBookAddresses.map(
-          (address) => (<MenuItemForAddress address={address} onChange={this.onChange} />)
-        )
-      }
-      </IconMenu>
-    );
-  }
-}
-
 
 class _CreateTransaction extends React.Component {
   static propTypes = {

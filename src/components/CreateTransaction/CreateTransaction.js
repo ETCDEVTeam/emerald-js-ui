@@ -5,6 +5,8 @@ import FormFieldWrapper from './FormFieldWrapper';
 import FromField from './FromField';
 import TokenField from './TokenField';
 import ToField from './ToField';
+import AmountField from '/AmountField';
+import GasLimitField from './GasLimitField'
 
 function getStyles(muiTheme) {
   return {
@@ -62,6 +64,25 @@ class CreateTransaction extends React.Component {
             to={this.props.to}
             addressBookAddresses={this.props.addressBookAddresses}
           />
+        </FormFieldWrapper>
+
+
+        <FormFieldWrapper>
+          <AmountField
+          />
+        </FormFieldWrapper>
+
+        <FormFieldWrapper>
+          <GasLimitField
+          />
+        </FormFieldWrapper>
+
+
+        <FormFieldWrapper styles={paddingTop: '20px'}>
+          <ButtonGroup>
+            <Button label="Back" />
+            <Button primary label="Create Transaction" />
+          </ButtonGroup>
         </FormFieldWrapper>
       </div>
     );
