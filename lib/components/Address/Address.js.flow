@@ -31,7 +31,7 @@ export class Address extends React.Component {
   }
   render() {
     const {
-      classes, id, shortened, style, onClick, muiTheme,
+      classes, id, shortened, style, onClick, muiTheme, hideCopy
     } = this.props;
 
     if (!id) {
@@ -67,21 +67,24 @@ export class Address extends React.Component {
         <div onClick={onClick} className={classes.address}>
           {value}
         </div>
-        {icons && <div>{icons}</div>}
+        {!hideCopy && icons && <div>{icons}</div>}
       </div>
     );
   }
 }
 
 Address.propTypes = {
+  hideCopy: PropTypes.bool,
   onClick: PropTypes.func,
   onCopyClick: PropTypes.func,
   id: PropTypes.string.isRequired,
   shortened: PropTypes.bool,
   classes: PropTypes.object.isRequired,
+
 };
 
 Address.defaultProps = {
+  hideCopy: false,
   shortened: false,
   showCheck: false,
 };
