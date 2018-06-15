@@ -11,3 +11,4 @@ export { default as Input } from './components/Input';
 export { Warning, WarningHeader, WarningText } from './components/Warning';
 export { SelectField } from './components/SelectField';
 export { SelectAddressInput } from './components/SelectAddressInput';
+export { CreateTransaction } from './components/CreateTransaction';

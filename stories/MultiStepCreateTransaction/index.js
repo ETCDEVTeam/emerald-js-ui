@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import FlatButton from 'material-ui/FlatButton';
 import { TextField } from 'material-ui';
@@ -8,38 +9,19 @@ import { withKnobs, text, boolean, number, array, object } from '@storybook/addo
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import Button from '../../src/components/Button';
 import ButtonGroup from '../../src/components/ButtonGroup';
-
+import IdentityIcon from '../../src/components/IdentityIcon';
 import theme from '../../src/theme.json';
 import Input from '../../src/components/Input';
 import SelectAddressInput from '../../src/components/SelectAddressInput';
+import Account from '../../src/components/Account';
 import SelectField from '../../src/components/SelectField';
 import { Book } from '../../src/icons3';
-import { MenuItem } from 'material-ui';
+import { MenuItem, IconMenu } from 'material-ui';
+import CreateTransaction from '../../src/components/CreateTransaction';
 
 
 function getStyles(muiTheme) {
   return {
-    balance: {
-      fontFamily: muiTheme.fontFamily,
-      color: muiTheme.palette.secondaryTextColor,
-      wordSpacing: '3px',
-      letterSpacing: '1px',
-      fontWeight: '200',
-      paddingLeft: '20px'
-    },
-    label: {
-      flexShrink: 1,
-      width: '120px',
-      textAlign: 'right',
-      paddingRight: '30px',
-      fontSize: '16px',
-      fontWeight: '400',
-      color: muiTheme.palette.textColor,
-      fontFamily: muiTheme.fontFamily
-    },
-    input: {
-      flexGrow: 5,
-    },
     inputAmount: {
       width: '200px',
       marginRight: '10px'
@@ -61,87 +43,119 @@ function getStyles(muiTheme) {
   }
 }
 
-class CreateTransaction extends React.Component {
+class _CreateTransaction extends React.Component {
+  static propTypes = {
+    currency: PropTypes.string.isRequired,
+    balance: PropTypes.string.isRequired,
+    fiatBalance: PropTypes.string.isRequired,
+    tokenSymbols: PropTypes.arrayOf(PropTypes.string).isRequired,
+    addressBookAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
+    ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
+    txFee: PropTypes.string.isRequired,
+    txFeeFiat: PropTypes.string.isRequired,
+  };
+
   constructor() {
-    super()
-    this.state = {};
-  }
-  onChangeFrom(list, index) {
-    this.setState({
-      from: list[index]
-    });
-    action('onChangeFrom')(list, index);
-  }
-
-  onChangeTo(list, index) {
-    this.setState({
-      to: list[index]
-    });
-    action('onChangeTo')(list, index);
+    super();
+    this.onChangeFrom = this.onChangeFrom.bind(this);
+    this.onChangeTo = this.onChangeTo.bind(this);
+    this.onChangeToken = this.onChangeToken.bind(this);
+    this.onChangeGasLimit = this.onChangeGasLimit.bind(this);
+    this.onClickMax = this.onClickMax.bind(this);
+    this.onChangeAmount = this.onChangeAmount.bind(this);
+    this.state = { gasLimit: "21000", amount: '0' };
   }
 
-  onChangeToken(event, value) {
-    this.setState({
-      token: this.props.tokenSymbols[value]
-    });
-    action('onChangeToken')(this.props.tokenSymbols[value]);
+  onChangeFrom(from) {
+    this.setState({from});
+    action('onChangeFrom')(from);
   }
+
+  onChangeTo(to) {
+    this.setState({ to });
+    action('onChangeTo')(to);
+  }
+
+  onChangeToken(token) {
+    this.setState({token});
+    action('onChangeToken')(token);
+  }
+
+  onChangeGasLimit(event, value) {
+    this.setState({ txFee: value });
+  }
+
+  onClickMax(event, amount) {
+    this.onChangeAmount(event, this.props.balance);
+  }
+
+  onChangeAmount(event, amount) {
+    this.setState({amount});
+  }
+
   componentDidMount() {
     this.setState({
-      token: this.props.tokenSymbols[0]
+      token: this.props.tokenSymbols[0],
     });
   }
 
   render() {
     const styles = getStyles(this.props.muiTheme);
+    const wrapperStyle = {
+      margin: '50px',
+      padding: '30px',
+      width: '800px',
+      background: '#fff',
+      border: `1px solid ${this.props.muiTheme.palette.borderColor}`,
+    };
+
     return (
-      <div style={{ margin: '50px', padding: '30px', width: '800px', background: '#fff', border: `1px solid ${this.props.muiTheme.palette.borderColor}` }}>
-        <div style={styles.wrapper}>
-          <label style={styles.label}>From</label>
-          <SelectAddressInput onChangeAccount={this.onChangeFrom.bind(this)} selectedAccount={this.state.from} accounts={this.props.ownAddresses} containerStyle={styles.input}/>
-        </div>
-        <div style={styles.wrapper}>
-          <label style={styles.label}>Currency</label>
-          <SelectField value={this.state.token} onChange={this.onChangeToken.bind(this)}>
-            {this.props.tokenSymbols.map((toke) =>
-              <MenuItem
-                key={toke}
-                value={toke}
-                label={toke}
-                primaryText={toke}
-              />
-            )}
-          </SelectField>
-          <div style={styles.balance}>{this.props.balance} {this.state.token}   /   {this.props.fiatBalance} {this.props.currency}</div>
-        </div>
-        <div style={styles.wrapper}>
-          <label style={styles.label}>To</label>
-          <SelectAddressInput hintText="Paste an address" emptyAccountMenuItem={<MenuItem primaryText="Address book is empty. Click to add contact" onClick={action('onAddressBookCreate')}/>} iconButton={<Book />} onChangeAccount={this.onChangeTo.bind(this)} selectedAccount={this.state.to} accounts={this.props.addressBookAddresses} containerStyle={styles.input}/>
-        </div>
-        <div style={styles.wrapper}>
-          <label style={styles.label}>Amount</label>
-          <Input containerStyle={styles.inputAmount} value="0.00000" onChange={action('onChange')} />
-          <Button style={styles.button} labelStyle={styles.buttonLabel} primary label="MAX" />
-        </div>
-        <div style={styles.wrapper}>
-          <label style={styles.label}>Transaction Fee</label>
-          <Input containerStyle={{width: '300px'}} value="21000" onChange={action('onChange')} />
-          <div style={{...styles.balance, fontSize: '14px'}}>{this.props.balance} {this.state.token}   /   {this.props.fiatBalance} {this.props.currency}</div>
-        </div>
-        <div style={{paddingTop: '20px', ...styles.wrapper}}>
-          <div className="spacer" style={styles.label}/>
-          <ButtonGroup>
-            <Button label="Back" />
-            <Button primary label="Create Transaction" />
-          </ButtonGroup>
-        </div>
-      </div>
-    )
+      <CreateTransaction
+        ownAddresses={this.props.ownAddresses}
+        from={this.state.from}
+        onChangeFrom={this.onChangeFrom}
+        onChangeToken={this.onChangeToken}
+        token={this.state.token}
+        tokenSymbols={this.props.tokenSymbols}
+        balance={this.props.balance}
+        currency={this.props.currency}
+        fiatBalance={this.props.fiatBalance}
+        onChangeTo={this.onChangeTo}
+        to={this.state.to}
+        addressBookAddresses={this.props.addressBookAddresses}
+      />
+    );
   }
 }
 
+/*
+ *
+ *         <div style={styles.wrapper}>
+ *           <label style={styles.label}>Amount</label>
+ *           <Input type="number" containerStyle={styles.inputAmount} value={this.state.amount} onChange={this.onChangeAmount} />
+ *           <Button style={styles.button} labelStyle={styles.buttonLabel} primary label="MAX" onClick={this.onClickMax} />
+ *         </div>
+ *
+ *         <div style={styles.wrapper}>
+ *           <label style={styles.label}>Gas Limit</label>
+ *           <Input type="number" containerStyle={{width: '300px'}} value={this.state.gasLimit} onChange={this.onChangeGasLimit} />
+ *           <div style={{...styles.balance, fontSize: '14px'}}>{this.props.txFee} {this.state.token}   /   {this.props.txFeeFiat} {this.props.currency}</div>
+ *         </div>
+ *
+ *         <div style={{paddingTop: '20px', ...styles.wrapper}}>
+ *           <div className="spacer" style={styles.label}/>
+ *           <ButtonGroup>
+ *             <Button label="Back" />
+ *             <Button primary label="Create Transaction" />
+ *           </ButtonGroup>
+ *         </div>
+ *       </div>
+ *     );
+ *   }
+ * } */
 
-const ThemedCreateTransaction = muiThemeable()(CreateTransaction);
+
+const ThemedCreateTransaction = muiThemeable()(_CreateTransaction);
 
 const mockOwnAddresses = ['0x00', '0x03', '0x004'];
 const mockAddressBookAddresses = ['0x00', '0x0111', '0x006'];
@@ -150,12 +164,15 @@ storiesOf('Create Transaction', module)
   .addDecorator(muiTheme([theme]))
   .addDecorator(withKnobs)
   .add('all', () => (
-      <ThemedCreateTransaction
-        currency={text('Currency', 'USD')}
-        balance={text('Balance', '115.15515')}
-        fiatBalance={text('Fiat Balance', '2815.55')}
-        tokenSymbols={array('Token Symbols', ['ETC', 'BEC'])}
-        addressBookAddresses={array('Address Book Addresses', mockAddressBookAddresses)}
-        ownAddresses={array('Own Account Addreses', mockOwnAddresses)}/>
+    <ThemedCreateTransaction
+      currency={text('Currency', 'USD')}
+      balance={text('Balance', '115.15515')}
+      fiatBalance={text('Fiat Balance', '2815.55')}
+      tokenSymbols={array('Token Symbols', ['ETC', 'BEC'])}
+      addressBookAddresses={array('Address Book Addresses', mockAddressBookAddresses)}
+      ownAddresses={array('Own Account Addreses', mockOwnAddresses)}
+      txFee={text('TxFee', '0.0042')}
+      txFeeFiat={text('TxFeeFiat', '1')}
+    />
   ));
 
