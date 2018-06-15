@@ -4,7 +4,7 @@ import FormLabel from '../FormLabel.js';
 import Input from '../../Input';
 import Button from '../../Button';
 
-class GasLimitField extends React.Component {
+class AmountField extends React.Component {
   static propTypes = {
     onChangeAmount: PropTypes.func.isRequired,
     amount: PropTypes.string.isRequired,
@@ -13,7 +13,8 @@ class GasLimitField extends React.Component {
 
   constructor() {
     super();
-    this.onChangeAccount = this.onChangeAccount.bind(this);
+    this.onChangeAmount = this.onChangeAmount.bind(this);
+    this.onClickMax = this.onClickMax.bind(this);
   }
 
   onChangeAmount(event, amount) {
@@ -29,10 +30,10 @@ class GasLimitField extends React.Component {
     marginRight: '10px',
   }
 
-  buttonstyles = {
+  buttonStyles = {
     height: '30px',
-    minwidth: '35px',
-    lineheight: '30px',
+    minWidth: '35px',
+    lineHeight: '30px',
   };
 
   buttonLabelStyles = {
@@ -46,7 +47,9 @@ class GasLimitField extends React.Component {
 
         <Input
           type="number"
-          containerStyle={this.inputAmount}
+          containerStyle={this.inputStyles}
+          min="0"
+          max={this.props.balance}
           value={this.props.amount}
           onChange={this.onChangeAmount}
         />
@@ -63,4 +66,4 @@ class GasLimitField extends React.Component {
   }
 }
 
-export default GasLimitField;
+export default AmountField;

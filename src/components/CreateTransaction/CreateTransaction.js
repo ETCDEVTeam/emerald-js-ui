@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 import muiThemeable from 'material-ui/styles/muiThemeable';
+import ButtonGroup from '../ButtonGroup';
+import Button from '../Button';
 import FormFieldWrapper from './FormFieldWrapper';
 import FromField from './FromField';
+import FormLabel from './FormLabel';
 import TokenField from './TokenField';
 import ToField from './ToField';
-import AmountField from '/AmountField';
+import AmountField from './AmountField';
 import GasLimitField from './GasLimitField'
 
 function getStyles(muiTheme) {
@@ -22,11 +25,14 @@ class CreateTransaction extends React.Component {
   static propTypes = {
     ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChangeFrom: PropTypes.func.isRequired,
+    onChangeGasLimit: PropTypes.func.isRequired,
     from: PropTypes.string.isRequired,
     onChangeToken: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     tokenSymbols: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    onChangeAmount: PropTypes.func.isRequired,
     addressBookAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
     onChangeTo: PropTypes.func.isRequired,
     to: PropTypes.string.isRequired,
@@ -45,7 +51,6 @@ class CreateTransaction extends React.Component {
             accounts={this.props.ownAddresses}
           />
         </FormFieldWrapper>
-
 
         <FormFieldWrapper>
           <TokenField
@@ -66,22 +71,30 @@ class CreateTransaction extends React.Component {
           />
         </FormFieldWrapper>
 
-
         <FormFieldWrapper>
           <AmountField
+            balance={this.props.balance}
+            amount={this.props.amount}
+            onChangeAmount={this.props.onChangeAmount}
           />
         </FormFieldWrapper>
 
         <FormFieldWrapper>
           <GasLimitField
+            onChangeGasLimit={this.props.onChangeGasLimit}
+            gasLimit={this.props.gasLimit}
+            txFee={this.props.txFee}
+            token={this.props.token}
+            txFeeFiat={this.props.txFeeFiat}
+            currency={this.props.currency}
           />
         </FormFieldWrapper>
 
-
-        <FormFieldWrapper styles={paddingTop: '20px'}>
-          <ButtonGroup>
+        <FormFieldWrapper>
+         <FormLabel />
+          <ButtonGroup style={{flexGrow: 5}}>
             <Button label="Back" />
-            <Button primary label="Create Transaction" />
+            <Button disabled={!this.props.to || !this.props.from} primary label="Create Transaction" />
           </ButtonGroup>
         </FormFieldWrapper>
       </div>

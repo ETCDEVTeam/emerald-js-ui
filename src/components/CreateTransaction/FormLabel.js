@@ -15,7 +15,6 @@ function getStyles(muiTheme) {
   };
 }
 
-
 class FormLabel extends React.Component {
   static propTypes = {
     muiTheme: PropTypes.object,

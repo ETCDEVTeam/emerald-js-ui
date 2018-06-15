@@ -15,10 +15,22 @@ class ToField extends React.Component {
   constructor() {
     super();
     this.onChangeTo = this.onChangeTo.bind(this);
+    this.state = {
+      errorText: null,
+      touched: false
+    }
   }
 
   onChangeTo(event, value) {
     this.props.onChangeTo(value);
+    if (!value && this.state.touched) {
+      this.setState({errorText: "Required"})
+    } else {
+      this.setState({
+        errorText: null,
+        touched: true,
+      })
+    }
   }
 
   getLeftIcon() {
@@ -54,6 +66,7 @@ class ToField extends React.Component {
           rightIcon={this.getRightIcon()}
           containerStyle={this.inputStyles}
           value={this.props.to}
+          errorText={this.state.errorText}
           onChange={this.onChangeTo}
         />
       </Fragment>

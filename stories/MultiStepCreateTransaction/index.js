@@ -1,47 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import FlatButton from 'material-ui/FlatButton';
-import { TextField } from 'material-ui';
 import { action } from '@storybook/addon-actions';
 import { muiTheme } from 'storybook-addon-material-ui';
 import { withKnobs, text, boolean, number, array, object } from '@storybook/addon-knobs/react';
 import muiThemeable from 'material-ui/styles/muiThemeable';
-import Button from '../../src/components/Button';
-import ButtonGroup from '../../src/components/ButtonGroup';
-import IdentityIcon from '../../src/components/IdentityIcon';
 import theme from '../../src/theme.json';
-import Input from '../../src/components/Input';
-import SelectAddressInput from '../../src/components/SelectAddressInput';
-import Account from '../../src/components/Account';
-import SelectField from '../../src/components/SelectField';
-import { Book } from '../../src/icons3';
-import { MenuItem, IconMenu } from 'material-ui';
 import CreateTransaction from '../../src/components/CreateTransaction';
-
-
-function getStyles(muiTheme) {
-  return {
-    inputAmount: {
-      width: '200px',
-      marginRight: '10px'
-    },
-    buttonLabel: {
-      fontSize: '11px',
-    },
-    button: {
-      height: '30px',
-      minWidth: '35px',
-      lineHeight: '30px'
-    },
-    wrapper: {
-      display: 'flex',
-      alignItems: 'center',
-      marginBottom: 0,
-      paddingBottom: '20px'
-    }
-  }
-}
 
 class _CreateTransaction extends React.Component {
   static propTypes = {
@@ -61,7 +26,6 @@ class _CreateTransaction extends React.Component {
     this.onChangeTo = this.onChangeTo.bind(this);
     this.onChangeToken = this.onChangeToken.bind(this);
     this.onChangeGasLimit = this.onChangeGasLimit.bind(this);
-    this.onClickMax = this.onClickMax.bind(this);
     this.onChangeAmount = this.onChangeAmount.bind(this);
     this.state = { gasLimit: "21000", amount: '0' };
   }
@@ -81,16 +45,12 @@ class _CreateTransaction extends React.Component {
     action('onChangeToken')(token);
   }
 
-  onChangeGasLimit(event, value) {
-    this.setState({ txFee: value });
+  onChangeGasLimit(value) {
+    this.setState({ gasLimit: value || this.state.gasLimit });
   }
 
-  onClickMax(event, amount) {
-    this.onChangeAmount(event, this.props.balance);
-  }
-
-  onChangeAmount(event, amount) {
-    this.setState({amount});
+  onChangeAmount(amount) {
+    this.setState({amount: amount || this.state.amount});
   }
 
   componentDidMount() {
@@ -100,15 +60,6 @@ class _CreateTransaction extends React.Component {
   }
 
   render() {
-    const styles = getStyles(this.props.muiTheme);
-    const wrapperStyle = {
-      margin: '50px',
-      padding: '30px',
-      width: '800px',
-      background: '#fff',
-      border: `1px solid ${this.props.muiTheme.palette.borderColor}`,
-    };
-
     return (
       <CreateTransaction
         ownAddresses={this.props.ownAddresses}
@@ -119,6 +70,12 @@ class _CreateTransaction extends React.Component {
         tokenSymbols={this.props.tokenSymbols}
         balance={this.props.balance}
         currency={this.props.currency}
+        amount={this.state.amount}
+        gasLimit={this.state.gasLimit}
+        txFee={this.props.txFee}
+        txFeeFiat={this.props.txFeeFiat}
+        onChangeGasLimit={this.onChangeGasLimit}
+        onChangeAmount={this.onChangeAmount}
         fiatBalance={this.props.fiatBalance}
         onChangeTo={this.onChangeTo}
         to={this.state.to}
@@ -127,33 +84,6 @@ class _CreateTransaction extends React.Component {
     );
   }
 }
-
-/*
- *
- *         <div style={styles.wrapper}>
- *           <label style={styles.label}>Amount</label>
- *           <Input type="number" containerStyle={styles.inputAmount} value={this.state.amount} onChange={this.onChangeAmount} />
- *           <Button style={styles.button} labelStyle={styles.buttonLabel} primary label="MAX" onClick={this.onClickMax} />
- *         </div>
- *
- *         <div style={styles.wrapper}>
- *           <label style={styles.label}>Gas Limit</label>
- *           <Input type="number" containerStyle={{width: '300px'}} value={this.state.gasLimit} onChange={this.onChangeGasLimit} />
- *           <div style={{...styles.balance, fontSize: '14px'}}>{this.props.txFee} {this.state.token}   /   {this.props.txFeeFiat} {this.props.currency}</div>
- *         </div>
- *
- *         <div style={{paddingTop: '20px', ...styles.wrapper}}>
- *           <div className="spacer" style={styles.label}/>
- *           <ButtonGroup>
- *             <Button label="Back" />
- *             <Button primary label="Create Transaction" />
- *           </ButtonGroup>
- *         </div>
- *       </div>
- *     );
- *   }
- * } */
-
 
 const ThemedCreateTransaction = muiThemeable()(_CreateTransaction);
 
