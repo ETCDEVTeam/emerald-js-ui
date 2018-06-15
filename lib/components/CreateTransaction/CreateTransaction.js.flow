@@ -39,6 +39,7 @@ class CreateTransaction extends React.Component {
     currency: PropTypes.string.isRequired,
     fiatBalance: PropTypes.string.isRequired,
     muiTheme: PropTypes.object.isRequired,
+    onSubmit: PropTypes.func.isRequired,
   };
 
   render() {
@@ -94,7 +95,7 @@ class CreateTransaction extends React.Component {
          <FormLabel />
           <ButtonGroup style={{flexGrow: 5}}>
             <Button label="Back" />
-            <Button disabled={!this.props.to || !this.props.from} primary label="Create Transaction" />
+            <Button disabled={!this.props.to || !this.props.from} primary label="Create Transaction" onClick={this.props.onSubmit}/>
           </ButtonGroup>
         </FormFieldWrapper>
       </div>
