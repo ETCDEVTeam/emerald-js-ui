@@ -77,9 +77,13 @@ export class Input extends React.Component {
     }
 
     return (
-      <div style={{ ...localStyle, ...containerStyle }} className={classes.container}>
+      <div
+        style={{ ...localStyle, ...containerStyle }}
+        className={classes.container}
+      >
         {this.props.leftIcon}
         <TextField
+          errorStyle={{bottom: '-3px', color: muiTheme.palette.accent1Color}}
           {...textFieldProps}
         />
         {this.props.rightIcon}
