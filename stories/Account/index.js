@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import Account from '../../src/components/Account';
+import {Account} from '../../lib';
 import { muiTheme } from 'storybook-addon-material-ui';
 import theme from '../../src/theme.json';
 
