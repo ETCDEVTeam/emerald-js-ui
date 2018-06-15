@@ -9,3 +9,5 @@ export { default as ButtonGroup } from './components/ButtonGroup';
 export { default as SyncWarning } from './components/SyncWarning';
 export { default as Input } from './components/Input';
 export { Warning, WarningHeader, WarningText } from './components/Warning';
+export { SelectField } from './components/SelectField';
+export { SelectAddressInput } from './components/SelectAddressInput';
