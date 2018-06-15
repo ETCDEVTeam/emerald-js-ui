@@ -8,6 +8,14 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import theme from '../../src/theme.json';
 import CreateTransaction from '../../src/components/CreateTransaction';
 
+const PAGES = {
+  TX: 1,
+  SIGN: 2,
+  DETAILS: 3
+}
+
+const DEFAULT_GAS_LIMIT = '21000';
+
 class _CreateTransaction extends React.Component {
   static propTypes = {
     currency: PropTypes.string.isRequired,
@@ -27,7 +35,8 @@ class _CreateTransaction extends React.Component {
     this.onChangeToken = this.onChangeToken.bind(this);
     this.onChangeGasLimit = this.onChangeGasLimit.bind(this);
     this.onChangeAmount = this.onChangeAmount.bind(this);
-    this.state = { gasLimit: "21000", amount: '0' };
+    this.getPage = this.getPage.bind(this);
+    this.state = { gasLimit: DEFAULT_GAS_LIMIT, amount: '0', page: PAGES.TX };
   }
 
   onChangeFrom(from) {
@@ -46,11 +55,11 @@ class _CreateTransaction extends React.Component {
   }
 
   onChangeGasLimit(value) {
-    this.setState({ gasLimit: value || this.state.gasLimit });
+    this.setState({ gasLimit: value || DEFAULT_GAS_LIMIT });
   }
 
   onChangeAmount(amount) {
-    this.setState({amount: amount || this.state.amount});
+    this.setState({amount: amount || '0'});
   }
 
   componentDidMount() {
@@ -59,29 +68,27 @@ class _CreateTransaction extends React.Component {
     });
   }
 
+  getPage() {
+    switch (this.state.page) {
+      case PAGES.TX:
+        return (
+          <CreateTransaction
+            {...this.state}
+            {...this.props}
+            onChangeFrom={this.onChangeFrom}
+            onChangeToken={this.onChangeToken}
+            onChangeGasLimit={this.onChangeGasLimit}
+            onChangeAmount={this.onChangeAmount}
+            onChangeTo={this.onChangeTo} />
+        )
+      case PAGES.PASSWORD:
+        return (<div>PASSWORD</div>)
+      default: return null
+    }
+  }
+
   render() {
-    return (
-      <CreateTransaction
-        ownAddresses={this.props.ownAddresses}
-        from={this.state.from}
-        onChangeFrom={this.onChangeFrom}
-        onChangeToken={this.onChangeToken}
-        token={this.state.token}
-        tokenSymbols={this.props.tokenSymbols}
-        balance={this.props.balance}
-        currency={this.props.currency}
-        amount={this.state.amount}
-        gasLimit={this.state.gasLimit}
-        txFee={this.props.txFee}
-        txFeeFiat={this.props.txFeeFiat}
-        onChangeGasLimit={this.onChangeGasLimit}
-        onChangeAmount={this.onChangeAmount}
-        fiatBalance={this.props.fiatBalance}
-        onChangeTo={this.onChangeTo}
-        to={this.state.to}
-        addressBookAddresses={this.props.addressBookAddresses}
-      />
-    );
+    return this.getPage();
   }
 }
 
