@@ -1,24 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
+import muiThemeable from 'material-ui/styles/muiThemeable';
 
-const styles = {
-  container: {
+function getStyles(muiTheme) {
+  return {
     borderRadius: '1px',
-    backgroundColor: '#FFFFFF',
-  },
-};
+    backgroundColor: muiTheme.palette.alternateTextColor,
+  }
+}
 
 const Card = props => (
-  <div style={props.style} className={props.classes.container}>
+  <div style={{...getStyles(props.muiTheme), ...props.style}}>
     { props.children }
-  </div>);
+  </div>
+);
 
 Card.propTypes = {
   children: PropTypes.node,
   style: PropTypes.object,
-  classes: PropTypes.object.isRequired,
+  muiTheme: PropTypes.object,
 };
 
-export default injectSheet(styles)(Card);
+export default muiThemeable()(Card);
 

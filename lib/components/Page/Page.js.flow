@@ -4,12 +4,14 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import { Toolbar, ToolbarTitle, ToolbarGroup } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import Divider from 'material-ui/Divider';
+import Card from '../Card';
 
 
 function getStyles(muiTheme) {
   return {
     wrapper: {
-      border: `1px solid ${muiTheme.palette.borderColor}`
+      border: `1px solid ${muiTheme.palette.borderColor}`,
+      backgroundColor: muiTheme.palette.alternateTextColor
     },
     toolbar: {
       background: 'transparent',
@@ -38,7 +40,7 @@ export class Page extends React.Component {
     const {muiTheme, title, leftIcon, rightIcon} = this.props
     const styles = getStyles(muiTheme);
     return (
-      <div style={styles.wrapper}>
+      <Card style={styles.wrapper}>
         <Toolbar style={styles.toolbar}>
           {this.getIconWithButton(leftIcon)}
           <ToolbarTitle style={{lineHeight: styles.toolbar.height}} text={title} />
@@ -46,7 +48,7 @@ export class Page extends React.Component {
         </Toolbar>
         <Divider />
         {this.props.children}
-      </div>
+      </Card>
     )
   }
 }
