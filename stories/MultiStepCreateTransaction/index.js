@@ -7,6 +7,8 @@ import { withKnobs, text, boolean, number, array, object } from '@storybook/addo
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import theme from '../../src/theme.json';
 import CreateTransaction from '../../src/components/CreateTransaction';
+import Page from '../../src/components/Page';
+import Back from '../../src/icons3/Back';
 
 const PAGES = {
   TX: 1,
@@ -88,14 +90,18 @@ class _CreateTransaction extends React.Component {
   }
 
   render() {
-    return this.getPage();
+    return (
+      <div style={{padding: '20px'}}>
+        <Page title="Create Transaction" leftIcon={<Back />}>
+          {this.getPage()}
+        </Page>
+      </div>
+    )
   }
 }
 
 const ThemedCreateTransaction = muiThemeable()(_CreateTransaction);
 
-const mockOwnAddresses = ['0x00', '0x03', '0x004'];
-const mockAddressBookAddresses = ['0x00', '0x0111', '0x006'];
 
 storiesOf('Create Transaction', module)
   .addDecorator(muiTheme([theme]))
@@ -106,8 +112,8 @@ storiesOf('Create Transaction', module)
       balance={text('Balance', '115.15515')}
       fiatBalance={text('Fiat Balance', '2815.55')}
       tokenSymbols={array('Token Symbols', ['ETC', 'BEC'])}
-      addressBookAddresses={array('Address Book Addresses', mockAddressBookAddresses)}
-      ownAddresses={array('Own Account Addreses', mockOwnAddresses)}
+      addressBookAddresses={array('Address Book Addresses', ['0x00'])}
+      ownAddresses={array('Own Account Addreses', ['0x01'])}
       txFee={text('TxFee', '0.0042')}
       txFeeFiat={text('TxFeeFiat', '1')}
     />

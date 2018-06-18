@@ -16,8 +16,6 @@ function getStyles(muiTheme) {
     margin: '50px',
     padding: '30px',
     width: '800px',
-    background: '#fff',
-    border: `1px solid ${muiTheme.palette.borderColor}`,
   };
 }
 
