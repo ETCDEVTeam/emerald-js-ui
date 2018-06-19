@@ -19,7 +19,13 @@ class ToField extends React.Component {
   }
 
   componentDidMount() {
-    this.onChangeTo(null, undefined);
+    this.onChangeTo(null, this.props.to);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.to !== this.props.to) {
+      this.onChangeTo(null, this.props.to);
+    }
   }
 
   onChangeTo(event, value) {

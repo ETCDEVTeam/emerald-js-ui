@@ -28,6 +28,7 @@ class _CreateTransaction extends React.Component {
     ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
     txFee: PropTypes.string.isRequired,
     txFeeFiat: PropTypes.string.isRequired,
+    toAddress: PropTypes.string,
   };
 
   constructor() {
@@ -67,6 +68,7 @@ class _CreateTransaction extends React.Component {
   componentDidMount() {
     this.setState({
       token: this.props.tokenSymbols[0],
+      to: this.props.toAddress,
     });
   }
 
@@ -116,6 +118,7 @@ storiesOf('Create Transaction', module)
       ownAddresses={array('Own Account Addreses', ['0x01'])}
       txFee={text('TxFee', '0.0042')}
       txFeeFiat={text('TxFeeFiat', '1')}
+      toAddress={text('To Address', '0x00')}
     />
   ));
 
