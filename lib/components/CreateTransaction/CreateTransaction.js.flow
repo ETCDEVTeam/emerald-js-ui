@@ -40,6 +40,15 @@ class CreateTransaction extends React.Component {
     onSubmit: PropTypes.func.isRequired,
   };
 
+  constructor() {
+    super();
+    this.getDisabled = this.getDisabled.bind(this);
+  }
+
+  getDisabled() {
+    return !this.props.to || !this.props.from || this.props.amount === '';
+  }
+
   render() {
     return (
       <div style={getStyles(this.props.muiTheme)}>
@@ -93,7 +102,7 @@ class CreateTransaction extends React.Component {
          <FormLabel />
           <ButtonGroup style={{flexGrow: 5}}>
             <Button label="Back" />
-            <Button disabled={!this.props.to || !this.props.from} primary label="Create Transaction" onClick={this.props.onSubmit}/>
+            <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit}/>
           </ButtonGroup>
         </FormFieldWrapper>
       </div>

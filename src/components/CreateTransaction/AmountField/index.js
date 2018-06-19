@@ -15,10 +15,17 @@ class AmountField extends React.Component {
     super();
     this.onChangeAmount = this.onChangeAmount.bind(this);
     this.onClickMax = this.onClickMax.bind(this);
+    this.state = { errorText: null };
   }
 
   onChangeAmount(event, amount) {
     this.props.onChangeAmount(amount);
+
+    if (!amount && amount !== 0) {
+      this.setState({ errorText: 'Required' });
+    } else {
+      this.setState({ errorText: null });
+    }
   }
 
   onClickMax() {
@@ -52,6 +59,7 @@ class AmountField extends React.Component {
           max={this.props.balance}
           value={this.props.amount}
           onChange={this.onChangeAmount}
+          errorText={this.state.errorText}
         />
 
         <Button

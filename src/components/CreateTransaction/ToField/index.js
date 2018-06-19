@@ -15,22 +15,20 @@ class ToField extends React.Component {
   constructor() {
     super();
     this.onChangeTo = this.onChangeTo.bind(this);
-    this.state = {
-      errorText: null,
-      touched: false
-    }
+    this.state = { errorText: null };
+  }
+
+  componentDidMount() {
+    this.onChangeTo(null, undefined);
   }
 
   onChangeTo(event, value) {
     this.props.onChangeTo(value);
 
-    if (!value && this.state.touched) {
-      this.setState({errorText: "Required"})
+    if (!value) {
+      this.setState({ errorText: 'Required' });
     } else {
-      this.setState({
-        errorText: null,
-        touched: true,
-      });
+      this.setState({ errorText: null });
     }
   }
 
