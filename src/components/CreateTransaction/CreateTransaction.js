@@ -13,8 +13,6 @@ import GasLimitField from './GasLimitField'
 
 function getStyles(muiTheme) {
   return {
-    margin: '50px',
-    padding: '30px',
     width: '800px',
   };
 }
@@ -98,8 +96,8 @@ class CreateTransaction extends React.Component {
           />
         </FormFieldWrapper>
 
-        <FormFieldWrapper>
-         <FormLabel />
+        <FormFieldWrapper style={{ paddingBottom: '0px' }}>
+          <FormLabel />
           <ButtonGroup style={{flexGrow: 5}}>
             <Button label="Back" />
             <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit}/>
