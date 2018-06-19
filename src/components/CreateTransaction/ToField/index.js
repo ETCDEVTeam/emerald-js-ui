@@ -23,13 +23,14 @@ class ToField extends React.Component {
 
   onChangeTo(event, value) {
     this.props.onChangeTo(value);
+
     if (!value && this.state.touched) {
       this.setState({errorText: "Required"})
     } else {
       this.setState({
         errorText: null,
         touched: true,
-      })
+      });
     }
   }
 
@@ -47,7 +48,7 @@ class ToField extends React.Component {
   getRightIcon() {
     return (
       <AddressIconMenu
-        onChange={this.props.onChangeTo}
+        onChange={(val) => this.onChangeTo(null, val)}
         addressBookAddresses={this.props.addressBookAddresses}
       />
     );
