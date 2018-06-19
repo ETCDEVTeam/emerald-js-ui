@@ -7,7 +7,7 @@ import styles from './styles';
 
 
 export const IdentityIcon = ({
-  classes, id, size, onClick,
+  classes, id, size, onClick, style,
 }) => {
   const iconSize = Number.isInteger(size) ? size : 40;
   const icon = blockies.create({
@@ -16,6 +16,7 @@ export const IdentityIcon = ({
     scale: 4,
   }).toDataURL();
   const mainStyle = {
+    ...style,
     height: `${iconSize}px`,
     width: `${iconSize}px`,
     minWidth: `${iconSize}px`,
@@ -28,7 +29,6 @@ export const IdentityIcon = ({
   const className = cx({
     clickAble: (onClick !== null) && (typeof onClick === 'function'),
   });
-
   return (
     <div style={mainStyle} onClick={onClick} className={className} />
   );
@@ -39,6 +39,7 @@ IdentityIcon.propTypes = {
   size: PropTypes.number,
   onClick: PropTypes.func,
   classes: PropTypes.object,
+  style: PropTypes.object,
 };
 
 IdentityIcon.defaultProps = {

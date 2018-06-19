@@ -13,7 +13,8 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook-static": "build-storybook -c .storybook -o docs",
     "lint": "eslint src",
-    "flow": "flow"
+    "flow": "flow",
+    "start": "npm run storybook"
   },
   "repository": {
     "type": "git",
@@ -52,14 +53,16 @@
     "underscore.string": "^3.3.4"
   },
   "dependencies": {
-    "emerald-svg-icons": "git+https://github.com/ETCDEVTeam/emerald-svg-icons.git#0.0.1",
+    "@storybook/addon-knobs": "^3.4.7",
     "classnames": "^2.2.5",
     "copy-to-clipboard": "^3.0.8",
+    "emerald-svg-icons": "git+https://github.com/ETCDEVTeam/emerald-svg-icons.git#0.0.1",
     "material-ui": "^0.20.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-jss": "^8.1.0",
+    "rlp": "^2.0.0",
     "svgo": "^1.0.5"
   },
   "jest": {

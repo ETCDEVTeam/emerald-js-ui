@@ -25,7 +25,7 @@
         "secondaryTextColor": "#B1BFB7",
         "alternateTextColor": "#fff",
         "canvasColor": "#F7F9F8",
-        "borderColor": "#EAEFEC",
+        "borderColor": "rgba(177,191,183,0.5)",
         "disabledColor": "#EAEFEC",
         "pickerHeaderColor": "#B1BFB7",
         "clockCircleColor": "rgba(0, 0, 0, 0.07)",

@@ -6,12 +6,15 @@ import styles from './styles';
 
 const reduceClasses = (prev, curr) => Object.assign({}, prev, { [curr]: curr });
 const classes = Object.keys(styles).reduce(reduceClasses, {});
+const build = () => shallow(<Input muiTheme={{palette: {} }} classes={classes} />);
+
 
 test('Renders', () => {
-  const component = shallow(<Input classes={classes} />);
+  const component = build();
+  expect(component).toBeDefined();
 });
 
 test('should wrap TextField', () => {
-  const wrapper = shallow(<Input classes={classes} />);
+  const wrapper = build();
   expect(wrapper.text()).toContain('TextField');
 });
