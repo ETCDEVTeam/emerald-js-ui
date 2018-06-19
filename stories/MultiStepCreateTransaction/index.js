@@ -61,7 +61,7 @@ class _CreateTransaction extends React.Component {
   }
 
   onChangeAmount(amount) {
-    this.setState({amount: amount || '0'});
+    this.setState({amount});
   }
 
   componentDidMount() {
