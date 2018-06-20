@@ -19,23 +19,26 @@ function getStyles(muiTheme) {
 
 class CreateTransaction extends React.Component {
   static propTypes = {
-    ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onChangeFrom: PropTypes.func.isRequired,
-    onChangeGasLimit: PropTypes.func.isRequired,
     from: PropTypes.string.isRequired,
-    onChangeToken: PropTypes.func.isRequired,
     token: PropTypes.string.isRequired,
     tokenSymbols: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired,
     amount: PropTypes.string.isRequired,
-    onChangeAmount: PropTypes.func.isRequired,
     addressBookAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
-    onChangeTo: PropTypes.func.isRequired,
     to: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
+    gasLimit: PropTypes.string.isRequired,
+    txFee: PropTypes.string.isRequired,
     fiatBalance: PropTypes.string.isRequired,
+    ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
     muiTheme: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
+    onCancel: PropTypes.func.isRequired,
+    onChangeTo: PropTypes.func.isRequired,
+    onChangeAmount: PropTypes.func.isRequired,
+    onChangeFrom: PropTypes.func.isRequired,
+    onChangeGasLimit: PropTypes.func.isRequired,
+    onChangeToken: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -99,7 +102,7 @@ class CreateTransaction extends React.Component {
         <FormFieldWrapper style={{ paddingBottom: '0px' }}>
           <FormLabel />
           <ButtonGroup style={{flexGrow: 5}}>
-            <Button label="Back" />
+            <Button label="Cancel" onClick={this.props.onCancel}/>
             <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit}/>
           </ButtonGroup>
         </FormFieldWrapper>
