@@ -29,6 +29,7 @@ class _CreateTransaction extends React.Component {
     txFee: PropTypes.string.isRequired,
     txFeeFiat: PropTypes.string.isRequired,
     toAddress: PropTypes.string,
+    onEmptyAddressBookClick: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -114,11 +115,12 @@ storiesOf('Create Transaction', module)
       balance={text('Balance', '115.15515')}
       fiatBalance={text('Fiat Balance', '2815.55')}
       tokenSymbols={array('Token Symbols', ['ETC', 'BEC'])}
-      addressBookAddresses={array('Address Book Addresses', ['0x00'])}
+      addressBookAddresses={array('Address Book Addresses', [])}
       ownAddresses={array('Own Account Addreses', ['0x01'])}
       txFee={text('TxFee', '0.0042')}
       txFeeFiat={text('TxFeeFiat', '1')}
       toAddress={text('To Address', '0x00')}
+      onEmptyAddressBookClick={() => { console.log('clicked'); }}
     />
   ));
 

@@ -10,6 +10,7 @@ class ToField extends React.Component {
     onChangeTo: PropTypes.func.isRequired,
     to: PropTypes.string.isRequired,
     addressBookAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
+    onEmptyAddressBookClick: PropTypes.func.isRequired,
   }
 
   constructor() {
@@ -54,6 +55,7 @@ class ToField extends React.Component {
       <AddressIconMenu
         onChange={(val) => this.onChangeTo(null, val)}
         addressBookAddresses={this.props.addressBookAddresses}
+        onEmptyAddressBookClick={this.props.onEmptyAddressBookClick}
       />
     );
   }

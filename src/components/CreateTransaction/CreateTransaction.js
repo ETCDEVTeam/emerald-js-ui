@@ -39,6 +39,7 @@ class CreateTransaction extends React.Component {
     onChangeFrom: PropTypes.func.isRequired,
     onChangeGasLimit: PropTypes.func.isRequired,
     onChangeToken: PropTypes.func.isRequired,
+    onEmptyAddressBookClick: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -77,6 +78,7 @@ class CreateTransaction extends React.Component {
             onChangeTo={this.props.onChangeTo}
             to={this.props.to}
             addressBookAddresses={this.props.addressBookAddresses}
+            onEmptyAddressBookClick={this.props.onEmptyAddressBookClick}
           />
         </FormFieldWrapper>
 
