@@ -1,95 +1,104 @@
 import React from 'react';
+import requiredIf from 'react-required-if';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
-import { TextField } from 'material-ui';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import TextField from '@material-ui/core/TextField';
+import InputAdornment from "@material-ui/core/InputAdornment";
+import { withStyles } from '@material-ui/core/styles';
 
-import styles from './styles';
+const styles = theme => ({
+  root: {
+    paddingLeft: '15px',
+    paddingRight: '15px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+});
 
-function getStyles(muiTheme) {
-  return {
-    border: `1px solid ${muiTheme.palette.borderColor}`,
+
+const getErrorProps = ({ errorText }) => {
+  const propsToAdd = {};
+
+  if (errorText) {
+    propsToAdd.helperText = errorText;
+    propsToAdd.error = true;
   }
-}
+
+  return propsToAdd;
+};
+
+const getAdornments = ({ rightIcon, leftIcon }) => {
+  const adornments = {};
+
+  if (leftIcon) {
+    adornments.startAdornment = (<InputAdornment> { leftIcon } </InputAdornment>);
+  }
+
+  if (rightIcon) {
+    adornments.endAdornment = (<InputAdornment>{ rightIcon }</InputAdornment>);
+  }
+
+  return adornments;
+};
+
+const getInputProps = props => ({
+  InputProps: { ...getAdornments(props) },
+});
+
+const getMultilineProps = ({ multiline, rows, rowsMax }) => {
+  let props = { multiline };
+
+  if (multiline) {
+    props = { rows, rowsMax };
+  }
+
+  return props;
+};
 
 export class Input extends React.Component {
   static propTypes = {
-    value: PropTypes.string,
-    underlineShow: PropTypes.bool,
-    className: PropTypes.string,
-    multiLine: PropTypes.bool,
-    rowsMax: PropTypes.number,
-    rows: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    multiline: PropTypes.bool,
+    rowsMax: requiredIf(PropTypes.number, props => props.multiline),
+    rows: requiredIf(PropTypes.number, props => props.multiline),
     disabled: PropTypes.bool,
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
-    muiTheme: PropTypes.object,
-    onChange: PropTypes.func.required,
-    containerStyle: PropTypes.object,
-    classes: PropTypes.object,
+    placeholder: PropTypes.string,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    multiLine: false,
-    rowsMax: 1,
-    rows: 1,
+    value: '',
+    multiline: false,
+    rowsMax: null,
+    rows: null,
     disabled: false,
-    underlineShow: false,
-    value: null,
-    className: null,
     rightIcon: null,
     leftIcon: null,
-    muiTheme: null,
+    placeholder: "",
+    onChange: () => {},
   };
 
   render() {
-    const {
-      value,
-      underlineShow,
-      className,
-      multiLine,
-      rowsMax,
-      rows,
-      disabled,
-      classes,
-      containerStyle,
-      onChange,
-      muiTheme,
-      ...other
-    } = this.props;
-
-    const localStyle = getStyles(muiTheme);
-
-    const textFieldProps = {
-      disabled,
-      multiLine,
-      rowsMax,
-      rows,
-      className,
-      underlineShow,
-      fullWidth: true,
-      onChange,
-      ...other,
-    };
-
-    if (value) {
-      textFieldProps.value = value;
-    }
+    const multilineProps = getMultilineProps(this.props);
+    const errorProps = getErrorProps(this.props);
+    const inputProps = getInputProps(this.props);
 
     return (
-      <div
-        style={{ ...localStyle, ...containerStyle }}
-        className={classes.container}
-      >
-        {this.props.leftIcon}
-        <TextField
-          errorStyle={{bottom: '-3px', color: muiTheme.palette.accent1Color}}
-          {...textFieldProps}
-        />
-        {this.props.rightIcon}
-      </div>
+      <TextField
+        value={this.props.value}
+        fullWidth
+        rows={this.props.rows}
+        rowsMax={this.props.rowsMax}
+        disabled={this.props.disabled}
+        placeholder={this.props.placeholder}
+        onChange={this.props.onChange}
+        {...inputProps}
+        {...errorProps}
+        {...multilineProps}
+      />
     );
   }
 }
 
-export default muiThemeable()(injectSheet(styles)(Input));
+export default withStyles(styles)(Input);
