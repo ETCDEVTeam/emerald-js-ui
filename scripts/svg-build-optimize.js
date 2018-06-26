@@ -185,7 +185,7 @@ const writeStoriesFile = (names) => {
 }
 
 const renderSVGIconTemplate = (svgPath, name) => (`import React from 'react';
-import SvgIcon from 'material-ui/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const ${name} = props => (
   <SvgIcon {...props} viewBox="0 0 64 64">
