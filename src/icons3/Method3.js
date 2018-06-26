@@ -1,5 +1,5 @@
 import React from 'react';
-import SvgIcon from 'material-ui/SvgIcon';
+import SvgIcon from '@material-ui/core/SvgIcon';
 
 const Method3 = props => (
   <SvgIcon {...props} viewBox="0 0 64 64">
