@@ -1,6 +1,5 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import theme from '../../src/theme.json';
 import { muiTheme } from 'storybook-addon-material-ui'
 import { 
   AddCircle,
@@ -201,7 +200,6 @@ import {
   Wrench,
   ZoomIn,
   ZoomOut } from '../../src/icons3';storiesOf('icons3', module)
-  .addDecorator(muiTheme(theme))
   .add('all', () => (<div>
     <AddCircle />
     <Add />
