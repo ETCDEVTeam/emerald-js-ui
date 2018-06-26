@@ -9,3 +9,4 @@ export { Warning, WarningHeader, WarningText } from './components/Warning';
 export { default as SelectField } from './components/SelectField';
 export { default as SelectAddressInput } from './components/SelectAddressInput';
 export { default as CreateTransaction } from './components/CreateTransaction';
+export { default as Page } from './components/Page';
