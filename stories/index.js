@@ -14,3 +14,4 @@ import './SyncWarning';
 import './Warning';
 import './Input';
 import './MultiStepCreateTransaction';
+import './Page';
