@@ -4,8 +4,6 @@ import './Address';
 import './Account';
 import './Checkbox';
 import './Card';
-import './icons';
-import './icons2';
 import './icons3';
 import './Buttons';
 import './LinkButton';
