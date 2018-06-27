@@ -12,7 +12,7 @@ const styles = theme => ({
     background: 'transparent',
     height: '100px',
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-between',
   },
   childWrapper: {
     padding: '50px',
