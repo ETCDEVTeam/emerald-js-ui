@@ -1,43 +1,37 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import { Toolbar, ToolbarTitle, ToolbarGroup } from 'material-ui/Toolbar';
-import IconButton from 'material-ui/IconButton';
-import Divider from 'material-ui/Divider';
+import { withStyles } from '@material-ui/core/styles';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import Divider from '@material-ui/core/Divider';
 import Card from '../Card';
 
-
-function getStyles(muiTheme) {
-  return {
-    wrapper: {
-      border: `1px solid ${muiTheme.palette.borderColor}`,
-      backgroundColor: muiTheme.palette.alternateTextColor,
-    },
-    toolbar: {
-      background: 'transparent',
-      height: '100px',
-    },
-    childWrapper: {
-      padding: '50px',
-    },
-  };
-}
+const styles = theme => ({
+  toolbar: {
+    background: 'transparent',
+    height: '100px',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  childWrapper: {
+    padding: '50px',
+  },
+});
 
 const getIconWithButton = (icon) => {
   if (!icon) { return <div />; }
   return (
-    <ToolbarGroup>
-      <IconButton>
-        {icon}
-      </IconButton>
-    </ToolbarGroup>
+    <IconButton>
+      {icon}
+    </IconButton>
   );
 };
 
 export class Page extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
-    muiTheme: PropTypes.object.isRequired,
+    classes: PropTypes.object.isRequired,
     children: PropTypes.element.isRequired,
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
@@ -49,20 +43,18 @@ export class Page extends React.Component {
   };
 
   render() {
-    const { muiTheme, title, leftIcon, rightIcon } = this.props;
-    const styles = getStyles(muiTheme);
-
+    const { title, leftIcon, rightIcon, classes } = this.props;
     return (
-      <Card style={styles.wrapper}>
-        <Toolbar style={styles.toolbar}>
+      <Card>
+        <Toolbar className={classes.toolbar}>
           {getIconWithButton(leftIcon)}
-          <ToolbarTitle style={{ lineHeight: styles.toolbar.height }} text={title} />
+          <Typography variant="title" color="inherit">{title}</Typography>
           {getIconWithButton(rightIcon)}
         </Toolbar>
 
         <Divider />
 
-        <div style={{ padding: '50px' }}>
+        <div className={classes.childWrapper}>
           {this.props.children}
         </div>
       </Card>
@@ -70,4 +62,4 @@ export class Page extends React.Component {
   }
 }
 
-export default muiThemeable()(Page);
+export default withStyles(styles)(Page);
