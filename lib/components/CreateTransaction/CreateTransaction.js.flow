@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import ButtonGroup from '../ButtonGroup';
 import Button from '../Button';
@@ -9,7 +9,7 @@ import FormLabel from './FormLabel';
 import TokenField from './TokenField';
 import ToField from './ToField';
 import AmountField from './AmountField';
-import GasLimitField from './GasLimitField'
+import GasLimitField from './GasLimitField';
 
 function getStyles(muiTheme) {
   return {
@@ -40,6 +40,7 @@ class CreateTransaction extends React.Component {
     onChangeGasLimit: PropTypes.func.isRequired,
     onChangeToken: PropTypes.func.isRequired,
     onEmptyAddressBookClick: PropTypes.func.isRequired,
+    onMaxClicked: PropTypes.func.isRequired,
   };
 
   constructor() {
@@ -87,6 +88,7 @@ class CreateTransaction extends React.Component {
             balance={this.props.balance}
             amount={this.props.amount}
             onChangeAmount={this.props.onChangeAmount}
+            onMaxClicked={this.props.onMaxClicked}
           />
         </FormFieldWrapper>
 
