@@ -15,7 +15,11 @@ storiesOf('Input', module)
     <div style={{ width: '300px', border: '1px solid yellow' }}>
       <div>
         <h1>Plain Jane</h1>
-        <Input value="value text" onChange={action('onChange')} />
+        <Input onChange={action('onChange')} />
+      </div>
+      <div>
+        <h1>with value</h1>
+        <Input value={Math.random() * 100} onChange={action('onChange')} />
       </div>
       <div>
         <h1>With placeholder</h1>

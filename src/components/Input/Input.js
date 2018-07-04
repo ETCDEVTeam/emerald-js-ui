@@ -39,6 +39,11 @@ const getAdornments = ({ rightIcon, leftIcon }) => {
   return adornments;
 };
 
+const getInputProps = props => ({
+  InputProps: { ...getAdornments(props) },
+});
+
+
 export class Input extends React.Component {
   static propTypes = {
     value: PropTypes.string,
@@ -72,36 +77,30 @@ export class Input extends React.Component {
     const {
       value,
       multiLine,
-      rowsMax,
-      rows,
       disabled,
       onChange,
-      placeholder,
     } = this.props;
 
 
     const textFieldProps = {
       disabled,
       multiLine,
-      rowsMax,
-      rows,
-      fullWidth: true,
       onChange,
     };
 
-    if (value) {
-      textFieldProps.value = value;
-    }
-
-
     const errorProps = getErrorProps(this.props);
-    const adornments = getAdornments(this.props);
+    const inputProps = getInputProps(this.props);
 
     return (
       <TextField
+        value={this.props.value}
         fullWidth
-        placeholder={placeholder}
-        InputProps={adornments}
+        rows={this.props.rows}
+        rowsMax={this.props.rowsMax}
+        disabled={this.props.disabled}
+        placeholder={this.props.placeholder}
+        onChange={this.props.onChange}
+        {...inputProps}
         {...errorProps}
       />
     );
