@@ -23,9 +23,11 @@ class AddressIconMenuItem extends React.Component {
     return (
       <MenuItem
         onClick={this.onClick}
-        style={{paddingBottom: '5px', paddingTop: '5px', minHeight: 'auto', height: 'auto' }}
+        style={{
+ paddingBottom: '5px', paddingTop: '5px', minHeight: 'auto', height: 'auto',
+}}
         primaryText={
-          <Account identityProps={{size: 30}} addr={this.props.address} identity={true} hideCopy={true} />
+          <Account identityProps={{ size: 30 }} addr={this.props.address} identity hideCopy />
         }
       />
     );

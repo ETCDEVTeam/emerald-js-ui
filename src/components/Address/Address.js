@@ -1,93 +1,76 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
-import injectSheet from 'react-jss';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import { withStyles } from '@material-ui/core/styles';
+import ToggledIconButton from '../ToggledIconButton';
 
 import { Copytoclipboard as CloneIcon, Check1 as CheckCircle } from '../../icons3';
 
-import styles from './styles';
+const getStyles = theme => ({
+  container: {
+    height: '28px',
+    fontWeight: '300',
+    fontSize: '16px',
+    lineHeight: '19px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  address: {
+    cursor: 'pointer',
+  },
+  shortenedAddress: {
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+  },
+});
 
 export class Address extends React.Component {
+  static propTypes = {
+    showCopy: PropTypes.bool,
+    onCopyClick: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    shortened: PropTypes.bool,
+    classes: PropTypes.object.isRequired,
+  };
+
+  static defaultProps = {
+    showCopy: true,
+    shortened: false,
+    showCheck: false,
+    onCopyClick: () => {},
+  };
+
   constructor(props) {
     super(props);
-    this.state = {
-      showCheck: props.showCheck,
-    };
+    this.onCopyClick = this.onCopyClick.bind(this);
   }
+
   onCopyClick() {
     copy(this.props.id);
-    if (this.props.onCopyClick) {
-      this.props.onCopyClick(this.props.id);
-    }
-    this.setState({
-      showCheck: true,
-    });
-    setTimeout(() => {
-      this.setState({
-        showCheck: false,
-      });
-    }, 1000);
+    this.props.onCopyClick(this.props.id);
   }
+
+  get id() {
+    const idProp = this.props.id;
+    return (idProp.startsWith('0x') ? idProp : `0x${idProp}`);
+  }
+
   render() {
-    const {
-      classes, id, shortened, style, onClick, muiTheme, hideCopy
-    } = this.props;
+    const { classes, shortened } = this.props;
 
-    if (!id) {
-      return null;
-    }
+    const addressClassname = classes.address + shortened ? classes.shortenedAddress : '';
 
-
-    let icons = null;
-    if (!shortened) {
-      icons = (<CloneIcon
-        onClick={this.onCopyClick.bind(this)}
-        className={classes.copyIcon}
-        style={{ color: muiTheme.palette.secondaryTextColor }}
-      />);
-    }
-    if (this.state.showCheck) {
-      icons = (
-        <CheckCircle style={{ color: muiTheme.palette.primary1Color }} />
-      );
-    }
-
-    const sanitizedId = (id.startsWith('0x') ? id : `0x${id}`);
-    const value = shortened ?
-      `${sanitizedId.substring(0, 7)}...${sanitizedId.substring(sanitizedId.length - 6, sanitizedId.length)}` :
-      sanitizedId;
-
-    const finalStyle = {
-      color: muiTheme.palette.secondaryTextColor,
-      ...style,
-    };
     return (
-      <div className={classes.container} style={finalStyle}>
-        <div onClick={onClick} className={classes.address}>
-          {value}
-        </div>
-        {!hideCopy && icons && <div>{icons}</div>}
+      <div className={classes.container}>
+        <div className={addressClassname}>{this.id}</div>
+        <ToggledIconButton
+          onClick={this.onCopyClick}
+          icon={<CloneIcon />}
+          toggledIcon={<CheckCircle />}
+        />
       </div>
     );
   }
 }
 
-Address.propTypes = {
-  hideCopy: PropTypes.bool,
-  onClick: PropTypes.func,
-  onCopyClick: PropTypes.func,
-  id: PropTypes.string.isRequired,
-  shortened: PropTypes.bool,
-  classes: PropTypes.object.isRequired,
-
-};
-
-Address.defaultProps = {
-  hideCopy: false,
-  shortened: false,
-  showCheck: false,
-};
-
-export default muiThemeable()(injectSheet(styles)(Address));
-
+export default withStyles(getStyles)(Address);

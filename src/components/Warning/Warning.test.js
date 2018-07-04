@@ -9,7 +9,7 @@ const classes = Object.keys(styles).reduce(reduceClasses, {});
 
 describe('Warning', () => {
   it('renders without crash', () => {
-    const component = shallow(<Warning><WarningHeader/><WarningText/></Warning>);
+    const component = shallow(<Warning><WarningHeader /><WarningText /></Warning>);
     expect(component.children()).toHaveLength(2);
   });
 });

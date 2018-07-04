@@ -6,7 +6,7 @@ import styles from './styles';
 
 const reduceClasses = (prev, curr) => Object.assign({}, prev, { [curr]: curr });
 const classes = Object.keys(styles).reduce(reduceClasses, {});
-const build = () => shallow(<Input muiTheme={{palette: {} }} classes={classes} />);
+const build = () => shallow(<Input muiTheme={{ palette: {} }} classes={classes} />);
 
 
 test('Renders', () => {

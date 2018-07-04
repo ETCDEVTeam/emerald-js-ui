@@ -32,7 +32,7 @@ export class Page extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
     classes: PropTypes.object.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
   };
@@ -43,7 +43,9 @@ export class Page extends React.Component {
   };
 
   render() {
-    const { title, leftIcon, rightIcon, classes } = this.props;
+    const {
+      title, leftIcon, rightIcon, classes,
+    } = this.props;
     return (
       <Card>
         <Toolbar className={classes.toolbar}>
