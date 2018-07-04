@@ -15,7 +15,9 @@ const theme = {
         borderRadius: '1px',
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: colors.ash.main
+        borderColor: colors.ash.main,
+        paddingLeft: '5px',
+        paddingRight: '5px',
       }
     },
     MuiFormHelperText: {
@@ -23,7 +25,7 @@ const theme = {
         position: 'absolute',
         bottom: '-18px',
       }
-    }
+    },
   },
   props: {
     MuiInput: {
