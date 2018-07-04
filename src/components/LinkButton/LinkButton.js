@@ -5,13 +5,13 @@ import muiThemeable from 'material-ui/styles/muiThemeable';
 import styles from './styles';
 
 
-const LinkButton = ({classes, muiTheme, ...other}) => {
+const LinkButton = ({ classes, muiTheme, ...other }) => {
   const { style } = other;
   const color = style && style.color ? style.color : muiTheme.palette.primary1Color;
   return (
     <FlatButton
       {...other}
-      style={{color, ...style}}
+      style={{ color, ...style }}
       className={classes.linkButton}
     />);
 };

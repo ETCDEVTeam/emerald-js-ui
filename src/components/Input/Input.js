@@ -2,8 +2,7 @@ import React from 'react';
 import requiredIf from 'react-required-if';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
-import InputAdornment from "@material-ui/core/InputAdornment";
-import { withStyles } from '@material-ui/core/styles';
+import InputAdornment from '@material-ui/core/InputAdornment';
 
 const getErrorProps = ({ errorText }) => {
   const propsToAdd = {};

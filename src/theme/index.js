@@ -18,13 +18,13 @@ const theme = {
         borderColor: colors.ash.main,
         paddingLeft: '5px',
         paddingRight: '5px',
-      }
+      },
     },
     MuiFormHelperText: {
       root: {
         position: 'absolute',
         bottom: '-18px',
-      }
+      },
     },
   },
   props: {
@@ -33,7 +33,7 @@ const theme = {
     },
     MuiFormHelperText: {
       error: true,
-    }
+    },
   },
 };
 

@@ -47,23 +47,21 @@ class AddressIconMenu extends React.Component {
       );
     }
 
-    return this.props.addressBookAddresses.map(
-      (address) => (<AddressIconMenuItem address={address} onChange={this.onChange} />)
-    );
+    return this.props.addressBookAddresses.map(address => (<AddressIconMenuItem address={address} onChange={this.onChange} />));
   }
 
   render() {
     return (
       <IconMenu
-        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
+        targetOrigin={{ horizontal: 'right', vertical: 'top' }}
         iconButtonElement={<Book />}
         open={this.state.menuOpen}
         onClick={this.onClick}
         useLayerForClickAway={false}
         onRequestChange={this.onRequestChange}
       >
-      { this.renderAddresses() }
+        { this.renderAddresses() }
       </IconMenu>
     );
   }
