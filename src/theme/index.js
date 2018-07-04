@@ -5,17 +5,25 @@ import colors from './colors';
 const theme = {
   palette: {
     primary: colors.emerald,
+    secondary: colors.ash,
   },
   overrides: {
     MuiFormControl: {
       root: {
-        border: colors.ash,
+        boxSizing: 'border-box',
+        borderRadius: '1px',
+        borderStyle: 'solid',
+        borderWidth: '1px',
+        borderColor: colors.ash.main
       }
-    }
+    },
   },
   props: {
     MuiInput: {
       disableUnderline: true,
+    },
+    MuiFormHelperText: {
+      error: true,
     }
   },
 };

@@ -1,13 +1,14 @@
-const emeraldColorCode = '#00C853';
 const emerald = {
-  light: emeraldColorCode,
-  dark: emeraldColorCode,
-  main: emeraldColorCode,
+  main: '#00C853',
+};
+
+const ash = {
+  main: '#EAEFEC',
 };
 
 const colors = {
   emerald,
-  ash: '#B1BFB7',
+  ash,
   conch: '#EAEFEC',
   snow: '#F7F9F8',
   ruby: '#F41A2D',

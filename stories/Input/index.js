@@ -18,7 +18,7 @@ storiesOf('Input', module)
         <Input value="value text" onChange={action('onChange')} />
       </div>
       <div>
-        <h1>With label</h1>
+        <h1>With placeholder</h1>
         <Input placeholder="hint text" onChange={action('onChange')} />
       </div>
       <div>
@@ -28,6 +28,10 @@ storiesOf('Input', module)
       <div>
         <h1>With Right Icon</h1>
         <Input rightIcon={<ArrowDown />} onChange={action('onChange')} />
+      </div>
+      <div>
+        <h1>With Error</h1>
+        <Input errorText="eat my fat sack" onChange={action('onChange')} />
       </div>
     </div>
   ));

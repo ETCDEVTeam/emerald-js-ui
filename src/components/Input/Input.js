@@ -5,14 +5,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
-  container: {
-    boxSizing: 'border-box',
-    borderRadius: '1px',
+  root: {
     paddingLeft: '15px',
     paddingRight: '15px',
     display: 'flex',
     alignItems: 'center',
-    border: `1px solid ${theme.palette.divider}`,
   },
   errorText: {
     bottom: '-3px',
@@ -31,9 +28,10 @@ export class Input extends React.Component {
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
     placeholder: PropTypes.string,
-    onChange: PropTypes.func.required,
+    onChange: PropTypes.func,
     containerStyle: PropTypes.object,
     classes: PropTypes.object,
+    error: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -46,6 +44,8 @@ export class Input extends React.Component {
     rightIcon: null,
     leftIcon: null,
     placeholder: null,
+    error: false,
+    onChange: () => {},
   };
 
   render() {
@@ -58,9 +58,9 @@ export class Input extends React.Component {
       disabled,
       containerStyle,
       onChange,
-      muiTheme,
       classes,
       placeholder,
+      errorText,
       ...other
     } = this.props;
 
@@ -80,22 +80,37 @@ export class Input extends React.Component {
       textFieldProps.value = value;
     }
 
+    const adornments = {};
+    const { leftIcon, rightIcon } = this.props;
+    if (leftIcon) {
+      adornments.startAdornment = (
+        <InputAdornment>
+          { this.props.leftIcon }
+        </InputAdornment>
+      );
+    }
+
+    if (rightIcon) {
+      adornments.endAdornment = (
+        <InputAdornment>
+          { this.props.rightIcon }
+        </InputAdornment>
+      );
+    }
+
+    const errorProps = {};
+    if (errorText) {
+      errorProps.helperText = errorText;
+      errorProps.error = true;
+    }
+
     return (
       <TextField
-        fullWidth="true"
+        className={className}
+        fullWidth
         placeholder={placeholder}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment>
-              { this.props.leftIcon }
-            </InputAdornment>
-          ),
-          endAdornment: (
-            <InputAdornment>
-              { this.props.rightIcon }
-            </InputAdornment>
-          )
-        }}
+        InputProps={adornments}
+        {...errorProps}
       />
     );
   }
