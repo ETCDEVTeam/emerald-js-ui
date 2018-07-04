@@ -25,6 +25,20 @@ const getErrorProps = ({ errorText }) => {
   return propsToAdd;
 };
 
+const getAdornments = ({ rightIcon, leftIcon }) => {
+  const adornments = {};
+
+  if (leftIcon) {
+    adornments.startAdornment = (<InputAdornment> { leftIcon } </InputAdornment>);
+  }
+
+  if (rightIcon) {
+    adornments.endAdornment = (<InputAdornment>{ rightIcon }</InputAdornment>);
+  }
+
+  return adornments;
+};
+
 export class Input extends React.Component {
   static propTypes = {
     value: PropTypes.string,
@@ -57,14 +71,12 @@ export class Input extends React.Component {
   render() {
     const {
       value,
-      className,
       multiLine,
       rowsMax,
       rows,
       disabled,
       onChange,
       placeholder,
-      ...other
     } = this.props;
 
 
@@ -73,39 +85,20 @@ export class Input extends React.Component {
       multiLine,
       rowsMax,
       rows,
-      className,
       fullWidth: true,
       onChange,
-      ...other,
     };
 
     if (value) {
       textFieldProps.value = value;
     }
 
-    const adornments = {};
-    const { leftIcon, rightIcon } = this.props;
-    if (leftIcon) {
-      adornments.startAdornment = (
-        <InputAdornment>
-          { this.props.leftIcon }
-        </InputAdornment>
-      );
-    }
-
-    if (rightIcon) {
-      adornments.endAdornment = (
-        <InputAdornment>
-          { this.props.rightIcon }
-        </InputAdornment>
-      );
-    }
 
     const errorProps = getErrorProps(this.props);
+    const adornments = getAdornments(this.props);
 
     return (
       <TextField
-        className={className}
         fullWidth
         placeholder={placeholder}
         InputProps={adornments}
