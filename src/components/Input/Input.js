@@ -5,16 +5,6 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  root: {
-    paddingLeft: '15px',
-    paddingRight: '15px',
-    display: 'flex',
-    alignItems: 'center',
-  },
-});
-
-
 const getErrorProps = ({ errorText }) => {
   const propsToAdd = {};
 
@@ -75,7 +65,7 @@ export class Input extends React.Component {
     disabled: false,
     rightIcon: null,
     leftIcon: null,
-    placeholder: "",
+    placeholder: '',
     onChange: () => {},
   };
 
@@ -101,4 +91,4 @@ export class Input extends React.Component {
   }
 }
 
-export default withStyles(styles)(Input);
+export default Input;
