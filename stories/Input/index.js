@@ -31,7 +31,7 @@ storiesOf('Input', module)
       </div>
       <div>
         <h1>With Error</h1>
-        <Input errorText="eat my fat sack" onChange={action('onChange')} />
+        <Input errorText="Big ol error" onChange={action('onChange')} />
       </div>
     </div>
   ));
