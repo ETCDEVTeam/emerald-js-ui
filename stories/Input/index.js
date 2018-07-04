@@ -5,25 +5,12 @@ import Input from '../../src/components/Input';
 import ArrowDown from '../../src/icons3/ArrowDown';
 
 import { createMuiTheme } from '@material-ui/core/styles';
-import { muiTheme } from 'storybook-addon-material-ui';
+import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiFormControl: {
-      root: {
-        border: `1px solid ${this.palette.divider}`,
-      }
-    }
-  },
-  props: {
-    MuiInput: {
-      disableUnderline: true,
-    }
-  }
-});
+import muiTheme from '../../src/theme/index';
 
 storiesOf('Input', module)
-  .addDecorator(muiTheme(theme))
+  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('all', () => (
     <div style={{ width: '300px', border: '1px solid yellow' }}>
       <div>
