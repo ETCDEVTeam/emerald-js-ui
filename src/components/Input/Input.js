@@ -11,11 +11,19 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
   },
-  errorText: {
-    bottom: '-3px',
-    color: theme.palette.accent1Color,
-  }
 });
+
+
+const getErrorProps = ({ errorText }) => {
+  const propsToAdd = {};
+
+  if (errorText) {
+    propsToAdd.helperText = errorText;
+    propsToAdd.error = true;
+  }
+
+  return propsToAdd;
+};
 
 export class Input extends React.Component {
   static propTypes = {
@@ -29,8 +37,6 @@ export class Input extends React.Component {
     leftIcon: PropTypes.element,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
-    containerStyle: PropTypes.object,
-    classes: PropTypes.object,
     error: PropTypes.bool,
   };
 
@@ -56,11 +62,8 @@ export class Input extends React.Component {
       rowsMax,
       rows,
       disabled,
-      containerStyle,
       onChange,
-      classes,
       placeholder,
-      errorText,
       ...other
     } = this.props;
 
@@ -98,11 +101,7 @@ export class Input extends React.Component {
       );
     }
 
-    const errorProps = {};
-    if (errorText) {
-      errorProps.helperText = errorText;
-      errorProps.error = true;
-    }
+    const errorProps = getErrorProps(this.props);
 
     return (
       <TextField
