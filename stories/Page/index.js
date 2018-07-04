@@ -1,7 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Page from '../../src/components/Page';
-import theme from '../../src/theme.json';
 import { muiTheme } from 'storybook-addon-material-ui';
 import Back from '../../src/icons3/Back';
 

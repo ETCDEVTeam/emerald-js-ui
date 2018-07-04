@@ -5,33 +5,24 @@ import Input from '../../src/components/Input';
 import ArrowDown from '../../src/icons3/ArrowDown';
 
 import { createMuiTheme } from '@material-ui/core/styles';
-import { muiTheme } from 'storybook-addon-material-ui';
+import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
-const theme = createMuiTheme({
-  overrides: {
-    MuiFormControl: {
-      root: {
-        border: `1px solid ${this.palette.divider}`,
-      }
-    }
-  },
-  props: {
-    MuiInput: {
-      disableUnderline: true,
-    }
-  }
-});
+import muiTheme from '../../src/theme/index';
 
 storiesOf('Input', module)
-  .addDecorator(muiTheme(theme))
+  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('all', () => (
     <div style={{ width: '300px', border: '1px solid yellow' }}>
       <div>
         <h1>Plain Jane</h1>
-        <Input value="value text" onChange={action('onChange')} />
+        <Input onChange={action('onChange')} />
       </div>
       <div>
-        <h1>With label</h1>
+        <h1>with value</h1>
+        <Input value={Math.random() * 100} onChange={action('onChange')} />
+      </div>
+      <div>
+        <h1>With placeholder</h1>
         <Input placeholder="hint text" onChange={action('onChange')} />
       </div>
       <div>
@@ -41,6 +32,10 @@ storiesOf('Input', module)
       <div>
         <h1>With Right Icon</h1>
         <Input rightIcon={<ArrowDown />} onChange={action('onChange')} />
+      </div>
+      <div>
+        <h1>With Error</h1>
+        <Input errorText="Big ol error" onChange={action('onChange')} />
       </div>
     </div>
   ));

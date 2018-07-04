@@ -1,104 +1,94 @@
 import React from 'react';
+import requiredIf from 'react-required-if';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({
-  container: {
-    boxSizing: 'border-box',
-    borderRadius: '1px',
-    paddingLeft: '15px',
-    paddingRight: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    border: `1px solid ${theme.palette.divider}`,
-  },
-  errorText: {
-    bottom: '-3px',
-    color: theme.palette.accent1Color,
+const getErrorProps = ({ errorText }) => {
+  const propsToAdd = {};
+
+  if (errorText) {
+    propsToAdd.helperText = errorText;
+    propsToAdd.error = true;
   }
+
+  return propsToAdd;
+};
+
+const getAdornments = ({ rightIcon, leftIcon }) => {
+  const adornments = {};
+
+  if (leftIcon) {
+    adornments.startAdornment = (<InputAdornment> { leftIcon } </InputAdornment>);
+  }
+
+  if (rightIcon) {
+    adornments.endAdornment = (<InputAdornment>{ rightIcon }</InputAdornment>);
+  }
+
+  return adornments;
+};
+
+const getInputProps = props => ({
+  InputProps: { ...getAdornments(props) },
 });
+
+const getMultilineProps = ({ multiline, rows, rowsMax }) => {
+  let props = { multiline };
+
+  if (multiline) {
+    props = { rows, rowsMax };
+  }
+
+  return props;
+};
 
 export class Input extends React.Component {
   static propTypes = {
-    value: PropTypes.string,
-    className: PropTypes.string,
-    multiLine: PropTypes.bool,
-    rowsMax: PropTypes.number,
-    rows: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    multiline: PropTypes.bool,
+    rowsMax: requiredIf(PropTypes.number, props => props.multiline),
+    rows: requiredIf(PropTypes.number, props => props.multiline),
     disabled: PropTypes.bool,
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
     placeholder: PropTypes.string,
-    onChange: PropTypes.func.required,
-    containerStyle: PropTypes.object,
-    classes: PropTypes.object,
+    onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    multiLine: false,
-    rowsMax: 1,
-    rows: 1,
+    value: '',
+    multiline: false,
+    rowsMax: null,
+    rows: null,
     disabled: false,
-    value: null,
-    className: null,
     rightIcon: null,
     leftIcon: null,
-    placeholder: null,
+    placeholder: '',
+    onChange: () => {},
   };
 
   render() {
-    const {
-      value,
-      className,
-      multiLine,
-      rowsMax,
-      rows,
-      disabled,
-      containerStyle,
-      onChange,
-      muiTheme,
-      classes,
-      placeholder,
-      ...other
-    } = this.props;
-
-
-    const textFieldProps = {
-      disabled,
-      multiLine,
-      rowsMax,
-      rows,
-      className,
-      fullWidth: true,
-      onChange,
-      ...other,
-    };
-
-    if (value) {
-      textFieldProps.value = value;
-    }
+    const multilineProps = getMultilineProps(this.props);
+    const errorProps = getErrorProps(this.props);
+    const inputProps = getInputProps(this.props);
 
     return (
       <TextField
-        fullWidth="true"
-        placeholder={placeholder}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment>
-              { this.props.leftIcon }
-            </InputAdornment>
-          ),
-          endAdornment: (
-            <InputAdornment>
-              { this.props.rightIcon }
-            </InputAdornment>
-          )
-        }}
+        value={this.props.value}
+        fullWidth
+        rows={this.props.rows}
+        rowsMax={this.props.rowsMax}
+        disabled={this.props.disabled}
+        placeholder={this.props.placeholder}
+        onChange={this.props.onChange}
+        {...inputProps}
+        {...errorProps}
+        {...multilineProps}
       />
     );
   }
 }
 
-export default withStyles(styles)(Input);
+export default Input;
