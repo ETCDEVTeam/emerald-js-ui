@@ -1,4 +1,5 @@
 import React from 'react';
+import requiredIf from 'react-required-if';
 import PropTypes from 'prop-types';
 import TextField from '@material-ui/core/TextField';
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -43,51 +44,43 @@ const getInputProps = props => ({
   InputProps: { ...getAdornments(props) },
 });
 
+const getMultilineProps = ({ multiline, rows, rowsMax }) => {
+  let props = { multiline };
+
+  if (multiline) {
+    props = { rows, rowsMax };
+  }
+
+  return props;
+};
 
 export class Input extends React.Component {
   static propTypes = {
-    value: PropTypes.string,
-    className: PropTypes.string,
-    multiLine: PropTypes.bool,
-    rowsMax: PropTypes.number,
-    rows: PropTypes.number,
+    value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    multiline: PropTypes.bool,
+    rowsMax: requiredIf(PropTypes.number, props => props.multiline),
+    rows: requiredIf(PropTypes.number, props => props.multiline),
     disabled: PropTypes.bool,
     rightIcon: PropTypes.element,
     leftIcon: PropTypes.element,
     placeholder: PropTypes.string,
     onChange: PropTypes.func,
-    error: PropTypes.bool,
   };
 
   static defaultProps = {
-    multiLine: false,
-    rowsMax: 1,
-    rows: 1,
+    value: '',
+    multiline: false,
+    rowsMax: null,
+    rows: null,
     disabled: false,
-    value: null,
-    className: null,
     rightIcon: null,
     leftIcon: null,
-    placeholder: null,
-    error: false,
+    placeholder: "",
     onChange: () => {},
   };
 
   render() {
-    const {
-      value,
-      multiLine,
-      disabled,
-      onChange,
-    } = this.props;
-
-
-    const textFieldProps = {
-      disabled,
-      multiLine,
-      onChange,
-    };
-
+    const multilineProps = getMultilineProps(this.props);
     const errorProps = getErrorProps(this.props);
     const inputProps = getInputProps(this.props);
 
@@ -102,6 +95,7 @@ export class Input extends React.Component {
         onChange={this.props.onChange}
         {...inputProps}
         {...errorProps}
+        {...multilineProps}
       />
     );
   }
