@@ -10,6 +10,7 @@ const theme = {
   overrides: {
     MuiFormControl: {
       root: {
+        marginBottom: '20px',
         boxSizing: 'border-box',
         borderRadius: '1px',
         borderStyle: 'solid',
@@ -17,6 +18,12 @@ const theme = {
         borderColor: colors.ash.main
       }
     },
+    MuiFormHelperText: {
+      root: {
+        position: 'absolute',
+        bottom: '-18px',
+      }
+    }
   },
   props: {
     MuiInput: {
