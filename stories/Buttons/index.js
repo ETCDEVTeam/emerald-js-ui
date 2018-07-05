@@ -1,30 +1,39 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-import FlatButton from 'material-ui/FlatButton';
-import { action } from '@storybook/addon-actions';
 import { muiTheme } from 'storybook-addon-material-ui';
-import theme from '../../src/theme.json';
-import Button from '../../src/components/Button';
 
-const styles = {
-  padding: '5px 10px 5px 10px',
-};
+import Button from '@material-ui/core/Button';
+
+import theme from '../../src/theme';
 
 storiesOf('Buttons', module)
-  .addDecorator(muiTheme([theme, 'Light Theme', 'Dark Theme']))
-  .add('all', () => (
-    <div style={{ paddingTop: '10px' }}>
-      <div style={styles}>
-        <Button primary label="Disabled" disabled />
+  .addDecorator(muiTheme(theme))
+  .add('Default', () => (
+    <Fragment>
+      <div>
+        <h1>Primary Colors</h1>
+        <Button>Button</Button>
+        <Button disabled>Disabled Button</Button>
       </div>
-      <div style={styles}>
-        <Button primary label="Generate New Wallet" />
+      <div>
+        <h1>Secondary Colors</h1>
+        <Button color="secondary">Button</Button>
+        <Button color="secondary" disabled>Disabled Button</Button>
       </div>
-      <div style={styles}>
-        <Button label="SEND" />
+    </Fragment>
+  ))
+
+  .add('Contained', () => (
+    <Fragment>
+      <div>
+        <h1>Primary Colors</h1>
+        <Button variant="contained">Button</Button>
+        <Button variant="contained" disabled>Disabled Button</Button>
       </div>
-      <div style={styles}>
-        <FlatButton primary label="FROM KEYSTORE FILE" /> <FlatButton label="FORGOT?" />
+      <div>
+        <h1>Secondary Colors</h1>
+        <Button variant="contained" color="secondary">Button</Button>
+        <Button variant="contained" color="secondary" disabled>Disabled Button</Button>
       </div>
-    </div>
+    </Fragment>
   ));

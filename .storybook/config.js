@@ -7,6 +7,7 @@ function loadStories() {
   require('../stories/Address');
   require('../stories/icons3');
   require('../stories/ToggledIconButton');
+  require('../stories/Buttons');
     // You can require as many stories as you need.
 }
 
