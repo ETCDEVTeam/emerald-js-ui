@@ -12,7 +12,7 @@ function getStyles(muiTheme) {
     letterSpacing: '1px',
     fontWeight: '200',
     paddingLeft: '20px',
-    fontSize: '14px'
+    fontSize: '14px',
   };
 }
 

@@ -42,14 +42,13 @@ class TokenField extends React.Component {
         <FormLabel>Token</FormLabel>
 
         <SelectField value={this.props.selectedToken} onChange={this.onChangeToken}>
-          {this.props.tokenSymbols.map((toke) =>
-            <MenuItem
+          {this.props.tokenSymbols.map(toke =>
+            (<MenuItem
               key={toke}
               value={toke}
               label={toke}
               primaryText={toke}
-            />
-          )}
+            />))}
         </SelectField>
 
         <div style={getStyles(this.props.muiTheme)}>
@@ -57,7 +56,6 @@ class TokenField extends React.Component {
         </div>
       </Fragment>
     );
-
   }
 }
 

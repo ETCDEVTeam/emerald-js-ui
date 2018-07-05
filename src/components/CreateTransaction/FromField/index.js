@@ -34,7 +34,6 @@ class FromField extends React.Component {
         />
       </Fragment>
     );
-
   }
 }
 

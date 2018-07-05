@@ -25,7 +25,7 @@ const showIdentity = (show, id, identityProps) => {
 
 export const Account = (props) => {
   const {
-    classes, primary, secondary, addr, abbreviated, description, name, editable, hideCopy
+    classes, primary, secondary, addr, abbreviated, description, name, editable, hideCopy,
   } = props;
   const {
     onAddressClick, onEditClick, identity, identityProps,
@@ -37,17 +37,17 @@ export const Account = (props) => {
       <div>
         <div className={classes.primaryContainer}>
           {primary ||
-           <div onClick={onEditClick} className={classes.accountName}>
-             <div>{ name }</div>
-             {editable && <div style={{ marginLeft: '5px' }}><EditIcon style={styles.editIcon} /></div>}
-           </div>}
+          <div onClick={onEditClick} className={classes.accountName}>
+            <div>{ name }</div>
+            {editable && <div style={{ marginLeft: '5px' }}><EditIcon style={styles.editIcon} /></div>}
+          </div>}
         </div>
         <div style={{ display: 'flex', alignItems: 'center' }}>
           {secondary || <Address
-                          onClick={onAddressClick}
-                          id={addr}
-                          shortened={abbreviated}
-                          hideCopy={hideCopy}
+            onClick={onAddressClick}
+            id={addr}
+            shortened={abbreviated}
+            hideCopy={hideCopy}
           />}
         </div>
       </div>

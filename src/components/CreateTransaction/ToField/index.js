@@ -53,7 +53,7 @@ class ToField extends React.Component {
   getRightIcon() {
     return (
       <AddressIconMenu
-        onChange={(val) => this.onChangeTo(null, val)}
+        onChange={val => this.onChangeTo(null, val)}
         addressBookAddresses={this.props.addressBookAddresses}
         onEmptyAddressBookClick={this.props.onEmptyAddressBookClick}
       />
