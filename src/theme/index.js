@@ -7,6 +7,13 @@ const theme = {
     primary: colors.emerald,
     secondary: colors.ash,
   },
+  typography: {
+    button: {
+      fontSize: '15px',
+      fontWeight: '500',
+      lineHeight: '18px',
+    },
+  },
   overrides: {
     MuiFormControl: {
       root: {
@@ -24,6 +31,18 @@ const theme = {
       root: {
         position: 'absolute',
         bottom: '-18px',
+      },
+    },
+    MuiButton: {
+      root: {
+        color: colors.emerald.main,
+        borderRadius: 0,
+        minHeight: '40px',
+      },
+      contained: {
+        color: colors.white.main,
+        backgroundColor: colors.emerald.main,
+        boxShadow: 'none',
       },
     },
   },

@@ -4,7 +4,6 @@ import { action } from '@storybook/addon-actions';
 import Input from '../../src/components/Input';
 import ArrowDown from '../../src/icons3/ArrowDown';
 
-import { createMuiTheme } from '@material-ui/core/styles';
 import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
 import muiTheme from '../../src/theme/index';
