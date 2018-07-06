@@ -3,10 +3,10 @@ import React from 'react';
 import { Checkbox as MCheckbox } from 'material-ui';
 
 type Props = {
-    label: string,
-    checked?: boolean,
-    disabled?: boolean,
-    onCheck?: (any, boolean) => void;
+  label: string,
+  checked?: boolean,
+  disabled?: boolean,
+  onCheck?: (any, boolean) => void;
 };
 
 
@@ -21,41 +21,40 @@ export class Checkbox extends React.Component<Props> {
     };
   }
 
-    handleCheck = (event: any, isInputChecked: boolean) => {
-      this.setState({
-        checked: isInputChecked,
-      });
-      if (this.props.onCheck) {
-        this.props.onCheck(event, isInputChecked);
-      }
-    };
-
-    render() {
-      const styles = {
-        icon: {
-          checked: {
-            marginRight: '10px',
-          },
-          unchecked: {
-            marginRight: '10px',
-          },
-        },
-      };
-      const { checked } = this.state;
-      const { label, disabled } = this.props;
-      const iconStyle = checked ? styles.icon.checked : styles.icon.unchecked;
-
-      return (
-
-        <MCheckbox
-          checked={checked}
-          disabled={disabled}
-          iconStyle={iconStyle}
-          label={label}
-          onCheck={this.handleCheck}
-        />
-      );
+  handleCheck = (event: any, isInputChecked: boolean) => {
+    this.setState({
+      checked: isInputChecked,
+    });
+    if (this.props.onCheck) {
+      this.props.onCheck(event, isInputChecked);
     }
+  };
+
+  render() {
+    const styles = {
+      icon: {
+        checked: {
+          marginRight: '10px',
+        },
+        unchecked: {
+          marginRight: '10px',
+        },
+      },
+    };
+    const { checked } = this.state;
+    const { label, disabled } = this.props;
+    const iconStyle = checked ? styles.icon.checked : styles.icon.unchecked;
+
+    return (
+      <MCheckbox
+        checked={checked}
+        disabled={disabled}
+        iconStyle={iconStyle}
+        label={label}
+        onCheck={this.handleCheck}
+      />
+    );
+  }
 }
 
 
