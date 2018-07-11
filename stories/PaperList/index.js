@@ -295,7 +295,7 @@ PinnedSubheaderList.propTypes = {
 
 const Boo = withStyles(styles2)(PinnedSubheaderList);
 
-storiesOf('Table', module)
+storiesOf('PaperList', module)
   .addDecorator(storyBookMuiTheme(muiTheme))
   .add('default', () => (
     <Foo/>
