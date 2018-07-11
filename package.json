@@ -13,6 +13,7 @@
     "storybook": "start-storybook -p 9001 -c .storybook",
     "storybook-static": "build-storybook -c .storybook -o docs",
     "lint": "eslint .",
+    "lint-fix": "npm run lint -- --fix",
     "flow": "flow",
     "start": "npm run storybook"
   },

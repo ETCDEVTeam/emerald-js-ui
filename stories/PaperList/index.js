@@ -25,16 +25,24 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 import Page from '../../src/components/Page';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 let counter = 0;
 function createData(name, calories, fat, carbs, protein) {
   counter += 1;
-  return { id: counter, name, calories, fat, carbs, protein };
+  return {
+    id: counter, name, calories, fat, carbs, protein,
+  };
 }
 
 function getSorting(order, orderBy) {
   return order === 'desc'
-       ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
-               : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
+    ? (a, b) => (b[orderBy] < a[orderBy] ? -1 : 1)
+    : (a, b) => (a[orderBy] < b[orderBy] ? -1 : 1);
 }
 
 const columnData = [
@@ -46,7 +54,7 @@ const columnData = [
 ];
 
 class EnhancedTableHead extends React.Component {
-  createSortHandler = property => event => {
+  createSortHandler = property => (event) => {
     this.props.onRequestSort(event, property);
   };
 
@@ -57,26 +65,28 @@ class EnhancedTableHead extends React.Component {
       <TableHead>
         <TableRow>
           {
-            columnData.map(({id, numeric, disablePadding, label}) => (
-              <TableCell
-                key={id}
-                numeric={numeric}
-                sortDirection={orderBy === id ? order : false}
-              >
-                <Tooltip
-                  title="Sort"
-                  placement={numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={orderBy === id}
-                    direction={order}
-                    onClick={this.createSortHandler(id)}
-                  >
-                    {label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
+            columnData.map(({
+ id, numeric, disablePadding, label,
+}) => (
+  <TableCell
+    key={id}
+    numeric={numeric}
+    sortDirection={orderBy === id ? order : false}
+  >
+    <Tooltip
+      title="Sort"
+      placement={numeric ? 'bottom-end' : 'bottom-start'}
+      enterDelay={300}
+    >
+      <TableSortLabel
+        active={orderBy === id}
+        direction={order}
+        onClick={this.createSortHandler(id)}
+      >
+        {label}
+      </TableSortLabel>
+    </Tooltip>
+  </TableCell>
             ))
           }
         </TableRow>
@@ -100,14 +110,14 @@ const toolbarStyles = theme => ({
   },
   highlight:
     theme.palette.type === 'light'
-    ? {
-      color: theme.palette.secondary.main,
-      backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-    }
-    : {
-      color: theme.palette.text.primary,
-      backgroundColor: theme.palette.secondary.dark,
-    },
+      ? {
+        color: theme.palette.secondary.main,
+        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
+      }
+      : {
+        color: theme.palette.text.primary,
+        backgroundColor: theme.palette.secondary.dark,
+      },
   spacer: {
     flex: '1 1 100%',
   },
@@ -140,8 +150,8 @@ class EnhancedTable extends React.Component {
       order: 'asc',
       orderBy: 'calories',
       data: [
-        createData(200.00, 552300.00, 'Success', "0x01231231231231231231231231", "0x31231231231231231231231"),
-        createData(200.00, 552300.00, 'Success', "0x01231231231231231231231231", "0x31231231231231231231231"),
+        createData(200.00, 552300.00, 'Success', '0x01231231231231231231231231', '0x31231231231231231231231'),
+        createData(200.00, 552300.00, 'Success', '0x01231231231231231231231231', '0x31231231231231231231231'),
 
       ],
       page: 0,
@@ -164,13 +174,15 @@ class EnhancedTable extends React.Component {
     this.setState({ page });
   };
 
-  handleChangeRowsPerPage = event => {
+  handleChangeRowsPerPage = (event) => {
     this.setState({ rowsPerPage: event.target.value });
   };
 
   render() {
     const { classes } = this.props;
-    const { data, order, orderBy, rowsPerPage, page } = this.state;
+    const {
+      data, order, orderBy, rowsPerPage, page,
+    } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
@@ -187,29 +199,27 @@ class EnhancedTable extends React.Component {
               {data
                 .sort(getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  return (
-                    <TableRow
-                      hover
-                      onClick={event => this.handleClick(event, n.id)}
-                      role="checkbox"
-                      tabIndex={-1}
-                      key={n.id}
-                      >
-                      <TableCell component="th" scope="row" padding="none">
-                        {n.name}
-                      </TableCell>
-                      <TableCell numeric>{n.calories}</TableCell>
-                      <TableCell numeric>{n.fat}</TableCell>
-                      <TableCell numeric>{n.carbs}</TableCell>
-                      <TableCell numeric>{n.protein}</TableCell>
-                    </TableRow>
-                  );
-                })}
+                .map(n => (
+                  <TableRow
+                    hover
+                    onClick={event => this.handleClick(event, n.id)}
+                    role="checkbox"
+                    tabIndex={-1}
+                    key={n.id}
+                  >
+                    <TableCell component="th" scope="row" padding="none">
+                      {n.name}
+                    </TableCell>
+                    <TableCell numeric>{n.calories}</TableCell>
+                    <TableCell numeric>{n.fat}</TableCell>
+                    <TableCell numeric>{n.carbs}</TableCell>
+                    <TableCell numeric>{n.protein}</TableCell>
+                  </TableRow>
+                  ))}
               {emptyRows > 0 && (
-                 <TableRow style={{ height: 49 * emptyRows }}>
-                   <TableCell colSpan={6} />
-                 </TableRow>
+              <TableRow style={{ height: 49 * emptyRows }}>
+                <TableCell colSpan={6} />
+              </TableRow>
               )}
             </TableBody>
           </Table>
@@ -238,11 +248,6 @@ EnhancedTable.propTypes = {
 };
 
 const Foo = withStyles(styles)(EnhancedTable);
-
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
 
 const styles2 = theme => ({
   root: {
@@ -298,9 +303,9 @@ const Boo = withStyles(styles2)(PinnedSubheaderList);
 storiesOf('PaperList', module)
   .addDecorator(storyBookMuiTheme(muiTheme))
   .add('default', () => (
-    <Foo/>
+    <Foo />
   ))
   .add('nip', () => (
-    <Boo/>
+    <Boo />
   ));
-;
+

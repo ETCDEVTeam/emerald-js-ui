@@ -50,8 +50,8 @@ const theme = {
     MuiPaper: {
       root: {
         border: `1px solid ${colors.conch.main}`,
-      }
-    }
+      },
+    },
   },
   props: {
     MuiInput: {
@@ -63,7 +63,7 @@ const theme = {
     MuiPaper: {
       square: true,
       elevation: 0,
-    }
+    },
   },
 };
 

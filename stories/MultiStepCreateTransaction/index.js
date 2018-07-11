@@ -13,8 +13,8 @@ import Back from '../../src/icons3/Back';
 const PAGES = {
   TX: 1,
   SIGN: 2,
-  DETAILS: 3
-}
+  DETAILS: 3,
+};
 
 const DEFAULT_GAS_LIMIT = '21000';
 
@@ -44,7 +44,7 @@ class _CreateTransaction extends React.Component {
   }
 
   onChangeFrom(from) {
-    this.setState({from});
+    this.setState({ from });
     action('onChangeFrom')(from);
   }
 
@@ -54,7 +54,7 @@ class _CreateTransaction extends React.Component {
   }
 
   onChangeToken(token) {
-    this.setState({token});
+    this.setState({ token });
     action('onChangeToken')(token);
   }
 
@@ -63,7 +63,7 @@ class _CreateTransaction extends React.Component {
   }
 
   onChangeAmount(amount) {
-    this.setState({amount});
+    this.setState({ amount });
   }
 
   componentDidMount() {
@@ -84,22 +84,23 @@ class _CreateTransaction extends React.Component {
             onChangeToken={this.onChangeToken}
             onChangeGasLimit={this.onChangeGasLimit}
             onChangeAmount={this.onChangeAmount}
-            onChangeTo={this.onChangeTo} />
-        )
+            onChangeTo={this.onChangeTo}
+          />
+        );
       case PAGES.PASSWORD:
-        return (<div>PASSWORD</div>)
-      default: return null
+        return (<div>PASSWORD</div>);
+      default: return null;
     }
   }
 
   render() {
     return (
-      <div style={{padding: '20px'}}>
+      <div style={{ padding: '20px' }}>
         <Page title="Create Transaction" leftIcon={<Back />}>
           {this.getPage()}
         </Page>
       </div>
-    )
+    );
   }
 }
 

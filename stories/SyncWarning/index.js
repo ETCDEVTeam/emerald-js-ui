@@ -11,4 +11,4 @@ storiesOf('SyncWarning', module)
     </MuiThemeProvider>
   ))
   .add('default', () => (<SyncWarning />))
-  .add('with status', () => (<SyncWarning startingBlock={1} currentBlock={2} highestBlock={9000}/>));
+  .add('with status', () => (<SyncWarning startingBlock={1} currentBlock={2} highestBlock={9000} />));
