@@ -32,10 +32,6 @@ const styles2 = theme => ({
     backgroundColor: 'inherit',
     padding: 0,
   },
-  paperstuff: {
-    marginTop: '10px',
-    marginBottom: '10px',
-  },
 });
 
 function PinnedSubheaderList(props) {
@@ -48,7 +44,7 @@ function PinnedSubheaderList(props) {
           <ul className={classes.ul}>
             <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
             {[0, 1, 2].map(item => (
-              <Paper className={classes.paperstuff}>
+              <Paper>
                 <ListItem key={`item-${sectionId}-${item}`}>
                   <ListItemText primary={`Item ${item}`} />
                 </ListItem>

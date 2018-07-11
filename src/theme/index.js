@@ -50,6 +50,8 @@ const theme = {
     MuiPaper: {
       root: {
         border: `1px solid ${colors.conch.main}`,
+        marginBottom: '10px',
+        marginTop: '10px',
       },
     },
   },

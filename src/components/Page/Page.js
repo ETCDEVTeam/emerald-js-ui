@@ -15,7 +15,7 @@ const styles = theme => ({
     justifyContent: 'space-between',
   },
   childWrapper: {
-    padding: '50px',
+    padding: '40px',
   },
 });
 
