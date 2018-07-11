@@ -3,9 +3,11 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import colors from './colors';
 
 const theme = {
+  emeraldColors: colors,
   palette: {
     primary: colors.emerald,
     secondary: colors.ash,
+    divider: colors.conch.main,
   },
   typography: {
     button: {
@@ -45,6 +47,11 @@ const theme = {
         boxShadow: 'none',
       },
     },
+    MuiPaper: {
+      root: {
+        border: `1px solid ${colors.conch.main}`,
+      }
+    }
   },
   props: {
     MuiInput: {
@@ -53,6 +60,10 @@ const theme = {
     MuiFormHelperText: {
       error: true,
     },
+    MuiPaper: {
+      square: true,
+      elevation: 0,
+    }
   },
 };
 

@@ -12,11 +12,15 @@ const ash = {
   contrastText: white.main,
 };
 
+const conch = {
+  main: '#EAEFEC',
+};
+
 const colors = {
   emerald,
   ash,
   white,
-  conch: '#EAEFEC',
+  conch,
   snow: '#F7F9F8',
   ruby: '#F41A2D',
   coal: '#222222',
