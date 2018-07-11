@@ -4,6 +4,13 @@ import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
 import muiTheme from '../../src/theme/index';
 
+import Page from '../../src/components/Page';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 const styles2 = theme => ({
   root: {
     width: '100%',
