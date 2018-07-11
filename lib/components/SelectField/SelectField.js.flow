@@ -13,21 +13,22 @@ function getStyles(muiTheme) {
     lineHeight: '24px',
     paddingLeft: '10px',
     paddingRight: '10px',
-  }
+  };
 }
 
 export const Select = (props) => {
   const { style, muiTheme } = props;
   const defaultProps = {
-    underlineShow: false
-  }
+    underlineShow: false,
+  };
   const styles = getStyles(muiTheme);
   return (
     <SelectField
-    hintStyle={{opacity: 1, color: muiTheme.palette.secondaryTextColor, fontWeight: '200'}}
-    underlineShow={false}
-    style={{ ...style, ...styles }}
-    {...props} />
+      hintStyle={{ opacity: 1, color: muiTheme.palette.secondaryTextColor, fontWeight: '200' }}
+      underlineShow={false}
+      style={{ ...style, ...styles }}
+      {...props}
+    />
   );
 };
 

@@ -23,8 +23,8 @@ const AddressWithIcon = ({ address, name }) => {
   };
   return (
     <div style={style.div}>
-      <IdentityIcon size={30} expanded={true} id={ address }/>
-      <div style={ style.address }>{ name || address }</div>
+      <IdentityIcon size={30} expanded id={address} />
+      <div style={style.address}>{ name || address }</div>
     </div>
   );
 };
@@ -43,16 +43,18 @@ class SelectAddressInput extends React.Component {
     };
 
     render() {
-      const { selectedAccount, accounts, containerStyle, iconButton, emptyAccountMenuItem, ...other } = this.props;
+      const {
+        selectedAccount, accounts, containerStyle, iconButton, emptyAccountMenuItem, ...other
+      } = this.props;
       const _emptyAccountMenuItem = emptyAccountMenuItem || (<MenuItem key={1} value={1} primaryText="Empty" />);
       return (
-        <div style={{height: '50px', ...containerStyle}}>
+        <div style={{ height: '50px', ...containerStyle }}>
           <SelectField
-            name={ selectedAccount }
-            value={ selectedAccount }
-            onChange={ this.onChange }
+            name={selectedAccount}
+            value={selectedAccount}
+            onChange={this.onChange}
             {...other}
-            fullWidth={ true }
+            fullWidth
             dropDownMenuProps={{
               iconButton: iconButton || (<DropdownArrowDown />),
               menuStyle: {
@@ -60,17 +62,17 @@ class SelectAddressInput extends React.Component {
               },
               selectionRenderer: (val) => {
                 if (val) {
-                  return (<AddressWithIcon address={ val }/>)
+                  return (<AddressWithIcon address={val} />);
                 }
               },
-            }}>
-          { accounts.length > 0 ? accounts.map((account) =>
-              <MenuItem
-                key={ account }
-                value={ account }
-                primaryText={<AddressWithIcon address={ account }/> }
-              />
-            ) : _emptyAccountMenuItem
+            }}
+          >
+            { accounts.length > 0 ? accounts.map(account =>
+              (<MenuItem
+                key={account}
+                value={account}
+                primaryText={<AddressWithIcon address={account} />}
+              />)) : _emptyAccountMenuItem
           }
           </SelectField>
         </div>
