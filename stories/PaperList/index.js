@@ -11,6 +11,10 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 
+import { withStyles } from '@material-ui/core/styles';
+
+import Paper from '@material-ui/core/Paper';
+
 const styles2 = theme => ({
   root: {
     width: '100%',
@@ -64,9 +68,6 @@ const Boo = withStyles(styles2)(PinnedSubheaderList);
 
 storiesOf('PaperList', module)
   .addDecorator(storyBookMuiTheme(muiTheme))
-  .add('default', () => (
-    <Foo />
-  ))
   .add('nip', () => (
     <Boo />
   ));
