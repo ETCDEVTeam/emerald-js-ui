@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
