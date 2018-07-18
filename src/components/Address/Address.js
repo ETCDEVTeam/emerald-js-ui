@@ -9,9 +9,6 @@ import { Copytoclipboard as CloneIcon, Check1 as CheckCircle } from '../../icons
 const getStyles = theme => ({
   container: {
     height: '28px',
-    fontWeight: '300',
-    fontSize: '16px',
-    lineHeight: '19px',
     display: 'flex',
     alignItems: 'center',
   },

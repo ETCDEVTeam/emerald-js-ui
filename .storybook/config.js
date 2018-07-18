@@ -8,6 +8,7 @@ function loadStories() {
   require('../stories/ToggledIconButton');
   require('../stories/Buttons');
   require('../stories/PaperList');
+  require('../stories/AppBar');
     // You can require as many stories as you need.
 }
 

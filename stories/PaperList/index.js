@@ -65,7 +65,7 @@ const Boo = withStyles(styles2)(PinnedSubheaderList);
 
 storiesOf('PaperList', module)
   .addDecorator(storyBookMuiTheme(muiTheme))
-  .add('nip', () => (
+  .add('Default', () => (
     <Boo />
   ));
 

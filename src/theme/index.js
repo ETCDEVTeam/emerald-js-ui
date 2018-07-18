@@ -10,11 +10,20 @@ const theme = {
     divider: colors.conch.main,
   },
   typography: {
+    fontSize: '16px',
+    fontWeightLight: 200,
+    fontWeightRegular: 300,
+    fontWeightMedium: 300,
     button: {
       fontSize: '15px',
       fontWeight: '500',
       lineHeight: '18px',
     },
+    fontFamily: [
+      "Rubik",
+      "Roboto",
+      "sans-serif"
+    ]
   },
   overrides: {
     MuiFormControl: {
@@ -46,6 +55,14 @@ const theme = {
         backgroundColor: colors.emerald.main,
         boxShadow: 'none',
       },
+    },
+    MuiAppBar: {
+      root: {
+        boxShadow: 'none'
+      },
+      colorDefault: {
+        backgroundColor: colors.white.main
+      }
     },
     MuiPaper: {
       root: {
