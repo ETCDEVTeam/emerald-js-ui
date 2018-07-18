@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import muiThemeable from 'material-ui/styles/muiThemeable';
 import ButtonGroup from '../ButtonGroup';
 import Button from '../Button';
@@ -9,7 +9,7 @@ import FormLabel from './FormLabel';
 import TokenField from './TokenField';
 import ToField from './ToField';
 import AmountField from './AmountField';
-import GasLimitField from './GasLimitField'
+import GasLimitField from './GasLimitField';
 
 function getStyles(muiTheme) {
   return {
@@ -103,9 +103,9 @@ class CreateTransaction extends React.Component {
 
         <FormFieldWrapper style={{ paddingBottom: '0px' }}>
           <FormLabel />
-          <ButtonGroup style={{flexGrow: 5}}>
-            <Button label="Cancel" onClick={this.props.onCancel}/>
-            <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit}/>
+          <ButtonGroup style={{ flexGrow: 5 }}>
+            <Button label="Cancel" onClick={this.props.onCancel} />
+            <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit} />
           </ButtonGroup>
         </FormFieldWrapper>
       </div>

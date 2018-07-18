@@ -5,7 +5,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import Divider from '@material-ui/core/Divider';
-import Card from '../Card';
+import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   toolbar: {
@@ -15,7 +15,7 @@ const styles = theme => ({
     justifyContent: 'space-between',
   },
   childWrapper: {
-    padding: '50px',
+    padding: '40px',
   },
 });
 
@@ -47,7 +47,7 @@ export class Page extends React.Component {
       title, leftIcon, rightIcon, classes,
     } = this.props;
     return (
-      <Card>
+      <Paper>
         <Toolbar className={classes.toolbar}>
           {getIconWithButton(leftIcon)}
           <Typography variant="title" color="inherit">{title}</Typography>
@@ -59,7 +59,7 @@ export class Page extends React.Component {
         <div className={classes.childWrapper}>
           {this.props.children}
         </div>
-      </Card>
+      </Paper>
     );
   }
 }

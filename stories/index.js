@@ -1,9 +1,7 @@
-import './Colors';
 import './IdentityIcon';
 import './Address';
 import './Account';
 import './Checkbox';
-import './Card';
 import './icons3';
 import './Buttons';
 import './SyncWarning';
@@ -12,3 +10,4 @@ import './Input';
 import './MultiStepCreateTransaction';
 import './Page';
 import './ToggledIconButton';
+import './Table';

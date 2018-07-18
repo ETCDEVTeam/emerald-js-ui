@@ -12,15 +12,15 @@ storiesOf('Warning', module)
   ))
   .add('default', () => (
     <div>
-    <Warning>
-      <WarningHeader>Attention</WarningHeader>
-      <WarningText>This is warning message</WarningText>
-      <WarningText>Second message</WarningText>
-    </Warning>
-    <br/>
-    <Warning fullWidth={true}>
-      <WarningHeader>Full width Attention</WarningHeader>
-      <WarningText>This is warning message</WarningText>
-    </Warning>
-    
+      <Warning>
+        <WarningHeader>Attention</WarningHeader>
+        <WarningText>This is warning message</WarningText>
+        <WarningText>Second message</WarningText>
+      </Warning>
+      <br />
+      <Warning fullWidth>
+        <WarningHeader>Full width Attention</WarningHeader>
+        <WarningText>This is warning message</WarningText>
+      </Warning>
+
     </div>));
