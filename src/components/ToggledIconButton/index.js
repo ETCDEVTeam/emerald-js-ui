@@ -5,13 +5,8 @@ import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
   toggledIcon: {
-    width: '13px !important',
-    height: '13px !important',
     cursor: 'pointer',
     marginLeft: '4px',
-    '&:hover': {
-      color: `${theme.palette.primary} !important`,
-    },
   },
 });
 
@@ -50,10 +45,8 @@ class ToggledIconButton extends React.Component {
     const { classes, toggledIcon, icon } = this.props;
     const { toggled } = this.state;
 
-    const iconClassName = toggled ? classes.toggledIcon : '';
-
     return (
-      <div className={iconClassName} onClick={this.handleClick}>
+      <div className={classes.toggledIcon} onClick={this.handleClick}>
         { this.state.toggled ? toggledIcon : icon }
       </div>
     );
