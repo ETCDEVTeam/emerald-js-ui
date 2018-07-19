@@ -18,7 +18,7 @@ storiesOf('Address', module)
   .add('Auto fit container', () => (
     <div style={{ width: '200px' }}>
       <Address
-        shortened
+        shortened={true}
         onClick={action('onClick')}
         onCopyClick={action('onCopyclick')}
         id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"

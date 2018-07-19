@@ -8,22 +8,24 @@ const theme = {
     primary: colors.emerald,
     secondary: colors.ash,
     divider: colors.conch.main,
+    background: {
+      default: colors.snow
+    }
   },
   typography: {
-    fontSize: '16px',
-    fontWeightLight: 200,
-    fontWeightRegular: 300,
-    fontWeightMedium: 300,
+    fontSize: 16,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 400,
     button: {
       fontSize: '15px',
-      fontWeight: '500',
       lineHeight: '18px',
     },
     fontFamily: [
-      "Rubik",
-      "Roboto",
+      '"Rubik"',
+      '"Roboto"',
       "sans-serif"
-    ]
+    ].join(',')
   },
   overrides: {
     MuiFormControl: {
@@ -67,12 +69,13 @@ const theme = {
     MuiPaper: {
       root: {
         border: `1px solid ${colors.conch.main}`,
-        marginBottom: '10px',
-        marginTop: '10px',
       },
     },
   },
   props: {
+    MuiTypography: {
+      color: 'secondary',
+    },
     MuiInput: {
       disableUnderline: true,
     },

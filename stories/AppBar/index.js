@@ -3,13 +3,13 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import AppBar from '../../src/components/AppBar';
 import { withKnobs, text, boolean, number, array, object } from '@storybook/addon-knobs/react';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 
 import muiTheme from '../../src/theme/index';
 
 storiesOf('AppBar', module)
-  .addDecorator(storyBookMuiTheme(muiTheme))
   .addDecorator(withKnobs)
   .add('AppBar', () => (
     <AppBar

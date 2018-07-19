@@ -7,7 +7,6 @@ import Button from '@material-ui/core/Button';
 import theme from '../../src/theme';
 
 storiesOf('Buttons', module)
-  .addDecorator(muiTheme(theme))
   .add('Default', () => (
     <Fragment>
       <div>

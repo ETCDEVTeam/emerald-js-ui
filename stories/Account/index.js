@@ -2,11 +2,11 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import Account from '../../src/components/Account';
-import { muiTheme } from 'storybook-addon-material-ui';
-import theme from '../../src/theme.json';
+import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
+import muiTheme from '../../src/theme/index';
 
 storiesOf('Account', module)
-  .addDecorator(muiTheme([theme, 'Light Theme', 'Dark Theme']))
+  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('default', () => (
     <Account
       addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"

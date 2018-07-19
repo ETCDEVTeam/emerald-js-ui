@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import copy from 'copy-to-clipboard';
 import { withStyles } from '@material-ui/core/styles';
 import ToggledIconButton from '../ToggledIconButton';
+import Typography from '@material-ui/core/Typography';
 
 import { Copytoclipboard as CloneIcon, Check1 as CheckCircle } from '../../icons3';
 
@@ -11,8 +12,6 @@ const getStyles = theme => ({
     height: '28px',
     display: 'flex',
     alignItems: 'center',
-  },
-  address: {
     cursor: 'pointer',
   },
   shortenedAddress: {
@@ -23,7 +22,7 @@ const getStyles = theme => ({
 
 export class Address extends React.Component {
   static propTypes = {
-    showCopy: PropTypes.bool,
+    hideCopy: PropTypes.bool,
     onCopyClick: PropTypes.func,
     id: PropTypes.string.isRequired,
     shortened: PropTypes.bool,
@@ -31,7 +30,7 @@ export class Address extends React.Component {
   };
 
   static defaultProps = {
-    showCopy: true,
+    hideCopy: false,
     shortened: false,
     showCheck: false,
     onCopyClick: () => {},
@@ -53,18 +52,14 @@ export class Address extends React.Component {
   }
 
   render() {
-    const { classes, shortened } = this.props;
+    const { classes, shortened, hideCopy } = this.props;
 
-    const addressClassname = classes.address + shortened ? classes.shortenedAddress : '';
+    const addressClassname = shortened ? classes.shortenedAddress : '';
 
     return (
       <div className={classes.container}>
-        <div className={addressClassname}>{this.id}</div>
-        <ToggledIconButton
-          onClick={this.onCopyClick}
-          icon={<CloneIcon />}
-          toggledIcon={<CheckCircle />}
-        />
+        <Typography className={addressClassname}>{this.id}</Typography>
+        {hideCopy ? null : <ToggledIconButton onClick={this.onCopyClick} icon={<CloneIcon color="secondary"/>} toggledIcon={<CheckCircle color="secondary"/>} />}
       </div>
     );
   }
