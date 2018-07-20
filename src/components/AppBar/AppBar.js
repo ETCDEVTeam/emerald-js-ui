@@ -20,13 +20,13 @@ const styles = theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    marginRight: '30px',
+    marginRight: `${theme.spacing.unit * 3}px`,
     '&:last-child': {
       marginRight: '0px'
     }
   },
   icon: {
-    marginRight: '10px'
+    marginRight: `${theme.spacing.unit}px`
   }
 });
 
@@ -54,10 +54,13 @@ class EmeraldAppBar extends React.Component {
             <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
           </Typography>
           <div style={{width: '200px'}}>
-          <Address
-            shortened={true}
-            id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
-          />
+            <Account
+              identity
+              hideCopy
+              shortened
+              identityProps={{size: 30}}
+              addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+            />
           </div>
         </Toolbar>
       </AppBar>

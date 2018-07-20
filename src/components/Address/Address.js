@@ -12,12 +12,16 @@ const getStyles = theme => ({
     height: '28px',
     display: 'flex',
     alignItems: 'center',
-    cursor: 'pointer',
+    width: '100%'
   },
   shortenedAddress: {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
+    width: '100%'
   },
+  toggledIcon: {
+    cursor: 'pointer'
+  }
 });
 
 export class Address extends React.Component {
@@ -59,7 +63,7 @@ export class Address extends React.Component {
     return (
       <div className={classes.container}>
         <Typography className={addressClassname}>{this.id}</Typography>
-        {hideCopy ? null : <ToggledIconButton onClick={this.onCopyClick} icon={<CloneIcon color="secondary"/>} toggledIcon={<CheckCircle color="primary"/>} />}
+        {hideCopy ? null : <ToggledIconButton className={classes.toggledIcon} onClick={this.onCopyClick} icon={<CloneIcon color="secondary"/>} toggledIcon={<CheckCircle color="primary"/>} />}
       </div>
     );
   }

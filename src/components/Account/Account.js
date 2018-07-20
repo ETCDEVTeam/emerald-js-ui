@@ -35,7 +35,7 @@ const showIdentity = (show, id, identityProps) => {
   };
   if (show) {
     return (
-      <div style={{ marginRight: '20px' }}>
+      <div style={{ width: '30px', marginRight: '10px' }}>
         <IdentityIcon id={id} {...props} />
       </div>
     );
@@ -45,16 +45,22 @@ const showIdentity = (show, id, identityProps) => {
 
 export const Account = (props) => {
   const {
-    classes, primary, secondary, addr, shortened, description, name, editable, hideCopy, style
+    classes, primary, secondary, addr, shortened, description, name, editable, hideCopy
   } = props;
   const {
     onAddressClick, onEditClick, identity, identityProps,
   } = props;
 
+  let wrapStyle;
+
+  if (shortened) {
+    wrapStyle = { width: identity ? '80%' : '100%' }
+  }
+
   return (
-    <div className={classes.container} style={style}>
+    <div className={classes.container}>
       {showIdentity(identity, addr, identityProps)}
-      <div>
+      <div style={wrapStyle}>
         <div className={classes.primaryContainer}>
           {primary ||
           <div onClick={onEditClick} className={classes.accountName}>

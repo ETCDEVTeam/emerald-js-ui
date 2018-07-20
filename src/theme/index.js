@@ -2,6 +2,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 import colors from './colors';
 
+const spacing = 10;
+
 const theme = {
   emeraldColors: colors,
   palette: {
@@ -11,6 +13,9 @@ const theme = {
     background: {
       default: colors.snow
     }
+  },
+  spacing: {
+    unit: spacing
   },
   typography: {
     fontSize: 16,
@@ -57,6 +62,12 @@ const theme = {
         backgroundColor: colors.emerald.main,
         boxShadow: 'none',
       },
+    },
+    MuiToolbar: {
+      gutters: {
+        paddingLeft: `${spacing * 3}px`,
+        paddingRight: `${spacing * 3}px`
+      }
     },
     MuiAppBar: {
       root: {
