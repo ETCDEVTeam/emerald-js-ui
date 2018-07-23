@@ -12,15 +12,15 @@ const getStyles = theme => ({
     height: '28px',
     display: 'flex',
     alignItems: 'center',
-    width: '100%'
+    width: '100%',
   },
   shortenedAddress: {
     textOverflow: 'ellipsis',
     overflow: 'hidden',
-    width: '100%'
+    width: '100%',
   },
   toggledIcon: {
-    cursor: 'pointer'
+    cursor: 'pointer',
   }
 });
 
