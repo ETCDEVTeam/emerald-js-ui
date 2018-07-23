@@ -8,7 +8,13 @@ import IdentityIcon from '../../src/components/IdentityIcon';
 const addr = '0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98';
 storiesOf('IdentityIcon', module)
   .add('default', () => (
-    <div>
+    <div style={{width: '40px', height: '40px'}}>
       <IdentityIcon id={addr.toLowerCase()} />
     </div>))
-  .add('with onClick handler', () => (<IdentityIcon id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" onClick={action('icon-click')} />));
+  .add('with onClick handler', () => {
+    return (
+      <div style={{ width: '40px', height: '40px' }}>
+        <IdentityIcon id="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98" onClick={action('icon-click')} />
+      </div>
+    )
+  });
