@@ -13,7 +13,7 @@ const styles = theme => ({
     width: '100%',
     maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
-    cursor: 'pointer'
+    cursor: 'pointer',
   },
 });
 
@@ -52,16 +52,13 @@ class SimpleListMenu extends React.Component {
       <div className={classes.root}>
         <Account
           identity
-          hideCopy
-          shortened
-          identityProps={{size: 30}}
           onClick={this.handleClickListItem}
-          addr={options[this.state.selectedIndex]}
+          address={options[this.state.selectedIndex]}
+          addressWidth="200px"
         />
         <Menu
           id="lock-menu"
-          style={{width: '300px'}}
-          anchorEl={anchorEl}
+          chorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
@@ -73,9 +70,7 @@ class SimpleListMenu extends React.Component {
               <Account
                 identity
                 hideCopy
-                shortened
-                identityProps={{size: 30}}
-                addr={option}
+                address={option}
                 onClick={event => this.handleMenuItemClick(event, index)}
               />
             </MenuItem>

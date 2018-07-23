@@ -48,7 +48,7 @@ class EmeraldAppBar extends React.Component {
           <Typography className={classes.flex}>
             {subtitle}
           </Typography>
-          <div style={{width: '200px'}} className={classes.icon}>
+          <div className={classes.icon}>
             <AccountSelect />
           </div>
           <Typography className={classes.item}>

@@ -10,7 +10,6 @@ const getStyles = (theme) => ({
   root: {
     display: 'flex',
     width: '100%',
-    justifyContent: 'center',
     alignItems: 'center',
   },
   nameEditIcon: {
@@ -47,6 +46,8 @@ const getStyles = (theme) => ({
   },
 });
 
+const noop = () => {};
+
 class Account extends React.Component {
   static propTypes = {
     addressProps: PropTypes.object.isRequired,
@@ -57,6 +58,7 @@ class Account extends React.Component {
     identity: PropTypes.bool,
     identityProps: PropTypes.object,
     editable: PropTypes.bool,
+    onClick: PropTypes.function,
     onEditClick: PropTypes.func,
   };
 
@@ -64,6 +66,8 @@ class Account extends React.Component {
     editable: false,
     width: 'auto',
     name: null,
+    onEditClick: noop,
+    onClick: noop,
   };
 
   constructor() {
@@ -129,7 +133,7 @@ class Account extends React.Component {
     const { addressWidth, classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <div onClick={this.props.onClick} className={classes.root}>
         {this.getIdentityIcon()}
 
         <div className={classes.accountContainer} style={{ width: addressWidth }}>
