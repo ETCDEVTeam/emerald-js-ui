@@ -11,7 +11,6 @@ import Account from '../Account';
 const styles = theme => ({
   root: {
     width: '100%',
-    maxWidth: 360,
     backgroundColor: theme.palette.background.paper,
     cursor: 'pointer',
   },
@@ -58,7 +57,7 @@ class SimpleListMenu extends React.Component {
         />
         <Menu
           id="lock-menu"
-          chorEl={anchorEl}
+          anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
