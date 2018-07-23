@@ -20,6 +20,13 @@ storiesOf('Account', module)
       editable
     />
   ))
+  .add('with empty name', () => (
+    <Account
+      address="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
+      name=""
+      identity
+    />
+  ))
   .add('without Name', () => (
     <Account
       address="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
