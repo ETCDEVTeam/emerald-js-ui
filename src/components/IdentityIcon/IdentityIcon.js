@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
+import { withStyles } from '@material-ui/core/styles';
 import classNames from 'classnames/bind';
 import blockies from './blockies';
 import styles from './styles';
@@ -46,4 +46,4 @@ IdentityIcon.defaultProps = {
   size: 40,
 };
 
-export default injectSheet(styles)(IdentityIcon);
+export default withSyles(styles)(IdentityIcon);

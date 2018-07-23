@@ -12,6 +12,10 @@ const theme = {
     divider: colors.conch.main,
     background: {
       default: colors.snow
+    },
+    action: {
+      selected: colors.snow,
+      hover: 'none'
     }
   },
   spacing: {

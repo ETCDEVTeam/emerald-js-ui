@@ -45,7 +45,7 @@ const showIdentity = (show, id, identityProps) => {
 
 export const Account = (props) => {
   const {
-    classes, primary, secondary, addr, shortened, description, name, editable, hideCopy
+    classes, primary, secondary, addr, shortened, description, name, editable, hideCopy, onClick
   } = props;
   const {
     onAddressClick, onEditClick, identity, identityProps,
@@ -58,7 +58,7 @@ export const Account = (props) => {
   }
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} onClick={onClick}>
       {showIdentity(identity, addr, identityProps)}
       <div style={wrapStyle}>
         <div className={classes.primaryContainer}>

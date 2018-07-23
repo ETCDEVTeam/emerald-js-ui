@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
-import Account from '../Account';
-import Address from '../Address';
+import AccountSelect from '../AccountSelect';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Select from '@material-ui/core/Select';
+
 import { Block as BlockIcon, EtcSimple } from '../../icons3';
 
 const styles = theme => ({
@@ -47,21 +48,15 @@ class EmeraldAppBar extends React.Component {
           <Typography className={classes.flex}>
             {subtitle}
           </Typography>
+          <div style={{width: '200px'}} className={classes.icon}>
+            <AccountSelect />
+          </div>
           <Typography className={classes.item}>
             <BlockIcon className={classes.icon}/> {blockNumber}
           </Typography>
           <Typography className={classes.item}>
             <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
           </Typography>
-          <div style={{width: '200px'}}>
-            <Account
-              identity
-              hideCopy
-              shortened
-              identityProps={{size: 30}}
-              addr="0xFBb1b73C4f0BDa4f67dcA266ce6Ef42f520fBB98"
-            />
-          </div>
         </Toolbar>
       </AppBar>
     );
