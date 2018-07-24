@@ -1,49 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
-import classNames from 'classnames/bind';
+import { withStyles } from '@material-ui/core/styles';
 import blockies from './blockies';
-import styles from './styles';
 
+const getStyles = (theme) => ({
+  clickable: {
+    '&:hover': {
+      cursor: 'pointer',
+    },
+  },
+});
 
-export const IdentityIcon = ({
-  classes, id, size, onClick, style,
-}) => {
-  const iconSize = Number.isInteger(size) ? size : 40;
-  const icon = blockies.create({
-    seed: (id || '').toLowerCase(),
-    size: 8,
-    scale: 4,
-  }).toDataURL();
-  const mainStyle = {
-    ...style,
-    height: `${iconSize}px`,
-    width: `${iconSize}px`,
-    minWidth: `${iconSize}px`,
-    background: `url(${icon})`,
-    borderRadius: '50%',
-    position: 'relative',
-  };
+const noop = () => {};
 
-  const cx = classNames.bind(classes);
-  const className = cx({
-    clickAble: (onClick !== null) && (typeof onClick === 'function'),
-  });
-  return (
-    <div style={mainStyle} onClick={onClick} className={className} />
-  );
-};
+class IdentityIcon extends React.Component {
+  static propTypes = {
+    id: PropTypes.string.isRequired,
+    size: PropTypes.number,
+    onClick: PropTypes.func,
+    classes: PropTypes.object.isRequired,
+  }
 
-IdentityIcon.propTypes = {
-  id: PropTypes.string.isRequired,
-  size: PropTypes.number,
-  onClick: PropTypes.func,
-  classes: PropTypes.object,
-  style: PropTypes.object,
-};
+  static defaultProps = {
+    size: 40,
+    onClick: noop,
+  }
 
-IdentityIcon.defaultProps = {
-  size: 40,
-};
+  render() {
+    const {
+      id, size, onClick, classes,
+    } = this.props;
 
-export default injectSheet(styles)(IdentityIcon);
+    const seed = id.toLowerCase();
+    const icon = blockies.create({ seed }).toDataURL();
+
+    const mainStyle = {
+      height: `100%`,
+      background: `url(${icon})`,
+      borderRadius: '50%',
+      position: 'relative',
+    };
+
+    const identiconProps = {
+      onClick,
+      className: onClick === noop ? '' : classes.clickable,
+    };
+
+    return (
+      <div style={mainStyle} {...identiconProps} />
+    );
+  }
+}
+
+export default withStyles(getStyles)(IdentityIcon);
