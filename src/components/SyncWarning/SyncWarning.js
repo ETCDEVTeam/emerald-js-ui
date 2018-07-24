@@ -46,7 +46,7 @@ class SyncWarning extends React.Component {
   }
 
   getProgress() {
-    const {startingBlock, currentBlock, highestBlock, classes } = this.props;
+    const { startingBlock, currentBlock, highestBlock, classes } = this.props;
 
     if (startingBlock && currentBlock && highestBlock) {
       return `About ${highestBlock - currentBlock} blocks left.`
