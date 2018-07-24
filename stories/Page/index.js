@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
+import Typography from '@material-ui/core/Typography';
 
 import muiTheme from '../../src/theme/index';
 
@@ -12,7 +13,7 @@ storiesOf('Page', module)
   .add('default', () => (
     <div>
       <Page title="foo bar" leftIcon={<Back />}>
-        Im a page content supsup
+        <Typography>Im a page content supsup</Typography>
       </Page>
     </div>
   ));
