@@ -2,19 +2,39 @@ import { createMuiTheme } from '@material-ui/core/styles';
 
 import colors from './colors';
 
+const spacing = 10;
+
 const theme = {
   emeraldColors: colors,
   palette: {
     primary: colors.emerald,
     secondary: colors.ash,
     divider: colors.conch.main,
+    background: {
+      default: colors.snow
+    },
+    action: {
+      selected: colors.snow,
+      hover: 'none'
+    }
+  },
+  spacing: {
+    unit: spacing
   },
   typography: {
+    fontSize: 16,
+    fontWeightLight: 300,
+    fontWeightRegular: 400,
+    fontWeightMedium: 400,
     button: {
       fontSize: '15px',
-      fontWeight: '500',
       lineHeight: '18px',
     },
+    fontFamily: [
+      '"Rubik"',
+      '"Roboto"',
+      "sans-serif"
+    ].join(',')
   },
   overrides: {
     MuiFormControl: {
@@ -47,15 +67,30 @@ const theme = {
         boxShadow: 'none',
       },
     },
+    MuiToolbar: {
+      gutters: {
+        paddingLeft: `${spacing * 3}px`,
+        paddingRight: `${spacing * 3}px`
+      }
+    },
+    MuiAppBar: {
+      root: {
+        boxShadow: 'none'
+      },
+      colorDefault: {
+        backgroundColor: colors.white.main
+      }
+    },
     MuiPaper: {
       root: {
         border: `1px solid ${colors.conch.main}`,
-        marginBottom: '10px',
-        marginTop: '10px',
       },
     },
   },
   props: {
+    MuiTypography: {
+      color: 'secondary',
+    },
     MuiInput: {
       disableUnderline: true,
     },

@@ -1,14 +1,23 @@
-import { configure } from '@storybook/react';
+import React from 'react';
+import { configure, addDecorator } from '@storybook/react';
+import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import muiTheme from '../src/theme/index';
+
+const withCssBaseline = (story) => {
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      {story()}
+    </React.Fragment>
+  )
+}
+const req = require.context('../stories/', true, /\.js$/)
 
 function loadStories() {
-  require('../stories/Page');
-  require('../stories/Input');
-  require('../stories/Address');
-  require('../stories/icons3');
-  require('../stories/ToggledIconButton');
-  require('../stories/Buttons');
-  require('../stories/PaperList');
-    // You can require as many stories as you need.
+  addDecorator(storyBookMuiTheme(muiTheme))
+  addDecorator(withCssBaseline);
+  req.keys().forEach((filename) => req(filename))
 }
 
 configure(loadStories, module);

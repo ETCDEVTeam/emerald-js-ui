@@ -4,12 +4,7 @@ import { action } from '@storybook/addon-actions';
 import Input from '../../src/components/Input';
 import ArrowDown from '../../src/icons3/ArrowDown';
 
-import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
-
-import muiTheme from '../../src/theme/index';
-
 storiesOf('Input', module)
-  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('all', () => (
     <div style={{ width: '300px', border: '1px solid yellow' }}>
       <div>

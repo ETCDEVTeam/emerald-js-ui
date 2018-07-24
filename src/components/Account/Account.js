@@ -1,72 +1,148 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss';
-
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import { Pen3 as EditIcon } from '../../icons3';
 import Address from '../Address';
 import IdentityIcon from '../IdentityIcon';
 
-import styles from './styles';
+const getStyles = (theme) => ({
+  root: {
+    display: 'flex',
+    width: '100%',
+    alignItems: 'center',
+  },
+  nameEditIcon: {
+    width: '13px',
+    height: '13px',
+    cursor: 'pointer',
+  },
+  nameTypography: {
+    lineHeight: '22px',
+    fontSize: '14px',
+  },
+  accountNameContainer: {
+    display: 'flex',
+    alignItems: 'center',
+  },
+  editNameIconContainer: {
+    marginLeft: '5px',
+  },
+  accountContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  identityIcon: {
+    marginRight: '10px',
+  },
+  identityIconRegular: {
+    height: '48px',
+    width: '48px',
+  },
+  identityIconShort: {
+    height: '24px',
+    width: '24px',
+  },
+});
 
-const showIdentity = (show, id, identityProps) => {
-  const props = {
-    size: 48,
-    ...identityProps,
+const noop = () => {};
+
+class Account extends React.Component {
+  static propTypes = {
+    addressProps: PropTypes.object.isRequired,
+    address: PropTypes.string.isRequired,
+    name: PropTypes.string,
+    addressWidth: PropTypes.string,
+    classes: PropTypes.object.isRequired,
+    identity: PropTypes.bool,
+    identityProps: PropTypes.object,
+    editable: PropTypes.bool,
+    onClick: PropTypes.function,
+    onEditClick: PropTypes.func,
   };
-  if (show) {
+
+  static defaultProps = {
+    editable: false,
+    width: 'auto',
+    name: null,
+    onEditClick: noop,
+    onClick: noop,
+  };
+
+  constructor() {
+    super();
+    this.getIdentityIcon = this.getIdentityIcon.bind(this);
+    this.getNameField = this.getNameField.bind(this);
+    this.getNameEditIcon = this.getNameEditIcon.bind(this);
+  }
+
+  getIdentityIcon() {
+    const { identity, name, classes, address } = this.props;
+
+    if (!identity) { return null; }
+
+    let className = classes.identityIcon;
+
+    if (name === null) {
+      className += ` ${classes.identityIconShort}`;
+    } else {
+      className += ` ${classes.identityIconRegular}`;
+    }
+
     return (
-      <div style={{ marginRight: '20px' }}>
-        <IdentityIcon id={id} {...props} />
+      <div className={className}>
+        <IdentityIcon id={address} />
       </div>
     );
   }
-  return null;
-};
 
-export const Account = (props) => {
-  const {
-    classes, primary, secondary, addr, abbreviated, description, name, editable, hideCopy,
-  } = props;
-  const {
-    onAddressClick, onEditClick, identity, identityProps,
-  } = props;
+  getNameEditIcon() {
+    const { editable, classes, onEditClick } = this.props;
 
-  return (
-    <div className={classes.container}>
-      {showIdentity(identity, addr, identityProps)}
-      <div>
-        <div className={classes.primaryContainer}>
-          {primary ||
-          <div onClick={onEditClick} className={classes.accountName}>
-            <div>{ name }</div>
-            {editable && <div style={{ marginLeft: '5px' }}><EditIcon style={styles.editIcon} /></div>}
-          </div>}
-        </div>
-        <div style={{ display: 'flex', alignItems: 'center' }}>
-          {secondary || <Address
-            onClick={onAddressClick}
-            id={addr}
-            shortened={abbreviated}
-            hideCopy={hideCopy}
-          />}
+    if (editable === false) { return null; }
+
+    return (
+      <div className={classes.editNameIconContainer} onClick={onEditClick}>
+        <EditIcon className={classes.nameEditIcon} />
+      </div>
+    );
+  }
+
+  getNameField() {
+    const { name, classes } = this.props;
+
+    if (name === null) { return null; }
+
+    return (
+      <div className={classes.accountNameContainer}>
+        <Typography className={classes.nameTypography}>{ name }</Typography>
+        {this.getNameEditIcon()}
+      </div>
+    );
+  }
+
+  render() {
+    const addressProps = {
+      shortened: true,
+      hideCopy: true,
+      id: this.props.address,
+      ...this.props.addressProps,
+    };
+
+    const { addressWidth, classes } = this.props;
+
+    return (
+      <div onClick={this.props.onClick} className={classes.root}>
+        {this.getIdentityIcon()}
+
+        <div className={classes.accountContainer} style={{ width: addressWidth }}>
+          {this.getNameField()}
+          <Address {...addressProps} />
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
-Account.defaultProps = {
-  editable: false,
-  onAddressClick: () => {},
-};
-
-Account.propTypes = {
-  identity: PropTypes.bool,
-  identityProps: PropTypes.object,
-  editable: PropTypes.bool,
-  onAddressClick: PropTypes.func,
-  onEditClick: PropTypes.func,
-};
-
-
-export default injectSheet(styles)(Account);
+export default withStyles(getStyles)(Account);

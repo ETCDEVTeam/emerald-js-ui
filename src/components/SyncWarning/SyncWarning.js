@@ -1,6 +1,6 @@
 import React from 'react';
 import injectSheet from 'react-jss';
-import { Spinner1 as Spinner } from '../../icons2';
+import { Spinner1 as Spinner } from '../../icons3';
 import styles from './styles';
 
 
