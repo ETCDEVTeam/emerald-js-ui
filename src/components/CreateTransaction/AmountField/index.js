@@ -1,8 +1,9 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FormLabel from '../FormLabel.js';
-import Input from '../../Input';
-import Button from '../../Button';
+
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 class AmountField extends React.Component {
   static propTypes = {
@@ -50,9 +51,8 @@ class AmountField extends React.Component {
   render() {
     return (
       <Fragment>
-        <FormLabel>Amount</FormLabel>
-
-        <Input
+        <TextField
+          label="Amount"
           type="number"
           containerStyle={this.inputStyles}
           min="0"

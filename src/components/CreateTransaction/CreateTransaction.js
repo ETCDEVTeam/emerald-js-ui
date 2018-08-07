@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-import ButtonGroup from '../ButtonGroup';
-import Button from '../Button';
+import Button from '@material-ui/core/Button';
+
 import FormFieldWrapper from './FormFieldWrapper';
 import FromField from './FromField';
 import FormLabel from './FormLabel';
@@ -10,12 +9,6 @@ import TokenField from './TokenField';
 import ToField from './ToField';
 import AmountField from './AmountField';
 import GasLimitField from './GasLimitField';
-
-function getStyles(muiTheme) {
-  return {
-    width: '800px',
-  };
-}
 
 class CreateTransaction extends React.Component {
   static propTypes = {
@@ -31,7 +24,6 @@ class CreateTransaction extends React.Component {
     txFee: PropTypes.string.isRequired,
     fiatBalance: PropTypes.string.isRequired,
     ownAddresses: PropTypes.arrayOf(PropTypes.string).isRequired,
-    muiTheme: PropTypes.object.isRequired,
     onSubmit: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
     onChangeTo: PropTypes.func.isRequired,
@@ -53,7 +45,7 @@ class CreateTransaction extends React.Component {
 
   render() {
     return (
-      <div style={getStyles(this.props.muiTheme)}>
+      <div>
         <FormFieldWrapper>
           <FromField
             onChangeAccount={this.props.onChangeFrom}
@@ -103,10 +95,10 @@ class CreateTransaction extends React.Component {
 
         <FormFieldWrapper style={{ paddingBottom: '0px' }}>
           <FormLabel />
-          <ButtonGroup style={{ flexGrow: 5 }}>
+          <div style={{ flexGrow: 5 }}>
             <Button label="Cancel" onClick={this.props.onCancel} />
             <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit} />
-          </ButtonGroup>
+          </div>
         </FormFieldWrapper>
       </div>
     );
@@ -114,4 +106,4 @@ class CreateTransaction extends React.Component {
 }
 
 
-export default muiThemeable()(CreateTransaction);
+export default CreateTransaction;
