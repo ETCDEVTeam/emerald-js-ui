@@ -121,6 +121,7 @@ storiesOf('Create Transaction', module)
       txFeeFiat={text('TxFeeFiat', '1')}
       toAddress={text('To Address', '0x00')}
       onEmptyAddressBookClick={() => { console.log('clicked'); }}
+      onMaxClicked={() => {console.log('nops')}}
     />
   ));
 
