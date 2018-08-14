@@ -8,3 +8,4 @@ export { default as SelectAddressInput } from './components/SelectAddressInput';
 export { default as CreateTransaction } from './components/CreateTransaction';
 export { default as TransactionButton } from './components/CreateTransaction'
 export { default as theme } from './theme';
+export { default as Page } from './components/Page';
