@@ -8,7 +8,7 @@ storiesOf('AppBar', module)
   .addDecorator(withKnobs)
   .add('AppBar', () => (
     <AppBar title={text('title', 'Emerald')} subtitle={text('subtitle', 'AppBar')}>
-      <AppBar.CurrentBlockNumber />
+      <CurrentBlockNumber />
     </AppBar>
   ));
 

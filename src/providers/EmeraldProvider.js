@@ -37,6 +37,7 @@ export class EmeraldProvider extends React.Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <HttpTransportProvider url={this.state.url} changeUrl={this.changeHttpTransportUrl}>
           {this.props.children}
         </HttpTransportProvider>
