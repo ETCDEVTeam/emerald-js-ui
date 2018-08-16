@@ -9,6 +9,7 @@ storiesOf('EmeraldProvider', module)
   .add('default', () => (
     <EmeraldProvider>
       <Typography>Theme applied</Typography>
+
       <HttpTransportContext.Consumer>
         {({ httpTransport, changeUrl }) => {
            return (
