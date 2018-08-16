@@ -31,6 +31,23 @@ const styles = theme => ({
   }
 });
 
+const EthRpcCallContext = React.createContext({
+  method: null,
+  rpcResult: null,
+});
+
+class EthRpc extends React.Component {
+  static propTypes = {};
+
+  render() {
+    return (
+        <EthRpcCallContext.Provider result={this.state.result}>
+        {() => this.props.children || null}
+      </EthRpcCallContext.Provider>
+    );
+  }
+}
+
 class EmeraldAppBar extends React.Component {
   static propTypes = {};
 
@@ -40,6 +57,11 @@ class EmeraldAppBar extends React.Component {
     const { classes, title, subtitle, balance, symbol, fiatBalance, fiatSymbol, blockNumber } = this.props;
     return (
       <AppBar position="static" color="default">
+        <EthRpc>
+        <EthRpcCallContext.Consumer>
+
+        </EthRpcCallContext.Consumer>
+        </EthRpc>
         <Toolbar>
           <Typography color="primary">
             {title}
