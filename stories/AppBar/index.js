@@ -1,14 +1,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AppBar from '../../src/components/AppBar';
-import {AppBar.} from '../../src/components/AppBar/BlockNumber';
 import { withKnobs, text, boolean, number, array, object } from '@storybook/addon-knobs/react';
 
 storiesOf('AppBar', module)
   .addDecorator(withKnobs)
   .add('AppBar', () => (
     <AppBar title={text('title', 'Emerald')} subtitle={text('subtitle', 'AppBar')}>
-      <CurrentBlockNumber />
     </AppBar>
   ));
 
