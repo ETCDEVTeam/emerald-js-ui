@@ -43,23 +43,16 @@ const styles = theme => ({
 class TitBurgerApp extends React.Component {
   render() {
     return (
-      <HttpTransportProvider
-        url={(this.state) ? this.state.rpcUrl : undefined }
-        changeUrl={() => {
-            this.setState({rpcUrl: 'http://localhost:8545'});
-            return 'http://localhost:8545';
-        }}>
-        <EthRpc method="eth.getBlockNumber">
-          {isSyncing => (
-            <div>
-              <HttpTransportContext.Consumer>
-                {({ changeUrl }) => (<Button onClick={changeUrl}>Toggle Networks</Button>)}
-              </HttpTransportContext.Consumer>
-              <Typography>is Syncing: {isSyncing.toString()}</Typography>
-            </div>
-          )}
-        </EthRpc>
-      </HttpTransportProvider>
+      <EthRpc method="eth.getBlockNumber">
+        {blockNumber => (
+          <div>
+            <HttpTransportContext.Consumer>
+              {({ changeUrl }) => (<Button onClick={() => changeUrl('http://localhost:8545')}>Toggle Networks</Button>)}
+            </HttpTransportContext.Consumer>
+            <Typography>blockNumber: {blockNumber.toString()}</Typography>
+          </div>
+        )}
+      </EthRpc>
     );
   }
 }
@@ -68,10 +61,13 @@ class TitBurgerApp extends React.Component {
 class EmeraldAppBar extends React.Component {
   static propTypes = {};
 
-  static defaultProps = {};
+  static defaultProps = {
+  };
 
   render() {
     const { classes, title, subtitle, balance, symbol, fiatBalance, fiatSymbol, blockNumber } = this.props;
+    const children = (this.props.children && this.props.children.length && this.props.children.length > 0) ? this.props.children : [this.props.children]
+
     return (
       <AppBar position="static" color="default">
         <Toolbar>
@@ -85,9 +81,8 @@ class EmeraldAppBar extends React.Component {
           <div className={classes.icon}>
             <AccountSelect />
           </div>
-          <Typography className={classes.item}>
-            <BlockIcon className={classes.icon} /> {blockNumber}
-          </Typography>
+          {children.map((item, i) => <Typography key={i} className={classes.item}>{item}</Typography>)}
+
           <Typography className={classes.item}>
             <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
           </Typography>

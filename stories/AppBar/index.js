@@ -1,7 +1,7 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import AppBar from '../../src/components/AppBar';
-import {CurrentBlockNumber} from '../../src/smart-components/CurrentBlockNumber';
+import CurrentBlockNumber from '../../src/smart-components/CurrentBlockNumber';
 import { withKnobs, text, boolean, number, array, object } from '@storybook/addon-knobs/react';
 
 storiesOf('AppBar', module)
