@@ -11,11 +11,7 @@ import Button from '@material-ui/core/Button';
 import Select from '@material-ui/core/Select';
 import { Block as BlockIcon, EtcSimple } from '../../icons3';
 
-
-import {
-  HttpTransportProvider,
-  HttpTransportContext,
-} from '../../providers/HttpTransportProvider';
+import { HttpTransportContext } from '../../providers/HttpTransportProvider';
 
 import EthRpc from '../../providers/EthRpc';
 
@@ -39,24 +35,6 @@ const styles = theme => ({
     marginRight: `${theme.spacing.unit}px`
   }
 });
-
-class TitBurgerApp extends React.Component {
-  render() {
-    return (
-      <EthRpc method="eth.getBlockNumber">
-        {blockNumber => (
-          <div>
-            <HttpTransportContext.Consumer>
-              {({ changeUrl }) => (<Button onClick={() => changeUrl('http://localhost:8545')}>Toggle Networks</Button>)}
-            </HttpTransportContext.Consumer>
-            <Typography>blockNumber: {blockNumber.toString()}</Typography>
-          </div>
-        )}
-      </EthRpc>
-    );
-  }
-}
-
 
 class EmeraldAppBar extends React.Component {
   static propTypes = {};
@@ -86,9 +64,6 @@ class EmeraldAppBar extends React.Component {
           <Typography className={classes.item}>
             <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
           </Typography>
-
-          <TitBurgerApp />
-
         </Toolbar>
       </AppBar>
     );
