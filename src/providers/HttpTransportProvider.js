@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HttpTransport } from 'emerald-js';
+import { HttpTransport, EthRpc, JsonRpc } from 'emerald-js';
 
 const noop = () => {};
 
@@ -9,7 +9,7 @@ export const HttpTransportContext = React.createContext({
   changeUrl: noop,
 });
 
-export class HttpTransportProvider extends React.Component {
+export class EthJsonRpcProvider extends React.Component {
   static defaultUrl = 'https://web3.gastracker.io/';
   static localUrl = 'http://localhost:8545';
 
@@ -19,7 +19,7 @@ export class HttpTransportProvider extends React.Component {
   };
 
   static defaultProps = {
-    url: HttpTransportProvider.defaultUrl,
+    url: EthJsonRpcProvider.defaultUrl,
     changeUrl: noop,
   };
 
@@ -32,8 +32,8 @@ export class HttpTransportProvider extends React.Component {
   }
 
   setHttpTransport() {
-    const httpTransport = new HttpTransport(this.props.url);
-    return this.setState({ httpTransport });
+    const ethRpc = new EthRpc(new JsonRpc(new HttpTransport(this.props.url)));
+    return this.setState({ ethRpc });
   }
 
   render() {
