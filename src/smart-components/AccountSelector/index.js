@@ -7,7 +7,6 @@ export default class AccountSelector extends React.Component {
     return (
       <EmeraldContext.Consumer>
       {({account, accounts, changeAccount}) => {
-        console.log('account =', account, 'accounts', accounts)
         return (
           <AccountSelect
             accounts={accounts}

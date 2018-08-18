@@ -3,11 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import { Block as BlockIcon } from '../../icons3';
 import EthRpc from '../../providers/EthRpc';
 
-
-const styles = theme => ({
-
-})
-
 export default class CurrentBlockNumber extends React.Component {
   render() {
     return (

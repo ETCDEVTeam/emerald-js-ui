@@ -2,7 +2,7 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { EtcSimple } from '../../icons3';
 import EthRpc from '../../providers/EthRpc';
-import {EmeraldContext} from '../../providers/EmeraldProvider';
+import { EmeraldContext } from '../../providers/EmeraldProvider';
 import { Wei } from 'emerald-js';
 
 export default class EtcBalance extends React.Component {
