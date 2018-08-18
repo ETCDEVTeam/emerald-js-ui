@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EthRpc, JsonRpc } from 'emerald-js';
+import { HttpTransport, EthRpc, JsonRpc } from 'emerald-js';
 
-import { HttpTransportContext } from './HttpTransportProvider';
+import { EthJsonRpcContext } from './EthJsonRpcProvider';
 
 const EthRpcCallContext = React.createContext({});
 
@@ -10,7 +10,7 @@ class EthRpcProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
     params: PropTypes.array,
-    transport: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -32,7 +32,7 @@ class EthRpcProvider extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const transportChanged = prevProps.transport !== this.props.transport;
+    const transportChanged = prevProps.url !== this.props.url;
     if (transportChanged) {
       return this.setEthRpc();
     }
@@ -47,7 +47,7 @@ class EthRpcProvider extends React.Component {
   }
 
   setEthRpc() {
-    const jsonRpc = new JsonRpc(this.props.transport);
+    const jsonRpc = new JsonRpc(new HttpTransport(this.props.url));
     const ethrpc = new EthRpc(jsonRpc);
 
     this.setState({ ethrpc });
@@ -74,13 +74,13 @@ class EthRpcProvider extends React.Component {
 
 export default ({method, params, refresh, children}) => {
   return (
-    <HttpTransportContext.Consumer>
-      {({ httpTransport }) => {
+    <EthJsonRpcContext.Consumer>
+      {({ url }) => {
          const props = {
            method,
            params,
            refresh,
-           transport: httpTransport,
+           url,
          };
          return (
            <EthRpcProvider {...props}>
@@ -90,6 +90,6 @@ export default ({method, params, refresh, children}) => {
            </EthRpcProvider>
          );
       }}
-    </HttpTransportContext.Consumer>
+    </EthJsonRpcContext.Consumer>
   );
 }

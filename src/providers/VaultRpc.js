@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EthRpc, JsonRpc } from 'emerald-js';
+import { HttpTransport, JsonRpc, VaultJsonRpcProvider, Vault } from 'emerald-js';
 
-import { HttpTransportContext } from './HttpTransportProvider';
+import { VaultJsonRpcContext } from './VaultJsonRpcProvider';
 
-const VaultRpcContext = React.createContext({});
+const VaultRpcCallContext = React.createContext({});
 
 class VaultRpcProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
     params: PropTypes.array,
-    transport: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
   };
 
   static defaultProps = {
@@ -28,16 +28,16 @@ class VaultRpcProvider extends React.Component {
   }
 
   componentDidMount() {
-    this.setEthRpc();
+    this.setVaultRpc();
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const transportChanged = prevProps.transport !== this.props.transport;
+    const transportChanged = prevProps.url !== this.props.url;
     if (transportChanged) {
-      return this.setEthRpc();
+      return this.setVaultRpc();
     }
 
-    const ethrpcChanged = prevState.ethrpc !== this.state.ethrpc;
+    const ethrpcChanged = prevState.vault !== this.state.vault;
     const methodChanged = prevProps.method !== this.props.method;
     const paramsChanged = prevProps.params !== this.props.params;
 
@@ -46,50 +46,50 @@ class VaultRpcProvider extends React.Component {
     }
   }
 
-  setEthRpc() {
-    const jsonRpc = new JsonRpc(this.props.transport);
-    const ethrpc = new EthRpc(jsonRpc);
+  setVaultRpc() {
+    const jsonRpc = new JsonRpc(new HttpTransport(this.props.url));
+    const vaultRpc = new VaultJsonRpcProvider(jsonRpc);
+    const vault = new Vault(vaultRpc);
 
-    this.setState({ ethrpc });
+    this.setState({ vault });
   }
 
   getResult() {
-    const method = this.props.method
-      .split('.')
-      .reduce((memo, item) => memo[item], this.state.ethrpc);
+    const method = this.state.vault[this.props.method];
     const params = this.props.params || [];
-    return method.call(this.state.ethrpc, ...params)
+    console.log('method', method, 'params', params);
+    return method.call(this.state.vault, 'mainnet', ...params)
       .then((result) => this.setState({ ...this.state, result }));
   }
 
   render() {
     if (this.state.result === null) { return null; }
     return (
-        <VaultRpcContext.Provider value={this.state.result}>
+      <VaultRpcCallContext.Provider value={this.state.result}>
         {this.props.children}
-      </VaultRpcContext.Provider>
+      </VaultRpcCallContext.Provider>
     );
   }
 }
 
 export default ({method, params, refresh, children}) => {
   return (
-    <HttpTransportContext.Consumer>
-      {({ httpTransport }) => {
+    <VaultJsonRpcContext.Consumer>
+      {({ url }) => {
          const props = {
            method,
            params,
            refresh,
-           transport: httpTransport,
+           url,
          };
          return (
-             <VaultRpcProvider {...props}>
-             <EthRpcCallContext.Consumer>
+           <VaultRpcProvider {...props}>
+             <VaultRpcCallContext.Consumer>
                {children}
-             </EthRpcCallContext.Consumer>
-             </VaultRpcProvider>
+             </VaultRpcCallContext.Consumer>
+           </VaultRpcProvider>
          );
       }}
-    </HttpTransportContext.Consumer>
+    </VaultJsonRpcContext.Consumer>
   );
 }

@@ -4,7 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Button, Menu, MenuItem, Typography } from '@material-ui/core';
 
 import EthRpc from '../../providers/EthRpc';
-import { HttpTransportProvider, HttpTransportContext } from '../../providers/HttpTransportProvider';
+import { EthJsonRpcProvider, EthJsonRpcContext } from '../../providers/EthJsonRpcProvider';
 
 const styles = theme => ({
   root: {
@@ -17,11 +17,11 @@ const styles = theme => ({
 const networks = [
   {
     url: 'https://web3.gastracker.io/morden',
-    name: 'Gastracker',
+    name: 'Gastracker (Morden)',
   },
   {
     url: 'https://web3.gastracker.io/',
-    name: 'Gastracker',
+    name: 'Gastracker (Mainnet)',
   },
   {
     url: 'http://localhost:8545',
@@ -42,8 +42,7 @@ class NetworkSelector extends React.Component {
   };
 
   handleMenuItemClick = (event, index) => {
-
-    this.setState({ selectedIndex: index, anchorEl: null });
+    this.setState({ anchorEl: null });
   };
 
   handleClose = () => {
@@ -55,49 +54,52 @@ class NetworkSelector extends React.Component {
     const { anchorEl } = this.state;
 
     return (
-      <HttpTransportContext.Consumer>
-        {({ httpTransport: { url }, changeUrl }) => {
-           const selectedNetwork = networks.find(network => network.url === url);
+      <EthJsonRpcContext.Consumer>
+        {({ url, changeUrl }) => {
+          const selectedNetwork = networks.find(network => network.url === url);
 
-           return (
-             <div className={classes.root}>
-               <Button color="secondary" onClick={this.handleClickListItem}>
-                 { selectedNetwork.name }
-               </Button>
+          return (
+            <div className={classes.root}>
+              <Button color="secondary" onClick={this.handleClickListItem}>
+                { selectedNetwork.name }
+              </Button>
 
-               <Menu
-                 id="network-selector"
-                 anchorEl={anchorEl}
-                 open={Boolean(anchorEl)}
-                 onClose={this.handleClose}
-               >
-                 {
-                   networks.map((network) => (
-                     <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
-                       <div onClick={() => changeUrl(network.url)}>
-                         <HttpTransportProvider url={network.url}>
-                           <EthRpc method="net.version">
-                             {
-                               (networkId) => {
-                                 return (
-                                   <div>
-                                     <Typography>{network.name}</Typography>
-                                     <Typography>{networkId}</Typography>
-                                   </div>
-                                 );
-                               }
-                             }
-                           </EthRpc>
-                         </HttpTransportProvider>
-                       </div>
-                     </MenuItem>
-                   ))
-                 }
-               </Menu>
-             </div>
-           );
+              <Menu
+                id="network-selector"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={this.handleClose}
+              >
+                {
+                  networks.map((network) => (
+                    <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
+                      <div onClick={() => {
+                        changeUrl(network.url);
+                        this.handleMenuItemClick();
+                        }}>
+                        <EthJsonRpcProvider url={network.url}>
+                          <EthRpc method="net.version">
+                            {
+                              (networkId) => {
+                                return (
+                                  <div>
+                                    <Typography>{network.name}</Typography>
+                                    <Typography>{networkId}</Typography>
+                                  </div>
+                                );
+                              }
+                            }
+                          </EthRpc>
+                        </EthJsonRpcProvider>
+                      </div>
+                    </MenuItem>
+                  ))
+                }
+              </Menu>
+            </div>
+          );
         }}
-      </HttpTransportContext.Consumer>
+      </EthJsonRpcContext.Consumer>
     );
   }
 }

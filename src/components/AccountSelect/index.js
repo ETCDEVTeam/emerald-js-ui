@@ -16,20 +16,17 @@ const styles = theme => ({
   },
 });
 
-const options = [
-  '0x00asdfasdhfhasdfhashdj03401340030340s0dr0asdf0',
-  '0x01a09sd0f01350ds0adf0',
-  '0x030asd0fas013400134013401340134031013401340',
-  '0x040r130r130r130fafw0ef0w',
-];
 
 class SimpleListMenu extends React.Component {
   button = null;
 
-  state = {
-    anchorEl: null,
-    selectedIndex: 1,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      anchorEl: null,
+      selectedIndex: 1,
+    };
+  }
 
   handleClickListItem = event => {
     this.setState({ anchorEl: event.currentTarget });
@@ -52,7 +49,7 @@ class SimpleListMenu extends React.Component {
         <Account
           identity
           onClick={this.handleClickListItem}
-          address={options[this.state.selectedIndex]}
+          address={this.props.accounts[this.state.selectedIndex]}
           addressWidth="200px"
         />
         <Menu
@@ -61,15 +58,15 @@ class SimpleListMenu extends React.Component {
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {options.map((option, index) => (
+          {this.props.accounts.map((account, index) => (
             <MenuItem
-              key={option}
+              key={account}
               selected={index === this.state.selectedIndex}
               >
               <Account
                 identity
                 hideCopy
-                address={option}
+                address={account}
                 onClick={event => this.handleMenuItemClick(event, index)}
               />
             </MenuItem>
