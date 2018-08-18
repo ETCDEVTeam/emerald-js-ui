@@ -24,7 +24,7 @@ class SimpleListMenu extends React.Component {
     super(props);
     this.state = {
       anchorEl: null,
-      selectedIndex: 1,
+      selectedIndex: Number.isInteger(props.selectedIndex) ? props.selectedIndex : 1,
     };
   }
 
@@ -34,6 +34,7 @@ class SimpleListMenu extends React.Component {
 
   handleMenuItemClick = (event, index) => {
     this.setState({ selectedIndex: index, anchorEl: null });
+    this.props.onChange(index);
   };
 
   handleClose = () => {

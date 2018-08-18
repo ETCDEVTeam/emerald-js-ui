@@ -58,6 +58,7 @@ class EthRpcProvider extends React.Component {
       .split('.')
       .reduce((memo, item) => memo[item], this.state.ethrpc);
     const params = this.props.params || [];
+
     return method.call(this.state.ethrpc, ...params)
       .then((result) => this.setState({ ...this.state, result }));
   }

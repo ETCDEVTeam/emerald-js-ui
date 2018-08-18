@@ -37,11 +37,11 @@ class VaultRpcProvider extends React.Component {
       return this.setVaultRpc();
     }
 
-    const ethrpcChanged = prevState.vault !== this.state.vault;
+    const vaultChanged = prevState.vault !== this.state.vault;
     const methodChanged = prevProps.method !== this.props.method;
     const paramsChanged = prevProps.params !== this.props.params;
 
-    if (ethrpcChanged || methodChanged || paramsChanged) {
+    if (vaultChanged || methodChanged || paramsChanged) {
       return this.getResult();
     }
   }
@@ -57,7 +57,8 @@ class VaultRpcProvider extends React.Component {
   getResult() {
     const method = this.state.vault[this.props.method];
     const params = this.props.params || [];
-    console.log('method', method, 'params', params);
+
+    // TODO: fix having to pass chain here
     return method.call(this.state.vault, 'mainnet', ...params)
       .then((result) => this.setState({ ...this.state, result }));
   }

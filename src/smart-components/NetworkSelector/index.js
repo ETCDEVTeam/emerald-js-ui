@@ -17,11 +17,11 @@ const styles = theme => ({
 const networks = [
   {
     url: 'https://web3.gastracker.io/morden',
-    name: 'Gastracker (Morden)',
+    name: 'Gastracker',
   },
   {
     url: 'https://web3.gastracker.io/',
-    name: 'Gastracker (Mainnet)',
+    name: 'Gastracker',
   },
   {
     url: 'http://localhost:8545',
@@ -74,8 +74,8 @@ class NetworkSelector extends React.Component {
                   networks.map((network) => (
                     <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
                       <div onClick={() => {
-                        changeUrl(network.url);
-                        this.handleMenuItemClick();
+                          this.handleMenuItemClick();
+                          changeUrl(network.url);
                         }}>
                         <EthJsonRpcProvider url={network.url}>
                           <EthRpc method="net.version">
