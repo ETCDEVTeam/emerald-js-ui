@@ -3,17 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
-import AccountSelect from '../AccountSelect';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
 import Select from '@material-ui/core/Select';
-import { Block as BlockIcon, EtcSimple } from '../../icons3';
-
-import { HttpTransportContext } from '../../providers/HttpTransportProvider';
-
-import EthRpc from '../../providers/EthRpc';
 
 const styles = theme => ({
   title: {
@@ -31,9 +24,6 @@ const styles = theme => ({
       marginRight: '0px'
     }
   },
-  icon: {
-    marginRight: `${theme.spacing.unit}px`
-  }
 });
 
 class EmeraldAppBar extends React.Component {
@@ -56,14 +46,7 @@ class EmeraldAppBar extends React.Component {
           <Typography className={classes.flex}>
             {subtitle}
           </Typography>
-          <div className={classes.icon}>
-            <AccountSelect />
-          </div>
           {children.map((item, i) => <Typography key={i} className={classes.item}>{item}</Typography>)}
-
-          <Typography className={classes.item}>
-            <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
-          </Typography>
         </Toolbar>
       </AppBar>
     );

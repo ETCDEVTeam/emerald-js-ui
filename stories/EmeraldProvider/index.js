@@ -3,22 +3,22 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { Button, Typography, Divider } from '@material-ui/core';
 import { EmeraldProvider } from '../../src/providers/EmeraldProvider';
-import { HttpTransportContext } from '../../src/providers/HttpTransportProvider';
+import { EthJsonRpcContext } from '../../src/providers/EthJsonRpcProvider';
 
 storiesOf('EmeraldProvider', module)
   .add('default', () => (
     <EmeraldProvider>
       <Typography>Theme applied</Typography>
 
-      <HttpTransportContext.Consumer>
-        {({ httpTransport, changeUrl }) => {
+      <EthJsonRpcContext.Consumer>
+        {({ url, changeUrl }) => {
            return (
              <div style={{ width: '300px', height: '300px' }}>
                <Typography>HttpTransportProvider Settings</Typography>
 
                <Divider />
 
-               <Typography>{JSON.stringify(httpTransport)}</Typography>
+               <Typography>{JSON.stringify(url)}</Typography>
 
                <Divider />
 
@@ -26,6 +26,6 @@ storiesOf('EmeraldProvider', module)
              </div>
            );
         }}
-      </HttpTransportContext.Consumer>
+      </EthJsonRpcContext.Consumer>
     </EmeraldProvider>
   ));
