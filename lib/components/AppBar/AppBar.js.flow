@@ -3,12 +3,10 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import AppBar from '@material-ui/core/AppBar';
-import AccountSelect from '../AccountSelect';
 import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
-import Select from '@material-ui/core/Select';
+import Button from '@material-ui/core/Button';
 
-import { Block as BlockIcon, EtcSimple } from '../../icons3';
+import Select from '@material-ui/core/Select';
 
 const styles = theme => ({
   title: {
@@ -26,42 +24,20 @@ const styles = theme => ({
       marginRight: '0px'
     }
   },
-  icon: {
-    marginRight: `${theme.spacing.unit}px`
-  }
 });
-
-const EthRpcCallContext = React.createContext({
-  method: null,
-  rpcResult: null,
-});
-
-class EthRpc extends React.Component {
-  static propTypes = {};
-
-  render() {
-    return (
-        <EthRpcCallContext.Provider result={this.state.result}>
-        {() => this.props.children || null}
-      </EthRpcCallContext.Provider>
-    );
-  }
-}
 
 class EmeraldAppBar extends React.Component {
   static propTypes = {};
 
-  static defaultProps = {};
+  static defaultProps = {
+  };
 
   render() {
     const { classes, title, subtitle, balance, symbol, fiatBalance, fiatSymbol, blockNumber } = this.props;
+    const children = (this.props.children && this.props.children.length && this.props.children.length > 0) ? this.props.children : [this.props.children]
+
     return (
       <AppBar position="static" color="default">
-        <EthRpc>
-        <EthRpcCallContext.Consumer>
-
-        </EthRpcCallContext.Consumer>
-        </EthRpc>
         <Toolbar>
           <Typography color="primary">
             {title}
@@ -70,15 +46,7 @@ class EmeraldAppBar extends React.Component {
           <Typography className={classes.flex}>
             {subtitle}
           </Typography>
-          <div className={classes.icon}>
-            <AccountSelect />
-          </div>
-          <Typography className={classes.item}>
-            <BlockIcon className={classes.icon}/> {blockNumber}
-          </Typography>
-          <Typography className={classes.item}>
-            <EtcSimple className={classes.icon} /> {balance} {symbol} - {fiatBalance} {fiatSymbol}
-          </Typography>
+          {children.map((item, i) => <Typography key={i} className={classes.item}>{item}</Typography>)}
         </Toolbar>
       </AppBar>
     );

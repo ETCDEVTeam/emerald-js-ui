@@ -86,6 +86,19 @@ const theme = {
         border: `1px solid ${colors.conch.main}`,
       },
     },
+    MuiMenuItem: {
+      root: {
+        cursor: 'pointer',
+        padding: '5px 80px 5px 40px',
+        fontSize: '14px',
+        lineHeight: '20px',
+        marginLeft: '5px',
+      },
+      selected: {
+        marginLeft: '0',
+        borderLeft: `5px solid ${colors.emerald.main}`,
+      }
+    }
   },
   props: {
     MuiTypography: {
