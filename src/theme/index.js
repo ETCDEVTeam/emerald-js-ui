@@ -93,6 +93,7 @@ const theme = {
         fontSize: '14px',
         lineHeight: '20px',
         marginLeft: '5px',
+        height: 'auto',
       },
       selected: {
         marginLeft: '0',

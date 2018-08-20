@@ -6,14 +6,6 @@ import { Button, Menu, MenuItem, Typography } from '@material-ui/core';
 import EthRpc from '../../providers/EthRpc';
 import { EthJsonRpcProvider, EthJsonRpcContext } from '../../providers/EthJsonRpcProvider';
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    cursor: 'pointer',
-  },
-});
-
 const networks = [
   {
     url: 'https://web3.gastracker.io/morden',
@@ -50,58 +42,49 @@ class NetworkSelector extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
     const { anchorEl } = this.state;
 
     return (
       <EthJsonRpcContext.Consumer>
         {({ url, changeUrl }) => {
-          const selectedNetwork = networks.find(network => network.url === url);
+           const selectedNetwork = networks.find(network => network.url === url);
 
-          return (
-            <div className={classes.root}>
-              <Button color="secondary" onClick={this.handleClickListItem}>
-                { selectedNetwork.name }
-              </Button>
+           return (
+             <div>
+               <Button color="secondary" onClick={this.handleClickListItem}>
+                 { selectedNetwork.name }
+               </Button>
 
-              <Menu
-                id="network-selector"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={this.handleClose}
-              >
-                {
-                  networks.map((network) => (
-                    <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
-                      <div onClick={() => {
-                          this.handleMenuItemClick();
-                          changeUrl(network.url);
-                        }}>
-                        <EthJsonRpcProvider url={network.url}>
-                          <EthRpc method="net.version">
-                            {
-                              (networkId) => {
-                                return (
-                                  <div>
-                                    <Typography>{network.name}</Typography>
-                                    <Typography>{networkId}</Typography>
-                                  </div>
-                                );
-                              }
-                            }
-                          </EthRpc>
-                        </EthJsonRpcProvider>
-                      </div>
-                    </MenuItem>
-                  ))
-                }
-              </Menu>
-            </div>
-          );
+               <Menu
+                 id="network-selector"
+                 anchorEl={anchorEl}
+                 open={Boolean(anchorEl)}
+                 onClose={this.handleClose}
+               >
+                 {
+                   networks.map((network) => (
+                     <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
+                       <EthJsonRpcProvider url={network.url}>
+                         <div onClick={() => {
+                             this.handleMenuItemClick();
+                             changeUrl(network.url);
+                         }}>
+                           <Typography>{network.name}</Typography>
+                           <EthRpc method="net.version">
+                             {(networkId) => (<Typography>{networkId}</Typography>)}
+                           </EthRpc>
+                         </div>
+                       </EthJsonRpcProvider>
+                     </MenuItem>
+                   ))
+                 }
+               </Menu>
+             </div>
+           );
         }}
       </EthJsonRpcContext.Consumer>
     );
   }
 }
 
-export default withStyles(styles)(NetworkSelector);
+export default NetworkSelector;
