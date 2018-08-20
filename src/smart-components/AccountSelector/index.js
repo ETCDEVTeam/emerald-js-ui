@@ -1,20 +1,22 @@
 import React from 'react';
-import { EmeraldContext } from '../../providers/EmeraldProvider';
+import PropTypes from 'prop-types';
 import AccountSelect from '../../components/AccountSelect';
+import VaultRpc from '../../providers/VaultRpc';
 
 export default class AccountSelector extends React.Component {
+  static propTypes = {
+    onChange: PropTypes.func.isRequired,
+    account: PropTypes.string,
+  }
   render() {
+    const { onChange, account } = this.props;
     return (
-      <EmeraldContext.Consumer>
-      {({account, accounts, changeAccount}) => {
-        return (
-          <AccountSelect
-            accounts={accounts}
-            selectedIndex={accounts.indexOf(account)}
-            onChange={(index) => {changeAccount(accounts[index])}}/>
-        )
-      }}
-      </EmeraldContext.Consumer>
+      <VaultRpc method="listAccounts">
+        {accounts => {
+           const flattenedAccounts = accounts.map((a) => a.address);
+           return (<AccountSelect accounts={flattenedAccounts} selectedAccount={account} onChange={onChange}/>)
+        }}
+      </VaultRpc>
     )
   }
 }

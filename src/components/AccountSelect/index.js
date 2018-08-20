@@ -6,6 +6,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+import Typography from '@material-ui/core/Typography';
 import Account from '../Account';
 
 const styles = theme => ({
@@ -22,10 +23,12 @@ class SimpleListMenu extends React.Component {
 
   constructor(props) {
     super(props);
+    const selectedIndex = props.accounts.indexOf(props.account);
     this.state = {
       anchorEl: null,
-      selectedIndex: Number.isInteger(props.selectedIndex) ? props.selectedIndex : 1,
+      selectedIndex: (selectedIndex >= 0) ? selectedIndex : 0,
     };
+    this.renderAccounts = this.renderAccounts.bind(this);
   }
 
   handleClickListItem = event => {
@@ -34,12 +37,46 @@ class SimpleListMenu extends React.Component {
 
   handleMenuItemClick = (event, index) => {
     this.setState({ selectedIndex: index, anchorEl: null });
-    this.props.onChange(index);
+    this.props.onChange(this.props.accounts[index]);
   };
 
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
+  renderAccounts() {
+    return this.props.accounts.map((account, index) => (
+      <MenuItem
+        key={account}
+        selected={index === this.state.selectedIndex}
+      >
+        <Account
+          identity
+          hideCopy
+          address={account}
+          onClick={event => this.handleMenuItemClick(event, index)}
+        />
+      </MenuItem>
+    ))
+  }
+
+  renderSelected() {
+    if (!this.props.selectedAccount) {
+      return (
+        <Typography onClick={this.handleClickListItem}>
+          Select Account
+        </Typography>
+      )
+    }
+    return (
+      <Account
+        identity
+        onClick={this.handleClickListItem}
+        address={this.props.accounts[this.state.selectedIndex]}
+        addressWidth="200px"
+      />
+    )
+  }
 
   render() {
     const { classes } = this.props;
@@ -47,31 +84,14 @@ class SimpleListMenu extends React.Component {
 
     return (
       <div className={classes.root}>
-        <Account
-          identity
-          onClick={this.handleClickListItem}
-          address={this.props.accounts[this.state.selectedIndex]}
-          addressWidth="200px"
-        />
+        {this.renderSelected()}
         <Menu
           id="lock-menu"
           anchorEl={anchorEl}
           open={Boolean(anchorEl)}
           onClose={this.handleClose}
         >
-          {this.props.accounts.map((account, index) => (
-            <MenuItem
-              key={account}
-              selected={index === this.state.selectedIndex}
-              >
-              <Account
-                identity
-                hideCopy
-                address={account}
-                onClick={event => this.handleMenuItemClick(event, index)}
-              />
-            </MenuItem>
-          ))}
+          {this.renderAccounts()}
         </Menu>
       </div>
     );
