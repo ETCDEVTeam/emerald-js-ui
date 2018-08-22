@@ -44,6 +44,7 @@ class ContractProvider extends React.Component {
     this.setState({data});
   }
 
+
   render() {
     if (this.state.data === null) { return null; }
     return (
@@ -51,7 +52,14 @@ class ContractProvider extends React.Component {
         {result => {
            const func = this.props.abi.find((f) => f.name === this.props.method);
            const decodedResult = contracts.dataToParams(func, result);
-           return this.props.children(decodedResult);
+           return (
+             <ContractCallContext.Provider value={decodedResult}>
+               <ContractCallContext.Consumer>
+                 {this.props.children}
+               </ContractCallContext.Consumer>
+             </ContractCallContext.Provider>
+           )
+
         }}
       </EthRpc>
     );
