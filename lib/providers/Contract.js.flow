@@ -47,7 +47,7 @@ class ContractProvider extends React.Component {
   render() {
     if (this.state.data === null) { return null; }
     return (
-      <EthRpc method="eth.call" params={{to: this.props.address, data: this.state.data}}>
+      <EthRpc method="eth.call" params={[{to: this.props.address, data: this.state.data}]}>
         {this.props.children}
       </EthRpc>
     );
