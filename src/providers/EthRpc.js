@@ -24,15 +24,39 @@ class EthRpcProvider extends React.Component {
     this.state = {
       ethrpc: null,
       result: null,
+      intervalId: null
     };
+    this.getResult = this.getResult.bind(this);
   }
 
   componentDidMount() {
     this.setEthRpc();
+    this.setInterval();
+  }
+
+  setInterval() {
+    if (this.state.invervalId) {
+      clearInterval(this.state.intervalId);
+    }
+    if (this.props.refresh) {
+      this.setState({
+        intervalId: setInterval(this.getResult, this.props.refresh)
+      })
+    }
+  }
+
+  componentDidUnmount() {
+    clearInterval(this.state.intervalId);
   }
 
   componentDidUpdate(prevProps, prevState) {
     const transportChanged = prevProps.url !== this.props.url;
+    const refreshChanged = prevProps.refresh !== this.props.refresh;
+
+    if (refreshChanged) {
+      return this.setInterval();
+    }
+
     if (transportChanged) {
       return this.setEthRpc();
     }
@@ -40,6 +64,7 @@ class EthRpcProvider extends React.Component {
     const ethrpcChanged = prevState.ethrpc !== this.state.ethrpc;
     const methodChanged = prevProps.method !== this.props.method;
     const paramsChanged = prevProps.params !== this.props.params;
+
 
     if (ethrpcChanged || methodChanged || paramsChanged) {
       return this.getResult();
