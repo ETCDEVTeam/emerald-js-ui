@@ -48,7 +48,11 @@ class ContractProvider extends React.Component {
     if (this.state.data === null) { return null; }
     return (
       <EthRpc method="eth.call" params={[{to: this.props.address, data: this.state.data}]}>
-        {this.props.children}
+        {result => {
+           const func = this.props.abi.find((f) => f.name === this.props.method);
+           const decodedResult = contracts.dataToParams(func, result);
+           return this.props.children(decodedResult);
+        }}
       </EthRpc>
     );
   }
