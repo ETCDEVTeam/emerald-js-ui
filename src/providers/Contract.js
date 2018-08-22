@@ -10,13 +10,15 @@ class ContractProvider extends React.Component {
     method: PropTypes.string.isRequired,
     params: PropTypes.array,
     abi: PropTypes.object.isRequired,
-    address: PropTypes.string.isRequired
+    address: PropTypes.string.isRequired,
+    refresh: PropTypes.number
   };
 
   static defaultProps = {
     method: null,
     params: null,
-    abi: null
+    abi: null,
+    refresh: null
   };
 
   constructor() {
@@ -48,7 +50,7 @@ class ContractProvider extends React.Component {
   render() {
     if (this.state.data === null) { return null; }
     return (
-      <EthRpc method="eth.call" params={[{to: this.props.address, data: this.state.data}]}>
+      <EthRpc method="eth.call" params={[{to: this.props.address, data: this.state.data}]} refresh={this.props.refresh}>
         {result => {
            const func = this.props.abi.find((f) => f.name === this.props.method);
            const decodedResult = contracts.dataToParams(func, result);
