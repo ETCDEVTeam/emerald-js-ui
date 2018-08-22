@@ -22,4 +22,5 @@ export { default as EthJsonRpcProvider } from './providers/EthJsonRpcProvider';
 export { default as EthRpc } from './providers/EthRpc';
 export { default as VaultJsonRpcProvider } from './providers/VaultJsonRpcProvider';
 export { default as VaultRpc } from './providers/VaultRpc';
+export { default as Contract } from './providers/Contract';
 
