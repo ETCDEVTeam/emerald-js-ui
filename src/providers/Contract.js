@@ -10,7 +10,7 @@ class ContractProvider extends React.Component {
     method: PropTypes.string.isRequired,
     params: PropTypes.array,
     abi: PropTypes.object.isRequired,
-    address: PropTypes.string,isRequired
+    address: PropTypes.string.isRequired
   };
 
   static defaultProps = {
