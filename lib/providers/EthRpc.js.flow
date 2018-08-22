@@ -45,7 +45,7 @@ class EthRpcProvider extends React.Component {
     }
   }
 
-  componentDidUnmount() {
+  componentWillUnmount() {
     clearInterval(this.state.intervalId);
   }
 
