@@ -26,6 +26,9 @@ class ContractProvider extends React.Component {
       data: null,
     };
   }
+  componentDidMount() {
+    this.setData();
+  }
 
   componentDidUpdate(prevProps, prevState) {
     const abiChanged = prevProps.abi !== this.props.abi;
