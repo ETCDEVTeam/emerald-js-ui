@@ -62,7 +62,7 @@ class NetworkSelector extends React.Component {
                  onClose={this.handleClose}
                >
                  {
-                   networks.map((network) => (
+                   networks.map(network => (
                      <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
                        <EthJsonRpcProvider url={network.url}>
                          <div onClick={() => {
@@ -71,7 +71,7 @@ class NetworkSelector extends React.Component {
                          }}>
                            <Typography>{network.name}</Typography>
                            <EthRpc method="net.version">
-                             {(networkId) => (<Typography>{networkId}</Typography>)}
+                             {networkId => (<Typography>{networkId}</Typography>)}
                            </EthRpc>
                          </div>
                        </EthJsonRpcProvider>

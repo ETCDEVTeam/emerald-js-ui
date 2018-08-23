@@ -82,6 +82,9 @@ class EthRpcProvider extends React.Component {
       .reduce((memo, item) => memo[item], this.state.ethrpc);
     const params = this.props.params || [];
 
+    if (typeof method !== 'function') {
+      throw new Error('EthRpc called with method that doesnt exist. Check the method sent to EthRpc');
+    }
     return method.call(this.state.ethrpc, ...params)
       .then((result) => this.setState({ ...this.state, result }));
   }
@@ -110,4 +113,4 @@ export default ({method, params, refresh, children}) => {
       }}
     </EthJsonRpcContext.Consumer>
   );
-}
+};
