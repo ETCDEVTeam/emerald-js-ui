@@ -1,13 +1,9 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
 import Address from '../../src/components/Address';
 
-import muiTheme from '../../src/theme/index';
-
 storiesOf('Address', module)
-  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('default', () => (
     <Address
       onClick={action('onClick')}

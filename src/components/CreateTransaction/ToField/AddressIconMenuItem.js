@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { MenuItem } from '@material-ui/core';
 import Account from '../../Account/';
-import { MenuItem } from 'material-ui';
 
 class AddressIconMenuItem extends React.Component {
   static muiName = 'MenuItem';

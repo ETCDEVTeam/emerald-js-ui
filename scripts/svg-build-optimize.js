@@ -162,15 +162,13 @@ const writeStoriesFile = (names) => {
   const imports = [
     'import React from \'react\';',
     'import { storiesOf } from \'@storybook/react\';',
-    'import theme from \'../../src/theme.json\';',
-    'import { muiTheme } from \'storybook-addon-material-ui\'',
     `import { \n  ${names.join(',\n  ')} } from '../../src/icons3';`,
   ].join('\n');
 
   const elements = names.map((name) => {
     return `<${name} />`;
   });
-  const storyTemplate = `storiesOf('icons3', module)\n  .addDecorator(muiTheme(theme))\n  .add('all', () => (<div>\n    ${elements.join('\n    ')}\n</div>))`;
+  const storyTemplate = `storiesOf('icons3', module)\n  .add('all', () => (<div>\n    ${elements.join('\n    ')}\n</div>))`;
   const fp = path.resolve(__dirname, '../stories/icons3/', 'index.js');
   return new Promise((resolve, reject) => {
     fs.writeFile(fp, imports + storyTemplate, 'utf8', (err) => {
@@ -179,7 +177,7 @@ const writeStoriesFile = (names) => {
       }
       resolve();
     });
-  })
+  });
   console.log(importTemplate);
   console.log(storyTemplate);
 }

@@ -4,7 +4,6 @@ import Button from '@material-ui/core/Button';
 
 import FormFieldWrapper from './FormFieldWrapper';
 import FromField from './FromField';
-import FormLabel from './FormLabel';
 import TokenField from './TokenField';
 import ToField from './ToField';
 import AmountField from './AmountField';
@@ -94,7 +93,6 @@ class CreateTransaction extends React.Component {
         </FormFieldWrapper>
 
         <FormFieldWrapper style={{ paddingBottom: '0px' }}>
-          <FormLabel />
           <div style={{ flexGrow: 5 }}>
             <Button label="Cancel" onClick={this.props.onCancel} />
             <Button disabled={this.getDisabled()} primary label="Create Transaction" onClick={this.props.onSubmit} />

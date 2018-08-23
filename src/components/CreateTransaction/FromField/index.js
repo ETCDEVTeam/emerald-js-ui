@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import SelectAddressInput from '../../SelectAddressInput';
-import FormLabel from '../FormLabel.js';
+import Select from '@material-ui/core/Select';
 
 class FromField extends React.Component {
   static propTypes = {
@@ -25,8 +24,8 @@ class FromField extends React.Component {
   render() {
     return (
       <Fragment>
-        <FormLabel>From</FormLabel>
-        <SelectAddressInput
+        <span>From</span>
+        <Select
           onChangeAccount={this.onChangeAccount}
           selectedAccount={this.props.selectedAccount}
           accounts={this.props.accounts}

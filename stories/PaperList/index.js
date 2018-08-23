@@ -1,9 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
-
-import muiTheme from '../../src/theme/index';
 
 import Page from '../../src/components/Page';
 
@@ -64,7 +61,6 @@ PinnedSubheaderList.propTypes = {
 const Boo = withStyles(styles2)(PinnedSubheaderList);
 
 storiesOf('PaperList', module)
-  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('Default', () => (
     <Boo />
   ));
