@@ -3,8 +3,6 @@ import { contracts } from 'emerald-js';
 import PropTypes from 'prop-types';
 import EthRpc from './EthRpc';
 
-const ContractCallContext = React.createContext({});
-
 class ContractProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
@@ -54,14 +52,7 @@ class ContractProvider extends React.Component {
         {result => {
            const func = this.props.abi.find((f) => f.name === this.props.method);
            const decodedResult = contracts.dataToParams(func, result);
-           return (
-             <ContractCallContext.Provider value={decodedResult}>
-               <ContractCallContext.Consumer>
-                 {this.props.children}
-               </ContractCallContext.Consumer>
-             </ContractCallContext.Provider>
-           )
-
+           return this.props.children(decodedResult);
         }}
       </EthRpc>
     );

@@ -4,8 +4,6 @@ import { HttpTransport, EthRpc, JsonRpc } from 'emerald-js';
 
 import { EthJsonRpcContext } from './EthJsonRpcProvider';
 
-const EthRpcCallContext = React.createContext({});
-
 class EthRpcProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
@@ -90,11 +88,7 @@ class EthRpcProvider extends React.Component {
 
   render() {
     if (this.state.result === null) { return null; }
-    return (
-      <EthRpcCallContext.Provider value={this.state.result}>
-        {this.props.children}
-      </EthRpcCallContext.Provider>
-    );
+    return this.props.children(this.state.result);
   }
 }
 
@@ -110,9 +104,7 @@ export default ({method, params, refresh, children}) => {
          };
          return (
            <EthRpcProvider {...props}>
-             <EthRpcCallContext.Consumer>
                {children}
-             </EthRpcCallContext.Consumer>
            </EthRpcProvider>
          );
       }}
