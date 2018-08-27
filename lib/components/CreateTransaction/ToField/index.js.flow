@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FormLabel from '../FormLabel';
-import Input from '../../Input';
+import Input from '@material-ui/core/Input';
 import IdentityIcon from '../../IdentityIcon';
 import AddressIconMenu from './AddressIconMenu';
 
@@ -67,7 +66,7 @@ class ToField extends React.Component {
   render() {
     return (
       <Fragment>
-        <FormLabel>To</FormLabel>
+        <span>To</span>
         <Input
           leftIcon={this.getLeftIcon()}
           rightIcon={this.getRightIcon()}

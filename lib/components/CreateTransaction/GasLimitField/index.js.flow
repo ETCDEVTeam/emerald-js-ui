@@ -1,18 +1,20 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FormLabel from '../FormLabel.js';
-import Input from '../../Input';
-import muiThemeable from 'material-ui/styles/muiThemeable';
+import Typography from '@material-ui/core/Typography';
+import Input from '@material-ui/core/Input';
+import { withStyles } from '@material-ui/core/styles';
 
 function getStyles(muiTheme) {
   return {
-    fontFamily: muiTheme.fontFamily,
-    color: muiTheme.palette.secondaryTextColor,
-    wordSpacing: '3px',
-    letterSpacing: '1px',
-    fontWeight: '200',
-    paddingLeft: '20px',
-    fontSize: '14px',
+    root: {
+      fontFamily: muiTheme.fontFamily,
+      color: muiTheme.palette.secondaryTextColor,
+      wordSpacing: '3px',
+      letterSpacing: '1px',
+      fontWeight: '200',
+      paddingLeft: '20px',
+      fontSize: '14px',
+    },
   };
 }
 
@@ -26,6 +28,7 @@ class GasLimitField extends React.Component {
     txFeeFiat: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
     muiTheme: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
   }
 
   constructor() {
@@ -40,17 +43,17 @@ class GasLimitField extends React.Component {
   render() {
     return (
       <Fragment>
-        <FormLabel>Gas Limit</FormLabel>
-        <Input
-          type="number"
-          value={this.props.gasLimit}
-          min="21000"
-          onChange={this.onChangeGasLimit}
-        />
-        <div style={getStyles(this.props.muiTheme)}>{this.props.txFee} ETC   /   {this.props.txFeeFiat} {this.props.currency}</div>
+        <Typography>Gas Limit</Typography>
+          <Input
+            type="number"
+            value={this.props.gasLimit}
+            min="21000"
+            onChange={this.onChangeGasLimit}
+          />
+          <div className={this.props.classes.root}>{this.props.txFee} ETC   /   {this.props.txFeeFiat} {this.props.currency}</div>
       </Fragment>
     );
   }
 }
 
-export default muiThemeable()(GasLimitField);
+export default withStyles(getStyles)(GasLimitField);

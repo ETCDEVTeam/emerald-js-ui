@@ -1,19 +1,19 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import FormLabel from '../FormLabel.js';
-import SelectField from '../../SelectField';
-import { MenuItem } from 'material-ui';
-import muiThemeable from 'material-ui/styles/muiThemeable';
-
+import { withStyles } from '@material-ui/core/styles';
+import Select from '@material-ui/core/Select';
+import Typography from '@material-ui/core/Typography';
 
 function getStyles(muiTheme) {
   return {
-    fontFamily: muiTheme.fontFamily,
-    color: muiTheme.palette.secondaryTextColor,
-    wordSpacing: '3px',
-    letterSpacing: '1px',
-    fontWeight: '200',
-    paddingLeft: '20px',
+    root: {
+      fontFamily: muiTheme.fontFamily,
+      color: muiTheme.palette.secondaryTextColor,
+      wordSpacing: '3px',
+      letterSpacing: '1px',
+      fontWeight: '200',
+      paddingLeft: '20px',
+    },
   };
 }
 
@@ -25,6 +25,7 @@ class TokenField extends React.Component {
     balance: PropTypes.string.isRequired,
     fiatBalance: PropTypes.string.isRequired,
     currency: PropTypes.string.isRequired,
+    classes: PropTypes.object.isRequired,
   }
 
   constructor() {
@@ -39,24 +40,21 @@ class TokenField extends React.Component {
   render() {
     return (
       <Fragment>
-        <FormLabel>Token</FormLabel>
+        <Typography>Token</Typography>
 
-        <SelectField value={this.props.selectedToken} onChange={this.onChangeToken}>
-          {this.props.tokenSymbols.map(toke =>
-            (<MenuItem
-              key={toke}
-              value={toke}
-              label={toke}
-              primaryText={toke}
-            />))}
-        </SelectField>
+          <Select value={this.props.selectedToken} onChange={this.onChangeToken}>
+            {this.props.tokenSymbols.map(toke =>
+              (
+                <div>foo{toke}</div>
+              ))}
+          </Select>
 
-        <div style={getStyles(this.props.muiTheme)}>
-          {this.props.balance} {this.props.selectedToken}   /   {this.props.fiatBalance} {this.props.currency}
-        </div>
+          <div className={this.props.classes.root}>
+            {this.props.balance} {this.props.selectedToken}   /   {this.props.fiatBalance} {this.props.currency}
+          </div>
       </Fragment>
     );
   }
 }
 
-export default muiThemeable()(TokenField);
+export default withStyles(getStyles)(TokenField);
