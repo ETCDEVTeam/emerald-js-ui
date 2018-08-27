@@ -30,7 +30,7 @@ export default class TransactionButton extends React.Component {
 
   render() {
     return (
-      <Button href={this.state.transactionLink} variant="contained">Send Transaction</Button>
+      <Button primaryText={this.props.primaryText || 'Send Transaction'} href={this.state.transactionLink} variant="contained" />
     );
   }
 }

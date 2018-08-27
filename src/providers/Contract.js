@@ -26,9 +26,6 @@ class ContractProvider extends React.Component {
       data: null,
     };
   }
-  componentDidMount() {
-    this.setData();
-  }
 
   componentDidUpdate(prevProps, prevState) {
     const abiChanged = prevProps.abi !== this.props.abi;
@@ -53,6 +50,9 @@ class ContractProvider extends React.Component {
     return (
       <EthRpc method="eth.call" params={[{to: this.props.address, data: this.state.data}]} refresh={this.props.refresh}>
         {result => {
+           if (result === 0) {
+             return this.props.renderEmpty();
+           }
            const func = this.props.abi.find((f) => f.name === this.props.method);
            const decodedResult = contracts.dataToParams(func, result);
            return this.props.children(decodedResult);
