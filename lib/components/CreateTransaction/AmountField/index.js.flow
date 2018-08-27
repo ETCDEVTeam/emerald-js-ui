@@ -9,12 +9,12 @@ class AmountField extends React.Component {
     onChangeAmount: PropTypes.func.isRequired,
     amount: PropTypes.string.isRequired,
     balance: PropTypes.string.isRequired,
+    onMaxClicked: PropTypes.func.isRequired,
   }
 
   constructor() {
     super();
     this.onChangeAmount = this.onChangeAmount.bind(this);
-    this.onClickMax = this.onClickMax.bind(this);
     this.state = { errorText: null };
   }
 
@@ -26,10 +26,6 @@ class AmountField extends React.Component {
     } else {
       this.setState({ errorText: null });
     }
-  }
-
-  onClickMax() {
-    this.props.onChangeAmount(this.props.balance);
   }
 
   inputStyles = {
@@ -67,7 +63,7 @@ class AmountField extends React.Component {
           labelStyle={this.buttonLabelStyles}
           primary
           label="MAX"
-          onClick={this.onClickMax}
+          onClick={this.props.onMaxClicked}
         />
       </Fragment>
     );
