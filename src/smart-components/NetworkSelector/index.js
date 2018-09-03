@@ -61,7 +61,7 @@ class NetworkSelector extends React.Component {
            return (
              <div>
                <Button color="secondary" onClick={this.handleClickListItem}>
-                 { selectedNetwork.name }
+                 <NetworkIcon className={classes.networkIcon}/>{ selectedNetwork.name }
                </Button>
 
                <Menu
