@@ -56,6 +56,7 @@ const theme = {
         color: colors.emerald.main,
         borderRadius: 0,
         minHeight: spacing * 4,
+        fontWeight: 500
       },
       contained: {
         color: colors.white.main,
