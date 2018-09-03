@@ -203,7 +203,7 @@ import {
 } from '../../src/icons3';
 
 storiesOf('icons3', module)
-  .add('all', () => (<div>
+  .addWithJSX('all', () => (<div>
     <AddCircle />
     <Add />
     <AppleCommand />

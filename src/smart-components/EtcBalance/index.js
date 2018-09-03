@@ -1,13 +1,20 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import { EtcSimple } from '../../icons3';
 import EthRpc from '../../providers/EthRpc';
-import { EmeraldContext } from '../../providers/EmeraldProvider';
 import { Wei } from 'emerald-js';
 
-export default class EtcBalance extends React.Component {
+const styles = theme => ({
+  root: {},
+  icon: {
+    marginRight: theme.spacing.unit
+  }
+});
+
+class EtcBalance extends React.Component {
   render() {
-    const { account } = this.props;
+    const { account, classes } = this.props;
     if (!account) {
       return null;
     }
@@ -15,10 +22,12 @@ export default class EtcBalance extends React.Component {
       <EthRpc method="eth.getBalance" params={[account]}>
         {balance => (
           <React.Fragment>
-            <EtcSimple style={{marginRight: '10px'}} /> {new Wei(balance).getEther()} 
+            <EtcSimple className={classes.icon}/> {new Wei(balance).getEther()} 
           </React.Fragment>
         )}
       </EthRpc>
     );
   }
 }
+
+export default withStyles(styles, { name: 'EmeraldEtcBalance' })(EtcBalance);

@@ -26,10 +26,6 @@ const theme = {
     fontWeightLight: 300,
     fontWeightRegular: 400,
     fontWeightMedium: 400,
-    button: {
-      fontSize: '15px',
-      lineHeight: '18px',
-    },
     fontFamily: [
       '"Rubik"',
       '"Roboto"',
@@ -39,27 +35,27 @@ const theme = {
   overrides: {
     MuiFormControl: {
       root: {
-        marginBottom: '20px',
+        marginBottom: spacing * 2,
         boxSizing: 'border-box',
         borderRadius: '1px',
         borderStyle: 'solid',
         borderWidth: '1px',
-        borderColor: colors.ash.main,
-        paddingLeft: '5px',
-        paddingRight: '5px',
+        borderColor: colors.conch.main,
+        paddingLeft: spacing,
+        paddingRight: spacing,
       },
     },
     MuiFormHelperText: {
       root: {
         position: 'absolute',
-        bottom: '-18px',
+        bottom: -(spacing * 2),
       },
     },
     MuiButton: {
       root: {
         color: colors.emerald.main,
         borderRadius: 0,
-        minHeight: '40px',
+        minHeight: spacing * 4,
       },
       contained: {
         color: colors.white.main,
@@ -69,8 +65,18 @@ const theme = {
     },
     MuiToolbar: {
       gutters: {
-        paddingLeft: `${spacing * 3}px`,
-        paddingRight: `${spacing * 3}px`
+        paddingLeft: spacing * 3,
+        paddingRight: spacing * 3
+      }
+    },
+    MuiInputAdornment: {
+      root: {
+        maxHeight: 'none'
+      }
+    },
+    MuiInput: {
+      root: {
+        height: spacing * 5
       }
     },
     MuiAppBar: {
@@ -81,6 +87,23 @@ const theme = {
         backgroundColor: colors.white.main
       }
     },
+    MuiList: {
+      root: {
+        borderTop: `1px solid ${colors.conch.main}`,
+      },
+      padding: {
+        paddingTop: 0,
+        paddingBottom: 0
+      }
+
+    },
+    MuiListItem: {
+      root: {
+        borderBottom: `1px solid ${colors.conch.main}`,
+        borderRight: 'none',
+        borderLeft: 'none'
+      }
+    },
     MuiPaper: {
       root: {
         border: `1px solid ${colors.conch.main}`,
@@ -89,15 +112,23 @@ const theme = {
     MuiMenuItem: {
       root: {
         cursor: 'pointer',
-        padding: '5px 80px 5px 40px',
-        fontSize: '14px',
-        lineHeight: '20px',
-        marginLeft: '5px',
+        padding: `${spacing / 2}px ${spacing * 8}px ${spacing / 2}px ${spacing * 4}px`,
+        border: 'none',
+        lineHeight: spacing * 2,
+        marginLeft: spacing / 2,
         height: 'auto',
       },
       selected: {
         marginLeft: '0',
-        borderLeft: `5px solid ${colors.emerald.main}`,
+        borderLeft: `${spacing / 2}px solid ${colors.emerald.main}`,
+      }
+    },
+    MuiTypography: {
+      gutterBottom: {
+        marginBottom: spacing * 4
+      },
+      paragraph: {
+        marginBottom: spacing * 2
       }
     }
   },
@@ -115,6 +146,9 @@ const theme = {
       square: true,
       elevation: 0,
     },
+    MuiList: {
+      disablePadding: true
+    }
   },
 };
 

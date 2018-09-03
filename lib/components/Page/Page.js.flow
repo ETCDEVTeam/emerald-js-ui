@@ -8,14 +8,16 @@ import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
+  root: {},
+  typography: {},
   toolbar: {
     background: 'transparent',
-    height: '100px',
+    height: theme.spacing.unit * 10,
     flex: 1,
     justifyContent: 'space-between',
   },
   childWrapper: {
-    padding: '40px',
+    padding: theme.spacing.unit * 4,
   },
 });
 
@@ -31,6 +33,7 @@ const getIconWithButton = (icon) => {
 export class Page extends React.Component {
   static propTypes = {
     title: PropTypes.string.isRequired,
+    className: PropTypes.string,
     classes: PropTypes.object.isRequired,
     children: PropTypes.oneOfType([PropTypes.element, PropTypes.string]).isRequired,
     rightIcon: PropTypes.element,
@@ -47,10 +50,10 @@ export class Page extends React.Component {
       title, leftIcon, rightIcon, classes,
     } = this.props;
     return (
-      <Paper>
+      <Paper className={classes.root}>
         <Toolbar className={classes.toolbar}>
           {getIconWithButton(leftIcon)}
-          <Typography variant="title" color="inherit">{title}</Typography>
+          <Typography variant="title" color="inherit" className={classes.typography}>{title}</Typography>
           {getIconWithButton(rightIcon)}
         </Toolbar>
 
@@ -64,4 +67,4 @@ export class Page extends React.Component {
   }
 }
 
-export default withStyles(styles)(Page);
+export default withStyles(styles, { name: 'EmeraldPage' })(Page);
