@@ -90,7 +90,12 @@ const theme = {
     MuiList: {
       root: {
         borderTop: `1px solid ${colors.conch.main}`,
+      },
+      padding: {
+        paddingTop: 0,
+        paddingBottom: 0
       }
+
     },
     MuiListItem: {
       root: {
