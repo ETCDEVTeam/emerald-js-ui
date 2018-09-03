@@ -125,7 +125,7 @@ const theme = {
     },
     MuiTypography: {
       gutterBottom: {
-        marginBottom: spacing * 5
+        marginBottom: spacing * 4
       },
       paragraph: {
         marginBottom: spacing * 2
@@ -146,6 +146,9 @@ const theme = {
       square: true,
       elevation: 0,
     },
+    MuiList: {
+      disablePadding: true
+    }
   },
 };
 
