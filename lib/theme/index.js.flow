@@ -87,6 +87,11 @@ const theme = {
         backgroundColor: colors.white.main
       }
     },
+    MuiList: {
+      root: {
+        borderTop: `1px solid ${colors.conch.main}`,
+      }
+    },
     MuiListItem: {
       root: {
         borderBottom: `1px solid ${colors.conch.main}`,
@@ -113,6 +118,14 @@ const theme = {
         borderLeft: `${spacing / 2}px solid ${colors.emerald.main}`,
       }
     },
+    MuiTypography: {
+      gutterBottom: {
+        marginBottom: spacing * 5
+      },
+      paragraph: {
+        marginBottom: spacing * 2
+      }
+    }
   },
   props: {
     MuiTypography: {
