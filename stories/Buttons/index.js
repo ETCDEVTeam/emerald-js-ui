@@ -1,9 +1,6 @@
 import React, { Fragment } from 'react';
 import { storiesOf } from '@storybook/react';
-
 import Button from '@material-ui/core/Button';
-
-import { TransactionButton } from '../../src';
 
 
 storiesOf('Buttons', module)
@@ -35,10 +32,5 @@ storiesOf('Buttons', module)
         <Button variant="contained" color="secondary" disabled>Disabled Button</Button>
       </div>
     </Fragment>
-  ))
-
-  .add('Transaction', () => (
-    <Fragment>
-      <TransactionButton transaction={{ to: '0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8', from: '0x7cB57B5A97eAbe94205C07890BE4c1aD31E486A8', value: 150, gas: 21000 }} />
-    </Fragment>
   ));
+

@@ -2,30 +2,32 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import { EtcSimple } from '../../icons3';
-import EthRpc from '../../providers/EthRpc';
 import { Wei } from 'emerald-js';
 
 const styles = theme => ({
   root: {},
   icon: {
     marginRight: theme.spacing.unit
+  },
+  gutterRight: {
+    marginRight: theme.spacing.unit
   }
 });
 
 class EtcBalance extends React.Component {
   render() {
-    const { account, classes } = this.props;
-    if (!account) {
+    const { balance, classes, gutterRight } = this.props;
+    debugger
+    if (balance === undefined) {
       return null;
     }
     return (
-      <EthRpc method="eth.getBalance" params={[account]}>
-        {balance => (
-          <React.Fragment>
-            <EtcSimple className={classes.icon}/> {new Wei(balance).getEther()} 
-          </React.Fragment>
-        )}
-      </EthRpc>
+    <React.Fragment>
+      <EtcSimple className={classes.icon}/>
+      <Typography className={gutterRight ? classes.gutterRight : null}>
+        {new Wei(balance).getEther()}
+      </Typography>
+    </React.Fragment>
     );
   }
 }

@@ -10,6 +10,10 @@ import { EthJsonRpcProvider, EthJsonRpcContext } from '../../providers/EthJsonRp
 
 const styles = theme => ({
   root: {},
+  button: {
+    textTransform: 'none',
+    fontWeight: theme.typography.fontWeightRegular
+  },
   networkIcon: {
     marginRight: theme.spacing.unit
   }
@@ -60,7 +64,7 @@ class NetworkSelector extends React.Component {
 
            return (
              <div>
-               <Button color="secondary" onClick={this.handleClickListItem}>
+               <Button className={classes.button} color="secondary" onClick={this.handleClickListItem}>
                  <NetworkIcon className={classes.networkIcon}/>{ selectedNetwork.name }
                </Button>
 
