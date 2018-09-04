@@ -10,7 +10,6 @@ export { default as SelectAddressInput } from './components/SelectAddressInput';
 export { default as CreateTransaction } from './components/CreateTransaction';
 export { default as Page } from './components/Page';
 export { default as ToggledIconButton } from './components/ToggledIconButton';
-export { default as TransactionButton } from './components/TransactionButton';
 export { default as AppBar } from './components/AppBar';
 export { default as Theme } from './theme';
 export { default as AccountSelect } from './components/AccountSelect';
