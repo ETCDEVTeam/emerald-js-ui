@@ -13,6 +13,7 @@ export { default as ToggledIconButton } from './components/ToggledIconButton';
 export { default as TransactionButton } from './components/TransactionButton';
 export { default as AppBar } from './components/AppBar';
 export { default as Theme } from './theme';
+export { default as AccountSelect } from './components/AccountSelect';
 export { default as BlockNumber } from './components/BlockNumber';
 export { default as EtcBalance } from './components/EtcBalance';
 export { default as NetworkSelector } from './smart-components/NetworkSelector';
