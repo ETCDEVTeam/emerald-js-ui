@@ -1,22 +1,14 @@
 import React from 'react';
-import { configure, addDecorator } from '@storybook/react';
-import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import muiTheme from '../src/theme/index';
+import JSXAddon from 'storybook-addon-jsx';
+import { configure, addDecorator, setAddon } from '@storybook/react';
+import {EmeraldProvider} from '../src/providers/EmeraldProvider';
 
-const withCssBaseline = (story) => {
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      {story()}
-    </React.Fragment>
-  )
-}
+setAddon(JSXAddon);
+
 const req = require.context('../stories/', true, /\.js$/)
 
 function loadStories() {
-  addDecorator(storyBookMuiTheme(muiTheme))
-  addDecorator(withCssBaseline);
+  addDecorator((story) => (<EmeraldProvider>{story()}</EmeraldProvider>))
   req.keys().forEach((filename) => req(filename))
 }
 

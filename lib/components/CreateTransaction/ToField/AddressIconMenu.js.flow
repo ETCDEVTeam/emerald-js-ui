@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { IconMenu, MenuItem } from 'material-ui';
+import { IconMenu, MenuItem } from '@material-ui/core';
 import { Book } from '../../../icons3';
 import AddressIconMenuItem from './AddressIconMenuItem';
 

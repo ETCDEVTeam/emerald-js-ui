@@ -2,27 +2,35 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Button from '@material-ui/core/Button';
-import EthereumQRPlugin from 'ethereum-qr-code';
-
-const qr = new EthereumQRPlugin();
+import * as qs from 'qs';
 
 export default class TransactionButton extends React.Component {
   static propTypes = {
     transaction: PropTypes.object,
   };
 
-  constructor() {
-    super();
-    this.handleClick = this.handleClick.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {
+      transactionLink: this.encodeURI(props.transaction)
+    }
   }
 
-  handleClick() {
-    window.open(qr.toAddressString(this.props.transaction));
+  componentDidUpdate(prevProps) {
+    if (prevProps.transaction !== this.props.transaction) {
+      this.setState({
+        transactionLink: this.encodeURI(this.props.transaction)
+      });
+    }
+  }
+
+  encodeURI(obj) {
+    return `ethereum:${obj.to}?${qs.stringify(obj)}`;
   }
 
   render() {
     return (
-      <Button variant="contained" onClick={this.handleClick}>Send Transaction</Button>
+      <Button primaryText={this.props.primaryText || 'Send Transaction'} href={this.state.transactionLink} variant="contained" />
     );
   }
 }
