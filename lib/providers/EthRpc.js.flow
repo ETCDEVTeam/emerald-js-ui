@@ -4,8 +4,6 @@ import { HttpTransport, EthRpc, JsonRpc } from 'emerald-js';
 
 import { EthJsonRpcContext } from './EthJsonRpcProvider';
 
-const EthRpcCallContext = React.createContext({});
-
 class EthRpcProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
@@ -24,15 +22,39 @@ class EthRpcProvider extends React.Component {
     this.state = {
       ethrpc: null,
       result: null,
+      intervalId: null
     };
+    this.getResult = this.getResult.bind(this);
   }
 
   componentDidMount() {
     this.setEthRpc();
+    this.setInterval();
+  }
+
+  setInterval() {
+    if (this.state.invervalId) {
+      clearInterval(this.state.intervalId);
+    }
+    if (this.props.refresh) {
+      this.setState({
+        intervalId: setInterval(this.getResult, this.props.refresh)
+      })
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.state.intervalId);
   }
 
   componentDidUpdate(prevProps, prevState) {
     const transportChanged = prevProps.url !== this.props.url;
+    const refreshChanged = prevProps.refresh !== this.props.refresh;
+
+    if (refreshChanged) {
+      return this.setInterval();
+    }
+
     if (transportChanged) {
       return this.setEthRpc();
     }
@@ -40,6 +62,7 @@ class EthRpcProvider extends React.Component {
     const ethrpcChanged = prevState.ethrpc !== this.state.ethrpc;
     const methodChanged = prevProps.method !== this.props.method;
     const paramsChanged = prevProps.params !== this.props.params;
+
 
     if (ethrpcChanged || methodChanged || paramsChanged) {
       return this.getResult();
@@ -59,17 +82,16 @@ class EthRpcProvider extends React.Component {
       .reduce((memo, item) => memo[item], this.state.ethrpc);
     const params = this.props.params || [];
 
+    if (typeof method !== 'function') {
+      throw new Error('EthRpc called with method that doesnt exist. Check the method sent to EthRpc');
+    }
     return method.call(this.state.ethrpc, ...params)
       .then((result) => this.setState({ ...this.state, result }));
   }
 
   render() {
     if (this.state.result === null) { return null; }
-    return (
-      <EthRpcCallContext.Provider value={this.state.result}>
-        {this.props.children}
-      </EthRpcCallContext.Provider>
-    );
+    return this.props.children(this.state.result);
   }
 }
 
@@ -85,12 +107,10 @@ export default ({method, params, refresh, children}) => {
          };
          return (
            <EthRpcProvider {...props}>
-             <EthRpcCallContext.Consumer>
                {children}
-             </EthRpcCallContext.Consumer>
            </EthRpcProvider>
          );
       }}
     </EthJsonRpcContext.Consumer>
   );
-}
+};

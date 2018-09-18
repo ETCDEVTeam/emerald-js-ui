@@ -1,10 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import { Network as NetworkIcon } from '../../icons3';
 import { Button, Menu, MenuItem, Typography } from '@material-ui/core';
 
 import EthRpc from '../../providers/EthRpc';
 import { EthJsonRpcProvider, EthJsonRpcContext } from '../../providers/EthJsonRpcProvider';
+
+
+const styles = theme => ({
+  root: {},
+  networkIcon: {
+    marginRight: theme.spacing.unit
+  }
+});
 
 const networks = [
   {
@@ -22,7 +31,6 @@ const networks = [
 ];
 
 class NetworkSelector extends React.Component {
-  button = null;
 
   state = {
     anchorEl: null,
@@ -43,6 +51,7 @@ class NetworkSelector extends React.Component {
 
   render() {
     const { anchorEl } = this.state;
+    const { classes } = this.props;
 
     return (
       <EthJsonRpcContext.Consumer>
@@ -52,7 +61,7 @@ class NetworkSelector extends React.Component {
            return (
              <div>
                <Button color="secondary" onClick={this.handleClickListItem}>
-                 { selectedNetwork.name }
+                 <NetworkIcon className={classes.networkIcon}/>{ selectedNetwork.name }
                </Button>
 
                <Menu
@@ -62,7 +71,7 @@ class NetworkSelector extends React.Component {
                  onClose={this.handleClose}
                >
                  {
-                   networks.map((network) => (
+                   networks.map(network => (
                      <MenuItem key={network.url} selected={network.url === selectedNetwork.url}>
                        <EthJsonRpcProvider url={network.url}>
                          <div onClick={() => {
@@ -71,7 +80,7 @@ class NetworkSelector extends React.Component {
                          }}>
                            <Typography>{network.name}</Typography>
                            <EthRpc method="net.version">
-                             {(networkId) => (<Typography>{networkId}</Typography>)}
+                             {networkId => (<Typography>{networkId}</Typography>)}
                            </EthRpc>
                          </div>
                        </EthJsonRpcProvider>
@@ -87,4 +96,4 @@ class NetworkSelector extends React.Component {
   }
 }
 
-export default NetworkSelector;
+export default withStyles(styles, { name: 'EmeraldNetworkSelector' })(NetworkSelector);

@@ -6,13 +6,13 @@ import ArrowDown from '../../src/icons3/ArrowDown';
 
 storiesOf('Input', module)
   .add('all', () => (
-    <div style={{ width: '300px', border: '1px solid yellow' }}>
+    <div style={{ width: '300px' }}>
       <div>
         <h1>Plain Jane</h1>
         <Input onChange={action('onChange')} />
       </div>
       <div>
-        <h1>with value</h1>
+        <h1>With Value</h1>
         <Input value={Math.random() * 100} onChange={action('onChange')} />
       </div>
       <div>

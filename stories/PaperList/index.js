@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
-import { muiTheme as storyBookMuiTheme } from 'storybook-addon-material-ui';
-
-import muiTheme from '../../src/theme/index';
 
 import Page from '../../src/components/Page';
 
+import Card from '@material-ui/core/Card';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -38,22 +36,22 @@ function PinnedSubheaderList(props) {
   const { classes } = props;
 
   return (
+    <div>
     <List className={classes.root} subheader={<li />}>
       {[0, 1, 2, 3, 4].map(sectionId => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
           <ul className={classes.ul}>
             <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
             {[0, 1, 2].map(item => (
-              <Paper>
-                <ListItem key={`item-${sectionId}-${item}`}>
-                  <ListItemText primary={`Item ${item}`} />
-                </ListItem>
-              </Paper>
+              <ListItem key={`item-${sectionId}-${item}`}>
+                <ListItemText primary={`Item ${item}`} />
+              </ListItem>
             ))}
           </ul>
         </li>
       ))}
     </List>
+    </div>
   );
 }
 
@@ -64,7 +62,6 @@ PinnedSubheaderList.propTypes = {
 const Boo = withStyles(styles2)(PinnedSubheaderList);
 
 storiesOf('PaperList', module)
-  .addDecorator(storyBookMuiTheme(muiTheme))
   .add('Default', () => (
     <Boo />
   ));

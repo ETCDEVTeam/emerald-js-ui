@@ -4,8 +4,6 @@ import { HttpTransport, JsonRpc, VaultJsonRpcProvider, Vault } from 'emerald-js'
 
 import { VaultJsonRpcContext } from './VaultJsonRpcProvider';
 
-const VaultRpcCallContext = React.createContext({});
-
 class VaultRpcProvider extends React.Component {
   static propTypes = {
     method: PropTypes.string.isRequired,
@@ -65,11 +63,7 @@ class VaultRpcProvider extends React.Component {
 
   render() {
     if (this.state.result === null) { return null; }
-    return (
-      <VaultRpcCallContext.Provider value={this.state.result}>
-        {this.props.children}
-      </VaultRpcCallContext.Provider>
-    );
+    return this.props.children(this.state.result);
   }
 }
 
@@ -85,9 +79,7 @@ export default ({method, params, refresh, children}) => {
          };
          return (
            <VaultRpcProvider {...props}>
-             <VaultRpcCallContext.Consumer>
-               {children}
-             </VaultRpcCallContext.Consumer>
+             {children}
            </VaultRpcProvider>
          );
       }}

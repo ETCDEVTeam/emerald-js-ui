@@ -1,18 +1,30 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 import { Block as BlockIcon } from '../../icons3';
 import EthRpc from '../../providers/EthRpc';
 
-export default class CurrentBlockNumber extends React.Component {
+const styles = theme => ({
+  root: {},
+  icon: {
+    marginRight: theme.spacing.unit
+  }
+});
+
+class CurrentBlockNumber extends React.Component {
   render() {
+    const { classes } = this.props;
     return (
       <EthRpc method="eth.getBlockNumber">
         {blockNumber => (
           <React.Fragment>
-            <BlockIcon style={{marginRight: '10px'}}/> {blockNumber}
+            <BlockIcon className={classes.icon} /> {blockNumber}
           </React.Fragment>
         )}
       </EthRpc>
     )
   }
 }
+
+
+export default withStyles(styles, { name: 'EmeraldCurrentBlockNumber' })(CurrentBlockNumber);

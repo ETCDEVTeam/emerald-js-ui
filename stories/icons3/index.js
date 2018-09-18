@@ -1,6 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { muiTheme } from 'storybook-addon-material-ui';
+
 import {
   AddCircle,
   Add,
@@ -203,7 +203,7 @@ import {
 } from '../../src/icons3';
 
 storiesOf('icons3', module)
-  .add('all', () => (<div>
+  .addWithJSX('all', () => (<div>
     <AddCircle />
     <Add />
     <AppleCommand />
