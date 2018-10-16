@@ -1,6 +1,6 @@
 {
   "name": "emerald-js-ui",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -51,10 +51,11 @@
     "rimraf": "^2.6.2",
     "emerald-svg-icons": "git+https://github.com/ETCDEVTeam/emerald-svg-icons.git#52edf26278977adfe5018b8d0c92df498378dce5",
     "storybook-addon-material-ui": "0.8.2",
+    "@storybook/addon-knobs": "^3.4.7",
+    "svgo": "^1.0.5",
     "underscore.string": "^3.3.4"
   },
   "dependencies": {
-    "@storybook/addon-knobs": "^3.4.7",
     "classnames": "^2.2.5",
     "copy-to-clipboard": "^3.0.8",
     "material-ui": "^0.20.0",
@@ -62,8 +63,7 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-jss": "^8.1.0",
-    "rlp": "^2.0.0",
-    "svgo": "^1.0.5"
+    "rlp": "^2.0.0"
   },
   "jest": {
     "setupFiles": [
